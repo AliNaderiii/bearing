@@ -1,0 +1,4 @@
+19:07:31 | INFO | [run] sdust | chrono | stats_mlp | seed 0 | params 27,146 | device cuda
+19:07:51 | INFO |   ep   1 loss 1.5118 acc 50.0 val 53.32 (best 53.32@1)
+19:08:08 | INFO |   ep   2 loss 1.0953 acc 67.5 val 57.57 (best 57.57@2)
+19:09:13 | INFO | [done] clean acc 78.26 F1 77.60 | best val 57.57@2 | 37s

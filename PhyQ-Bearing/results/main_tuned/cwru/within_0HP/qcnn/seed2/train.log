@@ -1,0 +1,22 @@
+21:47:13 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+21:47:13 | INFO | [data] cwru | chronological | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+21:47:13 | INFO | [run] cwru | within_0HP | qcnn | seed 2 | params 108,270 | device cuda
+21:47:14 | INFO |   [memory] ~9 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+21:47:15 | INFO |   ep   1 loss 2.2775 acc 16.2 val 3.19 (best 3.19@1)
+21:47:17 | INFO |   ep   5 loss 1.4537 acc 61.5 val 55.13 (best 55.13@5)
+21:47:18 | INFO |   ep  10 loss 0.8251 acc 78.9 val 76.58 (best 76.58@10)
+21:47:19 | INFO |   ep  15 loss 0.6394 acc 86.8 val 77.42 (best 81.82@14)
+21:47:21 | INFO |   ep  20 loss 0.6021 acc 87.5 val 86.29 (best 86.29@20)
+21:47:22 | INFO |   ep  25 loss 0.6222 acc 86.9 val 83.30 (best 87.60@23)
+21:47:24 | INFO |   ep  30 loss 0.5112 acc 91.1 val 86.74 (best 87.60@23)
+21:47:25 | INFO |   ep  35 loss 0.5412 acc 90.3 val 88.37 (best 88.60@34)
+21:47:26 | INFO |   ep  40 loss 0.5375 acc 90.0 val 88.78 (best 89.21@39)
+21:47:28 | INFO |   ep  45 loss 0.5124 acc 91.4 val 88.69 (best 89.21@39)
+21:47:29 | INFO |   ep  50 loss 0.4967 acc 90.8 val 89.36 (best 89.36@50)
+21:47:31 | INFO |   ep  55 loss 0.5182 acc 90.6 val 89.35 (best 89.83@51)
+21:47:32 | INFO |   ep  60 loss 0.4438 acc 94.0 val 90.16 (best 90.32@59)
+21:47:34 | INFO |   ep  65 loss 0.4690 acc 93.0 val 90.87 (best 90.87@65)
+21:47:35 | INFO |   ep  70 loss 0.4389 acc 94.0 val 89.89 (best 90.87@65)
+21:47:36 | INFO |   ep  75 loss 0.4635 acc 92.9 val 90.13 (best 90.87@65)
+21:47:36 | INFO |   early stop at epoch 75 (best 65)
+21:47:37 | INFO | [done] clean acc 100.00 F1 100.00 | best val 90.87@65 | 22s

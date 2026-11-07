@@ -1,0 +1,19 @@
+13:09:46 | INFO | [cache] 200/1360 recordings
+13:09:46 | INFO | [cache] 400/1360 recordings
+13:09:46 | INFO | [cache] 600/1360 recordings
+13:09:46 | INFO | [cache] 800/1360 recordings
+13:09:46 | INFO | [cache] 1000/1360 recordings
+13:09:46 | INFO | [cache] 1200/1360 recordings
+13:09:46 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+13:09:47 | INFO | [data] pu | recording | train/val/test = 6528/1088/1088 | C=1 | fs=16000.0
+13:09:48 | INFO | [run] pu | seen_all | cnn_transformer | seed 1 | params 169,987 | device cuda
+13:09:50 | INFO |   [memory] ~3 MB/sample (train), free 3.22/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+13:10:08 | INFO |   ep   1 loss 0.8250 acc 63.6 val 46.55 (best 46.55@1)
+13:11:08 | INFO |   ep   5 loss 0.4590 acc 85.5 val 71.85 (best 81.02@3)
+13:12:25 | INFO |   ep  10 loss 0.4034 acc 88.4 val 84.51 (best 90.95@9)
+13:13:39 | INFO |   ep  15 loss 0.3679 acc 90.1 val 91.10 (best 91.10@15)
+13:14:56 | INFO |   ep  20 loss 0.3476 acc 91.0 val 92.32 (best 92.32@20)
+13:16:11 | INFO |   ep  25 loss 0.3268 acc 91.9 val 90.30 (best 92.32@20)
+13:17:27 | INFO |   ep  30 loss 0.3217 acc 92.3 val 92.28 (best 92.32@20)
+13:17:27 | INFO |   early stop at epoch 30 (best 20)
+13:17:45 | INFO | [done] clean acc 99.91 F1 99.90 | best val 92.32@20 | 455s

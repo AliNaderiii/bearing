@@ -1,0 +1,27 @@
+% absolute SNR, acc
+\begin{tabular}{lcccccccc}
+\toprule
+Model & pu:5fold clean & pu:5fold 0 dB & pu:5fold -6 dB & pu:5fold -10 dB & pu:art2real clean & pu:art2real 0 dB & pu:art2real -6 dB & pu:art2real -10 dB \\
+\midrule
+cnn\_transformer & 47.64$\pm$0.00 & 47.65$\pm$0.00 & 48.46$\pm$0.00 & 48.83$\pm$0.00 & 54.46$\pm$0.00 & 47.02$\pm$0.00 & 43.21$\pm$0.00 & 41.76$\pm$0.00 \\
+drsn & 47.89$\pm$0.00 & 49.06$\pm$0.00 & 48.52$\pm$0.00 & 50.25$\pm$0.00 & 45.94$\pm$0.00 & 41.73$\pm$0.00 & 39.86$\pm$0.00 & 38.72$\pm$0.00 \\
+phyq\_transnet & \textbf{64.78$\pm$0.00} & \textbf{63.42$\pm$0.00} & \textbf{64.30$\pm$0.00} & \textbf{59.36$\pm$0.00} & \textbf{63.81$\pm$0.00} & \textbf{54.86$\pm$0.00} & \textbf{50.34$\pm$0.00} & \textbf{47.84$\pm$0.00} \\
+qcnn & 55.02$\pm$0.00 & 51.67$\pm$0.00 & 46.34$\pm$0.00 & 45.75$\pm$0.00 & 55.00$\pm$0.00 & 52.07$\pm$0.00 & 48.98$\pm$0.00 & 45.65$\pm$0.00 \\
+stats\_mlp & 51.63$\pm$0.00 & 42.20$\pm$0.00 & 43.63$\pm$0.00 & 36.44$\pm$0.00 & 41.99$\pm$0.00 & 48.38$\pm$0.00 & 39.80$\pm$0.00 & 36.68$\pm$0.00 \\
+wdcnn & 57.70$\pm$0.00 & 51.32$\pm$0.00 & 50.41$\pm$0.00 & 50.71$\pm$0.00 & 56.99$\pm$0.00 & 52.44$\pm$0.00 & 49.01$\pm$0.00 & 46.08$\pm$0.00 \\
+\bottomrule
+\end{tabular}
+
+% relative SNR, acc
+\begin{tabular}{lcccccccc}
+\toprule
+Model & pu:5fold clean & pu:5fold 0 dB & pu:5fold -6 dB & pu:5fold -10 dB & pu:art2real clean & pu:art2real 0 dB & pu:art2real -6 dB & pu:art2real -10 dB \\
+\midrule
+cnn\_transformer & 47.64$\pm$0.00 & 48.23$\pm$0.00 & 49.17$\pm$0.00 & 47.23$\pm$0.00 & 54.46$\pm$0.00 & 49.89$\pm$0.00 & 48.35$\pm$0.00 & 45.51$\pm$0.00 \\
+drsn & 47.89$\pm$0.00 & 50.57$\pm$0.00 & 51.73$\pm$0.00 & 47.74$\pm$0.00 & 45.94$\pm$0.00 & 44.94$\pm$0.00 & 46.56$\pm$0.00 & 45.51$\pm$0.00 \\
+phyq\_transnet & \textbf{64.78$\pm$0.00} & \textbf{62.83$\pm$0.00} & \textbf{63.88$\pm$0.00} & \textbf{61.76$\pm$0.00} & \textbf{63.81$\pm$0.00} & \textbf{57.22$\pm$0.00} & 49.80$\pm$0.00 & 46.05$\pm$0.00 \\
+qcnn & 55.02$\pm$0.00 & 53.85$\pm$0.00 & 49.42$\pm$0.00 & 45.31$\pm$0.00 & 55.00$\pm$0.00 & 52.93$\pm$0.00 & 51.45$\pm$0.00 & 46.19$\pm$0.00 \\
+stats\_mlp & 51.63$\pm$0.00 & 47.56$\pm$0.00 & 40.12$\pm$0.00 & 36.07$\pm$0.00 & 41.99$\pm$0.00 & 45.31$\pm$0.00 & 37.61$\pm$0.00 & 33.30$\pm$0.00 \\
+wdcnn & 57.70$\pm$0.00 & 52.94$\pm$0.00 & 50.75$\pm$0.00 & 47.95$\pm$0.00 & 56.99$\pm$0.00 & 53.72$\pm$0.00 & \textbf{52.16$\pm$0.00} & \textbf{47.47$\pm$0.00} \\
+\bottomrule
+\end{tabular}

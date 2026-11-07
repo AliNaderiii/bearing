@@ -1,0 +1,153 @@
+{
+  "dataset": "pu",
+  "variant": "fold1",
+  "model": "phyqnet",
+  "model_tag": "envelope_width_0p5",
+  "seed": 0,
+  "val_only": true,
+  "val": {
+    "clean": {
+      "acc": 59.27083333333333,
+      "macro_f1": 55.26272869012073,
+      "bal_acc": 59.27083333333334,
+      "nll": NaN,
+      "ece": 31.00940942764282,
+      "n": 960,
+      "confusion": [
+        [
+          320,
+          0,
+          0
+        ],
+        [
+          75,
+          172,
+          73
+        ],
+        [
+          80,
+          163,
+          77
+        ]
+      ]
+    },
+    "noise": {
+      "white": {
+        "relative": {
+          "-6": {
+            "acc": 39.0625,
+            "macro_f1": 30.1114131390766,
+            "bal_acc": 39.0625,
+            "nll": 1.4956406354904175,
+            "ece": 37.944462547699615,
+            "n": 960,
+            "confusion": [
+              [
+                311,
+                0,
+                9
+              ],
+              [
+                82,
+                14,
+                224
+              ],
+              [
+                224,
+                46,
+                50
+              ]
+            ]
+          },
+          "0": {
+            "acc": 54.79166666666667,
+            "macro_f1": 51.77383959436158,
+            "bal_acc": 54.79166666666667,
+            "nll": 1.4959900379180908,
+            "ece": 34.124503225709,
+            "n": 960,
+            "confusion": [
+              [
+                320,
+                0,
+                0
+              ],
+              [
+                33,
+                122,
+                165
+              ],
+              [
+                80,
+                156,
+                84
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "train": {
+    "best_val": 40.87507536721019,
+    "best_epoch": 11,
+    "epochs_run": 19,
+    "train_time_s": 535.9399058818817
+  },
+  "profile": {
+    "params": 466958,
+    "macs": 145005912.0,
+    "latency_ms_bs1": 8.000256666673522
+  },
+  "data": {
+    "dataset": "pu",
+    "protocol": "group_kfold",
+    "n_recordings": 1360,
+    "fs": 16000.0,
+    "window": 8192,
+    "channels": 1,
+    "classes": [
+      "Healthy",
+      "OR",
+      "IR"
+    ],
+    "n_train": 7040,
+    "n_val": 960,
+    "n_test": 960,
+    "train_per_class": [
+      2560,
+      1920,
+      2560
+    ],
+    "val_per_class": [
+      320,
+      320,
+      320
+    ],
+    "test_per_class": [
+      320,
+      320,
+      320
+    ],
+    "test_groups": [
+      "K003",
+      "KA22",
+      "KI21"
+    ],
+    "train_groups": [
+      "K001",
+      "K004",
+      "K005",
+      "K006",
+      "KA04",
+      "KA15",
+      "KA16",
+      "KI04",
+      "KI16",
+      "KI17",
+      "KI18"
+    ],
+    "skipped_recordings": []
+  },
+  "wall_time_s": 538.5119569301605
+}

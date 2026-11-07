@@ -1,0 +1,4 @@
+18:51:53 | INFO | [run] ims | chrono | wdcnn | seed 0 | params 40,864 | device cuda
+18:51:58 | INFO |   ep   1 loss 0.8826 acc 63.0 val 62.30 (best 62.30@1)
+18:52:02 | INFO |   ep   2 loss 0.6979 acc 72.2 val 68.07 (best 68.07@2)
+18:52:07 | INFO | [done] clean acc 84.87 F1 84.75 | best val 68.07@2 | 9s

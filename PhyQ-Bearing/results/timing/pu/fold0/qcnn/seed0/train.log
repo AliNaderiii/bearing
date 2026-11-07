@@ -1,0 +1,4 @@
+18:57:54 | INFO | [run] pu | fold0 | qcnn | seed 0 | params 107,563 | device cuda
+18:58:00 | INFO |   ep   1 loss 0.6851 acc 71.5 val 28.18 (best 28.18@1)
+18:58:06 | INFO |   ep   2 loss 0.4874 acc 83.3 val 37.73 (best 37.73@2)
+18:58:11 | INFO | [done] clean acc 34.66 F1 34.00 | best val 37.73@2 | 12s

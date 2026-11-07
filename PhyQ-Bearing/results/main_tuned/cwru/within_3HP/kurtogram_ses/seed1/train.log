@@ -1,0 +1,15 @@
+10:12:44 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+10:12:44 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+10:12:44 | INFO | [classical] features for 4062 training windows (n_aug=2, fs=12000.0) ...
+10:12:59 | INFO | [classical] 115 features, 16s
+10:13:03 | INFO | [classical] rf_leaf1: val 76.3150 (4s)
+10:13:07 | INFO | [classical] rf_leaf3: val 76.6512 (4s)
+10:13:13 | INFO | [classical] hgb_lr0.05: val 82.5246 (7s)
+10:13:18 | INFO | [classical] hgb_lr0.1: val 83.0211 (4s)
+10:13:24 | INFO | [classical] logreg_C0.1: val 73.6322 (6s)
+10:13:33 | INFO | [classical] logreg_C1.0: val 76.6546 (9s)
+10:13:48 | INFO | [classical] logreg_C10.0: val 76.1820 (15s)
+10:13:52 | INFO | [classical] svm_C1.0: val 66.5593 (4s)
+10:13:55 | INFO | [classical] svm_C10.0: val 71.2987 (4s)
+10:13:59 | INFO | [classical] svm_C100.0: val 70.9172 (4s)
+10:14:23 | INFO | [done] clean acc 97.30 F1 97.34 | best val 83.02@4 | 75s

@@ -1,0 +1,4 @@
+18:43:25 | INFO | [run] cwru | within_3HP | drsn | seed 0 | params 67,458 | device cuda
+18:43:26 | INFO |   ep   1 loss 1.9911 acc 33.6 val 5.99 (best 5.99@1)
+18:43:27 | INFO |   ep   2 loss 1.4638 acc 67.6 val 57.36 (best 57.36@2)
+18:43:28 | INFO | [done] clean acc 85.59 F1 83.39 | best val 57.36@2 | 2s

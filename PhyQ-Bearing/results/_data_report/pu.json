@@ -1,0 +1,1573 @@
+{
+  "n_recordings": 1360,
+  "variants": {
+    "fold0": {
+      "dataset": "pu",
+      "protocol": "group_kfold",
+      "n_recordings": 1360,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 5760,
+      "n_val": 960,
+      "n_test": 1600,
+      "train_per_class": [
+        1920,
+        1920,
+        1920
+      ],
+      "val_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_per_class": [
+        640,
+        320,
+        640
+      ],
+      "test_groups": [
+        "K005",
+        "K006",
+        "KA15",
+        "KI04",
+        "KI17"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K004",
+        "KA04",
+        "KA16",
+        "KA30",
+        "KI14",
+        "KI16",
+        "KI18"
+      ],
+      "skipped_recordings": []
+    },
+    "fold1": {
+      "dataset": "pu",
+      "protocol": "group_kfold",
+      "n_recordings": 1360,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 7040,
+      "n_val": 960,
+      "n_test": 960,
+      "train_per_class": [
+        2560,
+        1920,
+        2560
+      ],
+      "val_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_groups": [
+        "K003",
+        "KA22",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KI04",
+        "KI16",
+        "KI17",
+        "KI18"
+      ],
+      "skipped_recordings": []
+    },
+    "fold2": {
+      "dataset": "pu",
+      "protocol": "group_kfold",
+      "n_recordings": 1360,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 7040,
+      "n_val": 960,
+      "n_test": 960,
+      "train_per_class": [
+        2560,
+        1920,
+        2560
+      ],
+      "val_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_groups": [
+        "K002",
+        "KA30",
+        "KI14"
+      ],
+      "train_groups": [
+        "K001",
+        "K003",
+        "K005",
+        "K006",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KI04",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "fold3": {
+      "dataset": "pu",
+      "protocol": "group_kfold",
+      "n_recordings": 1360,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 7040,
+      "n_val": 960,
+      "n_test": 960,
+      "train_per_class": [
+        2560,
+        1920,
+        2560
+      ],
+      "val_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_groups": [
+        "K004",
+        "KA04",
+        "KI16"
+      ],
+      "train_groups": [
+        "K002",
+        "K003",
+        "K005",
+        "K006",
+        "KA15",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI17",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "fold4": {
+      "dataset": "pu",
+      "protocol": "group_kfold",
+      "n_recordings": 1360,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 5760,
+      "n_val": 1600,
+      "n_test": 960,
+      "train_per_class": [
+        1920,
+        1920,
+        1920
+      ],
+      "val_per_class": [
+        640,
+        320,
+        640
+      ],
+      "test_per_class": [
+        320,
+        320,
+        320
+      ],
+      "test_groups": [
+        "K001",
+        "KA16",
+        "KI18"
+      ],
+      "train_groups": [
+        "K002",
+        "K003",
+        "K004",
+        "KA04",
+        "KA22",
+        "KA30",
+        "KI14",
+        "KI16",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "art2real": {
+      "dataset": "pu",
+      "protocol": "group",
+      "n_recordings": 2239,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 7040,
+      "n_val": 1916,
+      "n_test": 3520,
+      "train_per_class": [
+        1920,
+        3200,
+        1920
+      ],
+      "val_per_class": [
+        640,
+        636,
+        640
+      ],
+      "test_per_class": [
+        320,
+        1600,
+        1600
+      ],
+      "test_groups": [
+        "K001",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K002",
+        "K003",
+        "K004",
+        "KA01",
+        "KA05",
+        "KA06",
+        "KA07",
+        "KA09",
+        "KI01",
+        "KI05",
+        "KI07"
+      ],
+      "skipped_recordings": [
+        {
+          "rid": "pu_N15_M01_F10_KA08_2",
+          "path": "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn\\KA08\\N15_M01_F10_KA08_2.mat",
+          "error": "TypeError('Expecting matrix here')"
+        }
+      ]
+    },
+    "seen_all": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 1360,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 6528,
+      "n_val": 1088,
+      "n_test": 1088,
+      "train_per_class": [
+        2304,
+        1920,
+        2304
+      ],
+      "val_per_class": [
+        384,
+        320,
+        384
+      ],
+      "test_per_class": [
+        384,
+        320,
+        384
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "seen_A": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 340,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "seen_B": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 340,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "seen_C": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 340,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "seen_D": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 340,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "paper_dong7": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 140,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Normal",
+        "OR_EDM_L1",
+        "OR_engraver_L2",
+        "OR_drill_L1",
+        "IR_EDM_L1",
+        "IR_engraver_L1",
+        "IR_engraver_L2"
+      ],
+      "n_train": 2016,
+      "n_val": 196,
+      "n_test": 196,
+      "train_per_class": [
+        288,
+        288,
+        288,
+        288,
+        288,
+        288,
+        288
+      ],
+      "val_per_class": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28
+      ],
+      "test_per_class": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28
+      ],
+      "test_groups": [
+        "K001",
+        "KA01",
+        "KA03",
+        "KA07",
+        "KI01",
+        "KI03",
+        "KI08"
+      ],
+      "train_groups": [
+        "K001",
+        "KA01",
+        "KA03",
+        "KA07",
+        "KI01",
+        "KI03",
+        "KI08"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_A2B": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_A2C": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_A2D": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_B2A": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_B2C": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_B2D": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_C2A": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_C2B": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_C2D": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_D2A": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_D2B": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    },
+    "cc_D2C": {
+      "dataset": "pu",
+      "protocol": "recording",
+      "n_recordings": 680,
+      "fs": 16000.0,
+      "window": 8192,
+      "channels": 1,
+      "classes": [
+        "Healthy",
+        "OR",
+        "IR"
+      ],
+      "n_train": 4896,
+      "n_val": 476,
+      "n_test": 476,
+      "train_per_class": [
+        1728,
+        1440,
+        1728
+      ],
+      "val_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_per_class": [
+        168,
+        140,
+        168
+      ],
+      "test_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "train_groups": [
+        "K001",
+        "K002",
+        "K003",
+        "K004",
+        "K005",
+        "K006",
+        "KA04",
+        "KA15",
+        "KA16",
+        "KA22",
+        "KA30",
+        "KI04",
+        "KI14",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI21"
+      ],
+      "skipped_recordings": []
+    }
+  }
+}

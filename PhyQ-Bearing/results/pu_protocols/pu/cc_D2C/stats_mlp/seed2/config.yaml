@@ -1,0 +1,136 @@
+paths:
+  cache: D:/PhyQ-Bearing/cache
+  cwru:
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/0HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/1HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/2HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/3HP
+  pu: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn
+  ims: D:/Bearing Project/4. Bearings/IMS
+  nrel: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Wind
+    Turbine Gearbox Condition Monitoring Vibration/Data Information
+  sdust: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/SDUST/SDUST_bearing
+device: auto
+deterministic: false
+save_checkpoint: false
+results_dir: results
+data:
+  cache_dir: D:/PhyQ-Bearing/cache
+  window: 8192
+  train_stride: 2048
+  eval_stride: 8192
+  preload: auto
+  max_windows_per_segment_train: 24
+  max_windows_per_segment_eval: 7
+  name: pu
+  root: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn
+  channels:
+  - vibration_1
+  target_fs: 16000
+  conditions:
+  - N15_M07_F04
+  - N15_M01_F10
+  max_files_per_condition: 20
+  optional_bearings:
+  - K006
+  - KI17
+  classes:
+    Healthy:
+    - K001
+    - K002
+    - K003
+    - K004
+    - K005
+    - K006
+    OR:
+    - KA04
+    - KA15
+    - KA16
+    - KA22
+    - KA30
+    IR:
+    - KI04
+    - KI14
+    - KI16
+    - KI17
+    - KI18
+    - KI21
+  split:
+    protocol: recording
+    fractions:
+    - 0.6
+    - 0.2
+    - 0.2
+    source:
+    - N15_M07_F04
+    target:
+    - N15_M01_F10
+train:
+  epochs: 40
+  batch_size: 32
+  lr: 0.002
+  weight_decay: 0.01
+  scheduler: onecycle
+  warmup_frac: 0.15
+  label_smoothing: 0.05
+  mixup_alpha: 0.0
+  random_shift: true
+  amp_scale: null
+  grad_clip: 5.0
+  auto_micro_batch: true
+  min_micro_batch: 16
+  patience: 10
+  min_epochs: 10
+  amp: true
+  workers: 0
+  log_every: 5
+  noise_aug:
+    enabled: true
+    prob: 0.8
+    snr_range:
+    - -10
+    - 10
+    types:
+    - white
+    mode: mixed
+  grad_accum: 1
+selection:
+  metric: macro_f1
+  snrs:
+  - clean
+  - 0
+  - -6
+  snr_modes:
+  - relative
+  - absolute
+  noise_type: white
+  noise_seed: 777
+  batch_size: 64
+eval:
+  batch_size: 64
+  noise_seed: 12345
+  noise_types:
+  - white
+  snr_modes:
+  - relative
+  - absolute
+  snrs:
+  - -10
+  - -8
+  - -6
+  - -4
+  - -2
+  - 0
+  - 2
+  - 4
+  - 6
+  - 8
+  - 10
+  tta_shifts: 0
+model:
+  name: stats_mlp
+  amplitude: true
+  hidden: 128
+_variant: cc_D2C
+_model_tag: stats_mlp
+_val_only: false

@@ -1,0 +1,15 @@
+14:09:28 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+14:09:29 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+14:09:31 | INFO | [classical] features for 14400 training windows (n_aug=2, fs=40000.0) ...
+14:15:54 | INFO | [classical] 920 features, 385s
+14:17:44 | INFO | [classical] rf_leaf1: val 100.0000 (110s)
+14:19:32 | INFO | [classical] rf_leaf3: val 100.0000 (108s)
+14:21:29 | INFO | [classical] hgb_lr0.05: val 99.9334 (116s)
+14:23:18 | INFO | [classical] hgb_lr0.1: val 99.9667 (109s)
+14:24:59 | INFO | [classical] logreg_C0.1: val 100.0000 (101s)
+14:26:40 | INFO | [classical] logreg_C1.0: val 99.9336 (101s)
+14:28:21 | INFO | [classical] logreg_C10.0: val 99.5413 (101s)
+14:31:46 | INFO | [classical] svm_C1.0: val 99.7687 (205s)
+14:35:07 | INFO | [classical] svm_C10.0: val 99.8672 (201s)
+14:38:28 | INFO | [classical] svm_C100.0: val 99.8672 (201s)
+15:01:25 | INFO | [done] clean acc 100.00 F1 100.00 | best val 100.00@1 | 1739s

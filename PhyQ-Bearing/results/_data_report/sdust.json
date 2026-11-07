@@ -1,0 +1,89 @@
+{
+  "n_recordings": 381,
+  "variants": {
+    "chrono": {
+      "dataset": "sdust",
+      "protocol": "chronological",
+      "n_recordings": 381,
+      "fs": 25600.0,
+      "window": 2048,
+      "channels": 6,
+      "classes": [
+        "NC",
+        "IF0.2",
+        "IF0.4",
+        "IF0.6",
+        "OF0.2",
+        "OF0.4",
+        "OF0.6",
+        "RF0.2",
+        "RF0.4",
+        "RF0.6"
+      ],
+      "n_train": 24384,
+      "n_val": 6096,
+      "n_test": 6096,
+      "train_per_class": [
+        3072,
+        2368,
+        2368,
+        2368,
+        2368,
+        2368,
+        2368,
+        2368,
+        2368,
+        2368
+      ],
+      "val_per_class": [
+        768,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592
+      ],
+      "test_per_class": [
+        768,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592,
+        592
+      ],
+      "test_groups": [
+        "IF0.2",
+        "IF0.4",
+        "IF0.6",
+        "NC",
+        "OF0.2",
+        "OF0.4",
+        "OF0.6",
+        "RF0.2",
+        "RF0.4",
+        "RF0.6"
+      ],
+      "train_groups": [
+        "IF0.2",
+        "IF0.4",
+        "IF0.6",
+        "NC",
+        "OF0.2",
+        "OF0.4",
+        "OF0.6",
+        "RF0.2",
+        "RF0.4",
+        "RF0.6"
+      ],
+      "skipped_recordings": []
+    }
+  }
+}

@@ -1,0 +1,28 @@
+20:11:52 | INFO | [run] pu | fold0 | phyqnet | seed 0 | params 1,411,930 | device cuda
+20:13:01 | INFO |   ep   1 loss 0.5593 acc 79.3 val 37.20 (best 37.20@1)
+20:17:49 | INFO |   ep   5 loss 0.3466 acc 91.2 val 46.01 (best 46.01@5)
+20:23:45 | INFO |   ep  10 loss 0.3032 acc 93.3 val 40.24 (best 46.01@5)
+12:11:51 | INFO | [cache] 200/1200 recordings
+12:11:51 | INFO | [cache] 400/1200 recordings
+12:11:51 | INFO | [cache] 600/1200 recordings
+12:11:51 | INFO | [cache] 800/1200 recordings
+12:11:51 | INFO | [cache] 1000/1200 recordings
+12:11:51 | INFO | [cache] 1200/1200 recordings
+12:12:07 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+12:12:08 | INFO | [data] pu | group_kfold | train/val/test = 23040/3840/3840 | C=1 | fs=16000.0
+12:12:08 | INFO | [run] pu | fold0 | phyqnet | seed 0 | params 1,411,930 | device cpu
+12:23:38 | INFO |   ep   1 loss 0.5583 acc 79.2 val 32.32 (best 32.32@1)
+13:03:18 | INFO | [cache] 200/1200 recordings
+13:03:18 | INFO | [cache] 400/1200 recordings
+13:03:18 | INFO | [cache] 600/1200 recordings
+13:03:18 | INFO | [cache] 800/1200 recordings
+13:03:18 | INFO | [cache] 1000/1200 recordings
+13:03:18 | INFO | [cache] 1200/1200 recordings
+13:03:45 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+13:03:47 | INFO | [data] pu | group_kfold | train/val/test = 23040/3840/3840 | C=1 | fs=16000.0
+13:03:49 | INFO | [run] pu | fold0 | phyqnet | seed 0 | params 1,411,930 | device cuda
+13:05:15 | INFO |   ep   1 loss 0.5597 acc 79.3 val 38.70 (best 38.70@1)
+13:09:59 | INFO |   ep   5 loss 0.3478 acc 91.1 val 42.39 (best 48.09@3)
+13:14:42 | INFO |   ep  10 loss 0.3027 acc 93.3 val 40.36 (best 48.09@3)
+13:15:37 | INFO |   early stop at epoch 11 (best 3)
+13:15:44 | INFO | [done/val-only] best val 48.09@3

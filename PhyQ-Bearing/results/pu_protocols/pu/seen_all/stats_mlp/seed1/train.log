@@ -1,0 +1,21 @@
+14:15:48 | INFO | [cache] 200/1360 recordings
+14:15:48 | INFO | [cache] 400/1360 recordings
+14:15:48 | INFO | [cache] 600/1360 recordings
+14:15:48 | INFO | [cache] 800/1360 recordings
+14:15:48 | INFO | [cache] 1000/1360 recordings
+14:15:48 | INFO | [cache] 1200/1360 recordings
+14:15:48 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+14:15:48 | INFO | [data] pu | recording | train/val/test = 6528/1088/1088 | C=1 | fs=16000.0
+14:15:48 | INFO | [run] pu | seen_all | stats_mlp | seed 1 | params 18,563 | device cuda
+14:15:50 | INFO |   [memory] ~1 MB/sample (train), free 3.22/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+14:15:53 | INFO |   ep   1 loss 1.0341 acc 49.9 val 55.37 (best 55.37@1)
+14:16:00 | INFO |   ep   5 loss 0.7271 acc 68.9 val 69.66 (best 69.66@5)
+14:16:09 | INFO |   ep  10 loss 0.6555 acc 72.2 val 74.26 (best 74.26@10)
+14:16:17 | INFO |   ep  15 loss 0.6221 acc 75.3 val 75.54 (best 75.87@13)
+14:16:26 | INFO |   ep  20 loss 0.6149 acc 75.1 val 76.37 (best 77.23@19)
+14:16:35 | INFO |   ep  25 loss 0.6114 acc 75.4 val 79.23 (best 79.32@24)
+14:16:44 | INFO |   ep  30 loss 0.5993 acc 76.1 val 79.74 (best 79.74@30)
+14:16:53 | INFO |   ep  35 loss 0.5906 acc 76.5 val 79.50 (best 79.74@30)
+14:17:01 | INFO |   ep  40 loss 0.5925 acc 76.3 val 78.77 (best 79.74@30)
+14:17:01 | INFO |   early stop at epoch 40 (best 30)
+14:17:04 | INFO | [done] clean acc 94.94 F1 94.87 | best val 79.74@30 | 71s

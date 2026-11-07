@@ -1,0 +1,24 @@
+19:49:55 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+19:49:55 | INFO | [data] cwru | cross_condition | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+19:50:01 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.1545
+19:50:01 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.3238
+19:50:01 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.4813
+19:50:03 | INFO | [run] cwru | cross_0to3 | phyq_paper | seed 0 | params 1,400,427 | device cuda
+19:50:19 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+19:50:19 | INFO | [data] cwru | cross_condition | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+19:50:19 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+19:50:24 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.1545
+19:50:24 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.3230
+19:50:24 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.4802
+19:50:25 | INFO | [run] cwru | cross_0to3 | phyq_paper | seed 0 | params 1,400,427 | device cuda
+19:50:25 | INFO |   [memory] ~13 MB/sample (train), free 3.15/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+19:50:29 | INFO |   ep   1 loss 2.2219 acc 17.2 val 10.55 (best 10.55@1)
+19:50:44 | INFO |   ep   5 loss 1.2560 acc 60.9 val 52.66 (best 52.66@5)
+19:51:05 | INFO |   ep  10 loss 0.8604 acc 78.0 val 71.80 (best 71.80@10)
+19:51:25 | INFO |   ep  15 loss 0.7714 acc 80.7 val 75.40 (best 76.08@14)
+19:51:46 | INFO |   ep  20 loss 0.7101 acc 83.1 val 74.35 (best 78.52@19)
+19:52:05 | INFO |   ep  25 loss 0.7273 acc 82.0 val 79.45 (best 80.37@22)
+19:52:23 | INFO |   ep  30 loss 0.7072 acc 83.1 val 80.55 (best 80.55@30)
+19:52:41 | INFO |   ep  35 loss 0.6439 acc 85.2 val 81.43 (best 81.43@35)
+19:53:00 | INFO |   ep  40 loss 0.5627 acc 89.3 val 80.08 (best 81.43@35)
+19:53:10 | INFO | [done] clean acc 95.50 F1 95.48 | best val 81.43@35 | 155s

@@ -1,0 +1,62 @@
+08:15:53 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+08:15:54 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+08:15:57 | INFO |   [neural-MED] ch0 ep 1/3 loss -1.7461
+08:15:57 | INFO |   [neural-MED] ch0 ep 2/3 loss -1.7785
+08:15:57 | INFO |   [neural-MED] ch0 ep 3/3 loss -1.8079
+08:15:57 | INFO |   [neural-MED] ch1 ep 1/3 loss -1.6055
+08:15:57 | INFO |   [neural-MED] ch1 ep 2/3 loss -1.6506
+08:15:57 | INFO |   [neural-MED] ch1 ep 3/3 loss -1.6992
+08:15:57 | INFO |   [neural-MED] ch2 ep 1/3 loss -1.8182
+08:15:58 | INFO |   [neural-MED] ch2 ep 2/3 loss -1.8675
+08:15:58 | INFO |   [neural-MED] ch2 ep 3/3 loss -1.9093
+08:15:58 | INFO |   [neural-MED] ch3 ep 1/3 loss -1.5599
+08:15:58 | INFO |   [neural-MED] ch3 ep 2/3 loss -1.5905
+08:15:58 | INFO |   [neural-MED] ch3 ep 3/3 loss -1.6279
+08:15:58 | INFO |   [neural-MED] ch4 ep 1/3 loss -1.6598
+08:15:58 | INFO |   [neural-MED] ch4 ep 2/3 loss -1.7283
+08:15:59 | INFO |   [neural-MED] ch4 ep 3/3 loss -1.8042
+08:15:59 | INFO |   [neural-MED] ch5 ep 1/3 loss -1.9609
+08:15:59 | INFO |   [neural-MED] ch5 ep 2/3 loss -2.0404
+08:15:59 | INFO |   [neural-MED] ch5 ep 3/3 loss -2.0956
+08:15:59 | INFO |   [neural-MED] ch6 ep 1/3 loss -1.9390
+08:15:59 | INFO |   [neural-MED] ch6 ep 2/3 loss -2.0890
+08:15:59 | INFO |   [neural-MED] ch6 ep 3/3 loss -2.1537
+08:16:00 | INFO |   [neural-MED] ch7 ep 1/3 loss -1.5996
+08:16:00 | INFO |   [neural-MED] ch7 ep 2/3 loss -1.6269
+08:16:00 | INFO |   [neural-MED] ch7 ep 3/3 loss -1.6588
+08:16:00 | INFO | [run] nrel | expwise | phyq_paper | seed 0 | params 1,414,403 | device cuda
+08:16:10 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+08:16:11 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+08:16:11 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+08:16:13 | INFO |   [neural-MED] ch0 ep 1/3 loss -1.7461
+08:16:14 | INFO |   [neural-MED] ch0 ep 2/3 loss -1.7785
+08:16:14 | INFO |   [neural-MED] ch0 ep 3/3 loss -1.8079
+08:16:14 | INFO |   [neural-MED] ch1 ep 1/3 loss -1.6055
+08:16:14 | INFO |   [neural-MED] ch1 ep 2/3 loss -1.6506
+08:16:15 | INFO |   [neural-MED] ch1 ep 3/3 loss -1.6992
+08:16:15 | INFO |   [neural-MED] ch2 ep 1/3 loss -1.8182
+08:16:15 | INFO |   [neural-MED] ch2 ep 2/3 loss -1.8675
+08:16:15 | INFO |   [neural-MED] ch2 ep 3/3 loss -1.9093
+08:16:15 | INFO |   [neural-MED] ch3 ep 1/3 loss -1.5599
+08:16:16 | INFO |   [neural-MED] ch3 ep 2/3 loss -1.5905
+08:16:16 | INFO |   [neural-MED] ch3 ep 3/3 loss -1.6279
+08:16:16 | INFO |   [neural-MED] ch4 ep 1/3 loss -1.6598
+08:16:16 | INFO |   [neural-MED] ch4 ep 2/3 loss -1.7283
+08:16:17 | INFO |   [neural-MED] ch4 ep 3/3 loss -1.8042
+08:16:17 | INFO |   [neural-MED] ch5 ep 1/3 loss -1.9609
+08:16:17 | INFO |   [neural-MED] ch5 ep 2/3 loss -2.0404
+08:16:17 | INFO |   [neural-MED] ch5 ep 3/3 loss -2.0956
+08:16:17 | INFO |   [neural-MED] ch6 ep 1/3 loss -1.9390
+08:16:18 | INFO |   [neural-MED] ch6 ep 2/3 loss -2.0890
+08:16:18 | INFO |   [neural-MED] ch6 ep 3/3 loss -2.1538
+08:16:18 | INFO |   [neural-MED] ch7 ep 1/3 loss -1.5996
+08:16:18 | INFO |   [neural-MED] ch7 ep 2/3 loss -1.6269
+08:16:18 | INFO |   [neural-MED] ch7 ep 3/3 loss -1.6588
+08:16:19 | INFO | [run] nrel | expwise | phyq_paper | seed 0 | params 1,414,403 | device cuda
+08:16:19 | INFO |   [memory] ~15 MB/sample (train), free 3.07/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+08:16:36 | INFO |   ep   1 loss 0.4074 acc 83.8 val 99.28 (best 99.28@1)
+08:17:40 | INFO |   ep   5 loss 0.1238 acc 99.8 val 100.00 (best 100.00@5)
+08:19:00 | INFO |   ep  10 loss 0.1230 acc 99.8 val 100.00 (best 100.00@5)
+08:20:20 | INFO |   ep  15 loss 0.1242 acc 99.7 val 100.00 (best 100.00@5)
+08:20:20 | INFO |   early stop at epoch 15 (best 5)
+08:21:18 | INFO | [done] clean acc 100.00 F1 100.00 | best val 100.00@5 | 241s

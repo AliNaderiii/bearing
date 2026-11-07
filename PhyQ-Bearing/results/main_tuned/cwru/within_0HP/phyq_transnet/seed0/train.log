@@ -1,0 +1,27 @@
+21:30:54 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+21:30:54 | INFO | [data] cwru | chronological | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+21:30:56 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.1545
+21:30:56 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.3242
+21:30:56 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.4823
+21:30:57 | INFO | [run] cwru | within_0HP | phyq_paper | seed 0 | params 1,400,427 | device cuda
+21:31:07 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+21:31:07 | INFO | [data] cwru | chronological | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+21:31:07 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+21:31:10 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.1545
+21:31:10 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.3230
+21:31:10 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.4802
+21:31:10 | INFO | [run] cwru | within_0HP | phyq_paper | seed 0 | params 1,400,427 | device cuda
+21:31:10 | INFO |   [memory] ~13 MB/sample (train), free 3.15/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+21:31:14 | INFO |   ep   1 loss 2.2294 acc 16.8 val 13.21 (best 13.21@1)
+21:31:28 | INFO |   ep   5 loss 1.4693 acc 51.9 val 43.82 (best 43.82@5)
+21:31:46 | INFO |   ep  10 loss 0.9343 acc 73.8 val 65.16 (best 65.16@10)
+21:32:03 | INFO |   ep  15 loss 0.8324 acc 78.6 val 70.43 (best 75.58@13)
+21:32:21 | INFO |   ep  20 loss 0.7356 acc 81.8 val 74.34 (best 76.71@19)
+21:32:38 | INFO |   ep  25 loss 0.7875 acc 78.9 val 77.65 (best 77.65@25)
+21:32:56 | INFO |   ep  30 loss 0.7252 acc 82.4 val 77.12 (best 78.68@26)
+21:33:14 | INFO |   ep  35 loss 0.6707 acc 84.7 val 78.74 (best 78.74@35)
+21:33:31 | INFO |   ep  40 loss 0.5956 acc 87.6 val 78.64 (best 79.26@38)
+21:33:49 | INFO |   ep  45 loss 0.6685 acc 84.0 val 76.35 (best 81.80@41)
+21:34:06 | INFO |   ep  50 loss 0.5729 acc 87.7 val 81.23 (best 81.80@41)
+21:34:10 | INFO |   early stop at epoch 51 (best 41)
+21:34:16 | INFO | [done] clean acc 99.10 F1 99.09 | best val 81.80@41 | 179s

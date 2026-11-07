@@ -1,0 +1,39 @@
+02:29:55 | INFO | [cache] 200/1360 recordings
+02:29:55 | INFO | [cache] 400/1360 recordings
+02:29:55 | INFO | [cache] 600/1360 recordings
+02:29:55 | INFO | [cache] 800/1360 recordings
+02:29:55 | INFO | [cache] 1000/1360 recordings
+02:29:55 | INFO | [cache] 1200/1360 recordings
+02:29:55 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+02:29:55 | INFO | [data] pu | recording | train/val/test = 6528/1088/1088 | C=1 | fs=16000.0
+02:29:55 | INFO | [run] pu | seen_all | wdcnn | seed 0 | params 40,763 | device cuda
+06:03:09 | INFO | [cache] 200/1360 recordings
+06:03:09 | INFO | [cache] 400/1360 recordings
+06:03:09 | INFO | [cache] 600/1360 recordings
+06:03:09 | INFO | [cache] 800/1360 recordings
+06:03:09 | INFO | [cache] 1000/1360 recordings
+06:03:09 | INFO | [cache] 1200/1360 recordings
+06:03:09 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+06:03:10 | INFO | [data] pu | recording | train/val/test = 6528/1088/1088 | C=1 | fs=16000.0
+06:03:10 | INFO | [run] pu | seen_all | wdcnn | seed 0 | params 40,763 | device cuda
+06:32:31 | INFO | [cache] 200/1360 recordings
+06:32:31 | INFO | [cache] 400/1360 recordings
+06:32:31 | INFO | [cache] 600/1360 recordings
+06:32:31 | INFO | [cache] 800/1360 recordings
+06:32:31 | INFO | [cache] 1000/1360 recordings
+06:32:31 | INFO | [cache] 1200/1360 recordings
+06:32:31 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+06:32:31 | INFO | [data] pu | recording | train/val/test = 6528/1088/1088 | C=1 | fs=16000.0
+06:32:31 | INFO | [run] pu | seen_all | wdcnn | seed 0 | params 40,763 | device cuda
+06:32:32 | WARNING |   [memory] estimate 1.53 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+06:32:32 | INFO |   [memory] ~98 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+06:32:37 | INFO |   ep   1 loss 0.9700 acc 51.8 val 57.15 (best 57.15@1)
+06:32:52 | INFO |   ep   5 loss 0.5109 acc 82.9 val 82.69 (best 82.69@5)
+06:33:10 | INFO |   ep  10 loss 0.4309 acc 87.5 val 85.70 (best 86.47@8)
+06:33:28 | INFO |   ep  15 loss 0.4126 acc 88.1 val 89.41 (best 90.32@14)
+06:33:46 | INFO |   ep  20 loss 0.3954 acc 89.3 val 88.69 (best 90.32@14)
+06:34:03 | INFO |   ep  25 loss 0.3784 acc 90.1 val 91.87 (best 91.87@25)
+06:34:21 | INFO |   ep  30 loss 0.3568 acc 91.1 val 92.02 (best 92.02@30)
+06:34:39 | INFO |   ep  35 loss 0.3568 acc 91.1 val 91.61 (best 92.29@34)
+06:34:58 | INFO |   ep  40 loss 0.3548 acc 91.3 val 91.26 (best 92.56@37)
+06:35:01 | INFO | [done] clean acc 100.00 F1 100.00 | best val 92.56@37 | 144s

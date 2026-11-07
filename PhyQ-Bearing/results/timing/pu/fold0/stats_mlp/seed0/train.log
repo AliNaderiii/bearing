@@ -1,0 +1,4 @@
+18:58:11 | INFO | [run] pu | fold0 | stats_mlp | seed 0 | params 18,563 | device cuda
+18:58:14 | INFO |   ep   1 loss 0.8406 acc 60.7 val 28.17 (best 28.17@1)
+18:58:17 | INFO |   ep   2 loss 0.7246 acc 69.2 val 24.93 (best 28.17@1)
+18:58:21 | INFO | [done] clean acc 20.10 F1 19.21 | best val 28.17@1 | 7s

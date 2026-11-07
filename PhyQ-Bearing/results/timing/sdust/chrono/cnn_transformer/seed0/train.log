@@ -1,0 +1,7 @@
+18:58:34 | INFO | [cache] 200/381 recordings
+18:58:40 | INFO | [memory] cached signals 8.9 GB, RAM 7.7 GB -> memory-map from disk
+18:58:42 | INFO | [data] sdust | chronological | train/val/test = 24384/6096/6096 | C=6 | fs=25600.0
+18:58:42 | INFO | [run] sdust | chrono | cnn_transformer | seed 0 | params 180,682 | device cuda
+18:59:33 | INFO |   ep   1 loss 1.0748 acc 65.4 val 72.29 (best 72.29@1)
+18:59:48 | INFO |   ep   2 loss 0.5262 acc 90.4 val 83.90 (best 83.90@2)
+19:00:29 | INFO | [done] clean acc 96.33 F1 96.20 | best val 83.90@2 | 66s

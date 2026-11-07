@@ -1,0 +1,4 @@
+19:06:12 | INFO | [run] sdust | chrono | qcnn | seed 0 | params 123,630 | device cuda
+19:06:33 | INFO |   ep   1 loss 1.3558 acc 51.0 val 64.13 (best 64.13@1)
+19:06:53 | INFO |   ep   2 loss 0.8218 acc 74.3 val 69.16 (best 69.16@2)
+19:07:31 | INFO | [done] clean acc 81.43 F1 80.87 | best val 69.16@2 | 40s

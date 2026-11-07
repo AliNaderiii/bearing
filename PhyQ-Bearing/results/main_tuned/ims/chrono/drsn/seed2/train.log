@@ -1,0 +1,26 @@
+07:10:21 | INFO | [cache] 200/2376 recordings
+07:10:21 | INFO | [cache] 400/2376 recordings
+07:10:21 | INFO | [cache] 600/2376 recordings
+07:10:21 | INFO | [cache] 800/2376 recordings
+07:10:21 | INFO | [cache] 1000/2376 recordings
+07:10:21 | INFO | [cache] 1200/2376 recordings
+07:10:21 | INFO | [cache] 1400/2376 recordings
+07:10:21 | INFO | [cache] 1600/2376 recordings
+07:10:21 | INFO | [cache] 1800/2376 recordings
+07:10:21 | INFO | [cache] 2000/2376 recordings
+07:10:21 | INFO | [cache] 2200/2376 recordings
+07:10:23 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+07:10:24 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+07:10:24 | INFO | [run] ims | chrono | drsn | seed 2 | params 67,068 | device cuda
+07:10:28 | WARNING |   [memory] estimate 2.55 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+07:10:28 | INFO |   [memory] ~163 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 4 (effective batch 64)
+07:12:02 | INFO |   ep   1 loss 1.2673 acc 40.2 val 32.42 (best 32.42@1)
+07:17:22 | INFO |   ep   5 loss 0.7343 acc 71.4 val 67.87 (best 68.48@4)
+07:23:27 | INFO |   ep  10 loss 0.6487 acc 76.3 val 74.99 (best 74.99@10)
+07:29:40 | INFO |   ep  15 loss 0.6156 acc 78.0 val 73.41 (best 74.99@10)
+07:35:55 | INFO |   ep  20 loss 0.5904 acc 79.5 val 70.64 (best 76.35@18)
+07:42:00 | INFO |   ep  25 loss 0.5764 acc 80.0 val 77.73 (best 77.73@25)
+07:47:09 | INFO |   ep  30 loss 0.5686 acc 80.5 val 74.46 (best 77.73@25)
+07:49:25 | INFO |   ep  35 loss 0.5568 acc 81.0 val 75.66 (best 77.73@25)
+07:49:25 | INFO |   early stop at epoch 35 (best 25)
+07:49:54 | INFO | [done] clean acc 81.52 F1 81.69 | best val 77.73@25 | 2332s

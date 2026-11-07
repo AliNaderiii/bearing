@@ -1,0 +1,43 @@
+07:50:00 | INFO | [cache] 200/2376 recordings
+07:50:00 | INFO | [cache] 400/2376 recordings
+07:50:00 | INFO | [cache] 600/2376 recordings
+07:50:00 | INFO | [cache] 800/2376 recordings
+07:50:00 | INFO | [cache] 1000/2376 recordings
+07:50:00 | INFO | [cache] 1200/2376 recordings
+07:50:00 | INFO | [cache] 1400/2376 recordings
+07:50:00 | INFO | [cache] 1600/2376 recordings
+07:50:00 | INFO | [cache] 1800/2376 recordings
+07:50:00 | INFO | [cache] 2000/2376 recordings
+07:50:00 | INFO | [cache] 2200/2376 recordings
+07:50:01 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+07:50:01 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+07:50:04 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.4111
+07:50:04 | INFO |   [neural-MED] ch0 ep 2/3 loss -6.4892
+07:50:04 | INFO |   [neural-MED] ch0 ep 3/3 loss -7.9308
+07:50:05 | INFO | [run] ims | chrono | phyq_paper | seed 2 | params 1,399,653 | device cuda
+07:50:15 | INFO | [cache] 200/2376 recordings
+07:50:15 | INFO | [cache] 400/2376 recordings
+07:50:15 | INFO | [cache] 600/2376 recordings
+07:50:15 | INFO | [cache] 800/2376 recordings
+07:50:15 | INFO | [cache] 1000/2376 recordings
+07:50:15 | INFO | [cache] 1200/2376 recordings
+07:50:15 | INFO | [cache] 1400/2376 recordings
+07:50:15 | INFO | [cache] 1600/2376 recordings
+07:50:15 | INFO | [cache] 1800/2376 recordings
+07:50:15 | INFO | [cache] 2000/2376 recordings
+07:50:15 | INFO | [cache] 2200/2376 recordings
+07:50:15 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+07:50:15 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+07:50:15 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+07:50:17 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.4111
+07:50:17 | INFO |   [neural-MED] ch0 ep 2/3 loss -6.4892
+07:50:18 | INFO |   [neural-MED] ch0 ep 3/3 loss -7.9308
+07:50:18 | INFO | [run] ims | chrono | phyq_paper | seed 2 | params 1,399,653 | device cuda
+07:50:18 | INFO |   [memory] ~13 MB/sample (train), free 3.14/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+07:51:25 | INFO |   ep   1 loss 0.9965 acc 53.2 val 37.81 (best 37.81@1)
+07:55:50 | INFO |   ep   5 loss 0.7336 acc 68.2 val 53.56 (best 58.60@4)
+08:01:21 | INFO |   ep  10 loss 0.6574 acc 73.7 val 70.30 (best 70.30@10)
+08:06:52 | INFO |   ep  15 loss 0.6246 acc 75.5 val 65.95 (best 70.30@10)
+08:12:24 | INFO |   ep  20 loss 0.6072 acc 76.7 val 70.08 (best 70.30@10)
+08:12:24 | INFO |   early stop at epoch 20 (best 10)
+08:15:53 | INFO | [done] clean acc 69.41 F1 69.92 | best val 70.30@10 | 1325s

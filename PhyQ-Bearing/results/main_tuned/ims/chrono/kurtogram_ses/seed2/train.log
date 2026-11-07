@@ -1,0 +1,23 @@
+11:37:56 | INFO | [cache] 200/2376 recordings
+11:37:56 | INFO | [cache] 400/2376 recordings
+11:37:56 | INFO | [cache] 600/2376 recordings
+11:37:56 | INFO | [cache] 800/2376 recordings
+11:37:56 | INFO | [cache] 1000/2376 recordings
+11:37:56 | INFO | [cache] 1200/2376 recordings
+11:37:56 | INFO | [cache] 1400/2376 recordings
+11:37:56 | INFO | [cache] 1600/2376 recordings
+11:37:56 | INFO | [cache] 1800/2376 recordings
+11:37:56 | INFO | [cache] 2000/2376 recordings
+11:37:56 | INFO | [cache] 2200/2376 recordings
+11:37:57 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+11:37:57 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+11:37:58 | INFO | [classical] features for 66096 training windows (n_aug=2, fs=20000.0) ...
+11:42:09 | INFO | [classical] 115 features, 253s
+11:44:17 | INFO | [classical] rf_leaf1: val 54.2160 (128s)
+11:46:22 | INFO | [classical] rf_leaf3: val 54.1335 (125s)
+11:48:07 | INFO | [classical] hgb_lr0.05: val 63.6395 (105s)
+11:49:44 | INFO | [classical] hgb_lr0.1: val 63.6912 (97s)
+11:51:25 | INFO | [classical] logreg_C0.1: val 55.9256 (101s)
+11:53:09 | INFO | [classical] logreg_C1.0: val 57.4443 (104s)
+11:55:10 | INFO | [classical] logreg_C10.0: val 57.5711 (121s)
+12:13:54 | INFO | [done] clean acc 78.43 F1 72.87 | best val 63.69@4 | 1034s

@@ -1,0 +1,11 @@
+08:13:26 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+08:13:27 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+08:13:27 | INFO | [run] nrel | expwise | drsn | seed 0 | params 68,618 | device cuda
+08:13:29 | WARNING |   [memory] estimate 2.55 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+08:13:29 | INFO |   [memory] ~163 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 4 (effective batch 64)
+08:13:38 | INFO |   ep   1 loss 0.4949 acc 76.4 val 96.82 (best 96.82@1)
+08:14:05 | INFO |   ep   5 loss 0.1268 acc 99.7 val 99.97 (best 99.97@5)
+08:14:40 | INFO |   ep  10 loss 0.1191 acc 100.0 val 100.00 (best 100.00@7)
+08:15:15 | INFO |   ep  15 loss 0.1214 acc 99.8 val 100.00 (best 100.00@7)
+08:15:29 | INFO |   early stop at epoch 17 (best 7)
+08:15:48 | INFO | [done] clean acc 100.00 F1 100.00 | best val 100.00@7 | 119s

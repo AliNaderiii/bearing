@@ -1,0 +1,4 @@
+18:58:21 | INFO | [run] pu | fold0 | wdcnn | seed 0 | params 40,763 | device cuda
+18:58:25 | INFO |   ep   1 loss 0.7331 acc 67.7 val 38.30 (best 38.30@1)
+18:58:29 | INFO |   ep   2 loss 0.5161 acc 81.6 val 40.15 (best 40.15@2)
+18:58:33 | INFO | [done] clean acc 37.50 F1 37.02 | best val 40.15@2 | 9s

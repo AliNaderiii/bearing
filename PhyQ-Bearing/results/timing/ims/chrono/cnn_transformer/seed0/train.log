@@ -1,0 +1,17 @@
+18:43:41 | INFO | [cache] 200/2376 recordings
+18:43:41 | INFO | [cache] 400/2376 recordings
+18:43:41 | INFO | [cache] 600/2376 recordings
+18:43:41 | INFO | [cache] 800/2376 recordings
+18:43:41 | INFO | [cache] 1000/2376 recordings
+18:43:41 | INFO | [cache] 1200/2376 recordings
+18:43:41 | INFO | [cache] 1400/2376 recordings
+18:43:41 | INFO | [cache] 1600/2376 recordings
+18:43:41 | INFO | [cache] 1800/2376 recordings
+18:43:41 | INFO | [cache] 2000/2376 recordings
+18:43:41 | INFO | [cache] 2200/2376 recordings
+18:46:04 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+18:46:05 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+18:46:05 | INFO | [run] ims | chrono | cnn_transformer | seed 0 | params 170,052 | device cuda
+18:46:20 | INFO |   ep   1 loss 0.7728 acc 68.6 val 62.89 (best 62.89@1)
+18:46:33 | INFO |   ep   2 loss 0.6224 acc 76.7 val 74.24 (best 74.24@2)
+18:46:48 | INFO | [done] clean acc 81.87 F1 82.14 | best val 74.24@2 | 28s

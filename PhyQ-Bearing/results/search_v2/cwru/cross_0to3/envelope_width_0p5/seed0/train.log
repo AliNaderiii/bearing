@@ -1,0 +1,8 @@
+07:18:30 | INFO | [run] cwru | cross_0to3 | phyqnet | seed 0 | params 467,861 | device cuda
+07:18:36 | INFO |   ep   1 loss 2.0974 acc 31.4 val 12.51 (best 12.51@1)
+07:18:50 | INFO |   ep   5 loss 0.6182 acc 88.8 val 75.15 (best 75.15@5)
+07:19:07 | INFO |   ep  10 loss 0.5855 acc 88.9 val 87.34 (best 90.77@9)
+07:19:21 | INFO |   ep  15 loss 0.4954 acc 92.3 val 89.36 (best 92.66@13)
+07:19:35 | INFO |   ep  20 loss 0.3828 acc 96.5 val 93.66 (best 93.66@20)
+07:19:52 | INFO |   ep  25 loss 0.4129 acc 95.5 val 93.47 (best 93.66@20)
+07:19:53 | INFO | [done/val-only] best val 93.66@20

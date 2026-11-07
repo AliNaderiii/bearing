@@ -1,0 +1,53 @@
+{
+  "n_recordings": 20,
+  "variants": {
+    "expwise": {
+      "dataset": "nrel",
+      "protocol": "group",
+      "n_recordings": 20,
+      "fs": 40000.0,
+      "window": 2048,
+      "channels": 8,
+      "classes": [
+        "Healthy",
+        "Damaged"
+      ],
+      "n_train": 4800,
+      "n_val": 800,
+      "n_test": 800,
+      "train_per_class": [
+        2800,
+        2000
+      ],
+      "val_per_class": [
+        200,
+        600
+      ],
+      "test_per_class": [
+        400,
+        400
+      ],
+      "test_groups": [
+        "D10",
+        "D9",
+        "H10",
+        "H9"
+      ],
+      "train_groups": [
+        "D3",
+        "D4",
+        "D5",
+        "D7",
+        "D8",
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H8"
+      ],
+      "skipped_recordings": []
+    }
+  }
+}

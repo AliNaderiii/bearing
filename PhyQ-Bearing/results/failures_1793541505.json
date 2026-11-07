@@ -1,0 +1,17 @@
+[
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\main_tuned\\nrel\\expwise\\classbd\\seed0",
+    "kind": "cuda_fault",
+    "error": "child process ended with code 3221225477 without a status (driver crash?)"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\main_tuned\\nrel\\expwise\\classbd\\seed1",
+    "kind": "cuda_fault",
+    "error": "child process ended with code 3221225477 without a status (driver crash?)"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\main_tuned\\nrel\\expwise\\classbd\\seed2",
+    "kind": "cuda_fault",
+    "error": "child process ended with code 3221225477 without a status (driver crash?)"
+  }
+]
