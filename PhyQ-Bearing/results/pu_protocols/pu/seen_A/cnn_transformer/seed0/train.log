@@ -1,0 +1,33 @@
+21:53:12 | INFO | [cache] 200/340 recordings
+21:53:12 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+21:53:12 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+21:53:13 | INFO | [run] pu | seen_A | cnn_transformer | seed 0 | params 169,987 | device cuda
+21:53:14 | INFO |   [memory] ~3 MB/sample (train), free 3.22/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+21:53:24 | INFO |   ep   1 loss 0.8044 acc 65.1 val 43.45 (best 43.45@1)
+21:53:59 | INFO |   ep   5 loss 0.3969 acc 89.4 val 68.81 (best 81.66@2)
+21:54:42 | INFO |   ep  10 loss 0.3468 acc 91.1 val 68.52 (best 86.81@9)
+21:55:25 | INFO |   ep  15 loss 0.3107 acc 93.2 val 92.81 (best 93.38@14)
+21:56:08 | INFO |   ep  20 loss 0.3135 acc 93.2 val 94.14 (best 94.68@18)
+21:56:51 | INFO |   ep  25 loss 0.2690 acc 95.1 val 95.57 (best 95.57@25)
+21:57:35 | INFO |   ep  30 loss 0.2577 acc 95.9 val 96.14 (best 96.14@30)
+21:58:18 | INFO |   ep  35 loss 0.2583 acc 95.9 val 96.09 (best 96.40@32)
+21:59:01 | INFO |   ep  40 loss 0.2413 acc 96.6 val 96.62 (best 96.68@39)
+21:59:07 | INFO | [cache] 200/680 recordings
+21:59:07 | INFO | [cache] 400/680 recordings
+21:59:07 | INFO | [cache] 600/680 recordings
+21:59:07 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+21:59:07 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+21:59:12 | INFO |   [extra-test] cc_A2B: clean acc 70.80 F1 63.82 (same model as seen_A)
+21:59:13 | INFO | [cache] 200/680 recordings
+21:59:13 | INFO | [cache] 400/680 recordings
+21:59:13 | INFO | [cache] 600/680 recordings
+21:59:13 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+21:59:13 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+21:59:18 | INFO |   [extra-test] cc_A2C: clean acc 100.00 F1 100.00 (same model as seen_A)
+21:59:19 | INFO | [cache] 200/680 recordings
+21:59:19 | INFO | [cache] 400/680 recordings
+21:59:19 | INFO | [cache] 600/680 recordings
+21:59:19 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+21:59:19 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+21:59:24 | INFO |   [extra-test] cc_A2D: clean acc 80.46 F1 79.87 (same model as seen_A)
+21:59:24 | INFO | [done] clean acc 100.00 F1 100.00 | best val 96.68@39 | 347s

@@ -1,0 +1,31 @@
+10:53:23 | INFO | [cache] 200/2376 recordings
+10:53:23 | INFO | [cache] 400/2376 recordings
+10:53:23 | INFO | [cache] 600/2376 recordings
+10:53:23 | INFO | [cache] 800/2376 recordings
+10:53:23 | INFO | [cache] 1000/2376 recordings
+10:53:23 | INFO | [cache] 1200/2376 recordings
+10:53:23 | INFO | [cache] 1400/2376 recordings
+10:53:23 | INFO | [cache] 1600/2376 recordings
+10:53:23 | INFO | [cache] 1800/2376 recordings
+10:53:23 | INFO | [cache] 2000/2376 recordings
+10:53:23 | INFO | [cache] 2200/2376 recordings
+10:55:52 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+10:55:52 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+10:55:52 | INFO | [run] ims | chrono | phyq_paper | seed 0 | params 786,917 | device cuda
+10:55:55 | INFO |   [memory] ~11 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+10:56:41 | INFO |   ep   1 loss 0.7744 acc 69.7 val 63.26 (best 63.26@1)
+10:59:32 | INFO |   ep   5 loss 0.5175 acc 82.3 val 71.31 (best 75.57@4)
+11:03:07 | INFO |   ep  10 loss 0.4956 acc 83.4 val 75.89 (best 75.89@10)
+11:06:41 | INFO |   ep  15 loss 0.4599 acc 85.3 val 80.35 (best 80.35@15)
+11:10:16 | INFO |   ep  20 loss 0.4517 acc 85.8 val 79.09 (best 80.54@16)
+11:13:51 | INFO |   ep  25 loss 0.4489 acc 86.2 val 79.55 (best 82.26@22)
+11:17:26 | INFO |   ep  30 loss 0.4393 acc 86.6 val 81.80 (best 82.26@22)
+11:21:00 | INFO |   ep  35 loss 0.4337 acc 86.8 val 81.05 (best 82.46@32)
+11:24:35 | INFO |   ep  40 loss 0.4225 acc 87.5 val 83.92 (best 83.92@40)
+11:28:09 | INFO |   ep  45 loss 0.4172 acc 87.4 val 83.66 (best 83.92@40)
+11:31:44 | INFO |   ep  50 loss 0.4130 acc 88.0 val 84.19 (best 84.19@50)
+11:35:18 | INFO |   ep  55 loss 0.4073 acc 88.3 val 84.02 (best 84.19@50)
+11:38:53 | INFO |   ep  60 loss 0.4028 acc 88.6 val 83.19 (best 84.58@58)
+11:42:27 | INFO |   ep  65 loss 0.3983 acc 88.6 val 84.37 (best 84.58@58)
+11:44:36 | INFO |   early stop at epoch 68 (best 58)
+11:46:48 | INFO | [done] clean acc 80.28 F1 80.17 | best val 84.58@58 | 2920s

@@ -1,0 +1,179 @@
+{
+  "dataset": "ims",
+  "variant": "chrono",
+  "model": "cnn_transformer",
+  "model_tag": "cnn_transformer__lr1e-3_ep80",
+  "seed": 0,
+  "val_only": true,
+  "val": {
+    "clean": {
+      "acc": 92.2875816993464,
+      "macro_f1": 93.13754295545313,
+      "bal_acc": 95.70664970378247,
+      "nll": 0.216909721493721,
+      "ece": 2.8377043889238966,
+      "n": 4590,
+      "confusion": [
+        [
+          1933,
+          100,
+          14,
+          223
+        ],
+        [
+          9,
+          571,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          579,
+          0
+        ],
+        [
+          7,
+          0,
+          0,
+          1153
+        ]
+      ]
+    },
+    "noise": {
+      "white": {
+        "relative": {
+          "-6": {
+            "acc": 69.8474945533769,
+            "macro_f1": 66.91796132622721,
+            "bal_acc": 65.71880221783381,
+            "nll": 0.6290187835693359,
+            "ece": 2.9857395891270615,
+            "n": 4590,
+            "confusion": [
+              [
+                1621,
+                199,
+                89,
+                361
+              ],
+              [
+                343,
+                230,
+                3,
+                4
+              ],
+              [
+                170,
+                4,
+                406,
+                0
+              ],
+              [
+                210,
+                1,
+                0,
+                949
+              ]
+            ]
+          },
+          "0": {
+            "acc": 79.47712418300654,
+            "macro_f1": 79.56541274439085,
+            "bal_acc": 84.8699301230442,
+            "nll": 0.4433360695838928,
+            "ece": 2.991993741532037,
+            "n": 4590,
+            "confusion": [
+              [
+                1495,
+                240,
+                186,
+                349
+              ],
+              [
+                104,
+                474,
+                2,
+                0
+              ],
+              [
+                33,
+                0,
+                547,
+                0
+              ],
+              [
+                28,
+                0,
+                0,
+                1132
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "train": {
+    "best_val": 78.05708981055216,
+    "best_epoch": 18,
+    "select": "best_val",
+    "epochs_run": 28,
+    "train_time_s": 228.59899497032166
+  },
+  "profile": {
+    "params": 170052,
+    "macs": 9060864.0,
+    "latency_ms_bs1": 1.2246533333382104
+  },
+  "data": {
+    "dataset": "ims",
+    "protocol": "time_blocks",
+    "n_recordings": 2376,
+    "fs": 20000.0,
+    "window": 2048,
+    "channels": 1,
+    "classes": [
+      "Normal",
+      "Inner",
+      "Roller",
+      "Outer"
+    ],
+    "n_train": 22032,
+    "n_val": 4590,
+    "n_test": 4600,
+    "train_per_class": [
+      10896,
+      2784,
+      2784,
+      5568
+    ],
+    "val_per_class": [
+      2270,
+      580,
+      580,
+      1160
+    ],
+    "test_per_class": [
+      2280,
+      580,
+      580,
+      1160
+    ],
+    "test_groups": [
+      "1st_test_B3",
+      "1st_test_B4",
+      "2nd_test_B1",
+      "3rd_test_B3"
+    ],
+    "train_groups": [
+      "1st_test_B3",
+      "1st_test_B4",
+      "2nd_test_B1",
+      "3rd_test_B3"
+    ],
+    "skipped_recordings": []
+  },
+  "wall_time_s": 233.7057285308838
+}

@@ -1,0 +1,10 @@
+data:
+  name: ims
+  root: ${paths.ims}
+  target_fs: null               # native 20 kHz
+  max_files_per_stream: 300     # evenly spaced in time (keeps run time reasonable)
+  max_windows_per_segment_train: 16   # ~51k -> ~23k train windows (evenly spaced inside each file)
+  onset: {skip_start_frac: 0.02, baseline_frac: 0.3, n_sigma: 3.0, k_consecutive: 5, margin_files: 20}
+  split: {protocol: time_blocks, fractions: [0.6, 0.2, 0.2], gap_recs: 5}
+split_variants:
+  chrono: {protocol: time_blocks, fractions: [0.6, 0.2, 0.2], gap_recs: 5}

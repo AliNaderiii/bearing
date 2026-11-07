@@ -1,0 +1,4 @@
+18:51:40 | INFO | [run] ims | chrono | stats_mlp | seed 0 | params 18,692 | device cuda
+18:51:44 | INFO |   ep   1 loss 0.9280 acc 60.2 val 55.09 (best 55.09@1)
+18:51:48 | INFO |   ep   2 loss 0.7894 acc 66.1 val 56.79 (best 56.79@2)
+18:51:53 | INFO | [done] clean acc 76.57 F1 66.36 | best val 56.79@2 | 8s

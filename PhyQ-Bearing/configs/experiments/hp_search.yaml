@@ -1,0 +1,46 @@
+# Equal-budget hyper-parameter search, VALIDATION ONLY (val_only: the test set is never evaluated).
+# Why: with the shared defaults (lr 2e-3, 40 epochs) the 1.4 M-parameter PhyQ-TransNet still underfits on
+# CWRU/IMS (train acc 83-89% vs 92-95% for the baselines at epoch 40). Every model gets the SAME 4-point
+# grid (lr x epochs); the winner per model = best mean validation score (selection metric of base.yaml:
+# macro-F1 over clean, 0 and -6 dB) over the development tasks. Then: python scripts/select_hparams.py
+name: hp_search
+val_only: true
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_3HP], seeds: [0]}
+  - {dataset: ims, variants: [chrono], seeds: [0]}
+models:
+  - {tag: phyq_transnet__lr1e-3_ep40, config: phyq_paper, overrides: [train.lr=0.001, train.epochs=40]}
+  - {tag: phyq_transnet__lr2e-3_ep40, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=40]}
+  - {tag: phyq_transnet__lr1e-3_ep80, config: phyq_paper, overrides: [train.lr=0.001, train.epochs=80]}
+  - {tag: phyq_transnet__lr2e-3_ep80, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: wdcnn__lr1e-3_ep40, config: wdcnn, overrides: [train.lr=0.001, train.epochs=40]}
+  - {tag: wdcnn__lr2e-3_ep40, config: wdcnn, overrides: [train.lr=0.002, train.epochs=40]}
+  - {tag: wdcnn__lr1e-3_ep80, config: wdcnn, overrides: [train.lr=0.001, train.epochs=80]}
+  - {tag: wdcnn__lr2e-3_ep80, config: wdcnn, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: qcnn__lr1e-3_ep40, config: qcnn, overrides: [train.lr=0.001, train.epochs=40]}
+  - {tag: qcnn__lr2e-3_ep40, config: qcnn, overrides: [train.lr=0.002, train.epochs=40]}
+  - {tag: qcnn__lr1e-3_ep80, config: qcnn, overrides: [train.lr=0.001, train.epochs=80]}
+  - {tag: qcnn__lr2e-3_ep80, config: qcnn, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: drsn__lr1e-3_ep40, config: drsn, overrides: [train.lr=0.001, train.epochs=40]}
+  - {tag: drsn__lr2e-3_ep40, config: drsn, overrides: [train.lr=0.002, train.epochs=40]}
+  - {tag: drsn__lr1e-3_ep80, config: drsn, overrides: [train.lr=0.001, train.epochs=80]}
+  - {tag: drsn__lr2e-3_ep80, config: drsn, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: cnn_transformer__lr1e-3_ep40, config: cnn_transformer, overrides: [train.lr=0.001, train.epochs=40]}
+  - {tag: cnn_transformer__lr2e-3_ep40, config: cnn_transformer, overrides: [train.lr=0.002, train.epochs=40]}
+  - {tag: cnn_transformer__lr1e-3_ep80, config: cnn_transformer, overrides: [train.lr=0.001, train.epochs=80]}
+  - {tag: cnn_transformer__lr2e-3_ep80, config: cnn_transformer, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: stats_mlp__lr1e-3_ep40, config: stats_mlp, overrides: [train.lr=0.001, train.epochs=40]}
+  - {tag: stats_mlp__lr2e-3_ep40, config: stats_mlp, overrides: [train.lr=0.002, train.epochs=40]}
+  - {tag: stats_mlp__lr1e-3_ep80, config: stats_mlp, overrides: [train.lr=0.001, train.epochs=80]}
+  - {tag: stats_mlp__lr2e-3_ep80, config: stats_mlp, overrides: [train.lr=0.002, train.epochs=80]}
+# v10.2 (MSSP revision): ClassBD (Liao et al., MSSP 2025) -- same grid, plus physics-loss on/off
+  - {tag: classbd__lr1e-3_ep40, config: classbd, overrides: [train.lr=0.001, train.epochs=40, model.physics_loss=true]}
+  - {tag: classbd__lr1e-3_ep80, config: classbd, overrides: [train.lr=0.001, train.epochs=80, model.physics_loss=true]}
+  - {tag: classbd__lr2e-3_ep40, config: classbd, overrides: [train.lr=0.002, train.epochs=40, model.physics_loss=true]}
+  - {tag: classbd__lr2e-3_ep80, config: classbd, overrides: [train.lr=0.002, train.epochs=80, model.physics_loss=true]}
+  - {tag: classbd__lr1e-3_ep40_nophys, config: classbd, overrides: [train.lr=0.001, train.epochs=40, model.physics_loss=false]}
+  - {tag: classbd__lr1e-3_ep80_nophys, config: classbd, overrides: [train.lr=0.001, train.epochs=80, model.physics_loss=false]}
+  - {tag: classbd__lr2e-3_ep40_nophys, config: classbd, overrides: [train.lr=0.002, train.epochs=40, model.physics_loss=false]}
+  - {tag: classbd__lr2e-3_ep80_nophys, config: classbd, overrides: [train.lr=0.002, train.epochs=80, model.physics_loss=false]}
+seeds: [0]
+overrides: []

@@ -1,0 +1,17 @@
+[
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_quick_w2048\\pu\\paper_dong7\\phyq_transnet\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('FIND was unable to find an engine to execute this computation')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_quick_w2048\\pu\\seen_A\\phyq_transnet\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('FIND was unable to find an engine to execute this computation')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_quick_w2048\\pu\\seen_C\\phyq_transnet\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('FIND was unable to find an engine to execute this computation')"
+  }
+]

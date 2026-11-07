@@ -1,0 +1,11 @@
+# Which component carries PhyQ-TransNet's advantage on bearing-disjoint PU? (final config = phyq_nomed)
+# One more component removed from phyq_nomed at a time; seed 0 of every fold + art2real, paired with
+# phyq_nomed seed 0 already in results/main_benchmark. Results go into main_benchmark.
+name: main_benchmark
+runs:
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4, art2real], seeds: [0]}
+models:
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false]}
+  - {tag: phyq_nomed_nostats, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.stats=false]}
+seeds: [0]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

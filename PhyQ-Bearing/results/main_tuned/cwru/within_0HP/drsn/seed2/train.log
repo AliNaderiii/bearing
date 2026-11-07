@@ -1,0 +1,20 @@
+21:41:17 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+21:41:17 | INFO | [data] cwru | chronological | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+21:41:17 | INFO | [run] cwru | within_0HP | drsn | seed 2 | params 67,458 | device cuda
+21:41:19 | WARNING |   [memory] estimate 2.55 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+21:41:19 | INFO |   [memory] ~163 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 4 (effective batch 64)
+21:41:22 | INFO |   ep   1 loss 2.3289 acc 12.8 val 5.74 (best 5.74@1)
+21:41:28 | INFO |   ep   5 loss 1.9459 acc 40.6 val 33.34 (best 33.34@5)
+21:41:36 | INFO |   ep  10 loss 0.9144 acc 78.6 val 71.82 (best 71.82@10)
+21:41:44 | INFO |   ep  15 loss 0.7195 acc 84.0 val 77.09 (best 83.65@14)
+21:41:52 | INFO |   ep  20 loss 0.6641 acc 86.1 val 87.37 (best 87.37@20)
+21:41:59 | INFO |   ep  25 loss 0.6054 acc 87.3 val 86.06 (best 88.89@21)
+21:42:07 | INFO |   ep  30 loss 0.5521 acc 90.4 val 88.29 (best 88.89@27)
+21:42:15 | INFO |   ep  35 loss 0.5772 acc 88.3 val 86.83 (best 89.37@34)
+21:42:23 | INFO |   ep  40 loss 0.5435 acc 91.1 val 90.65 (best 90.65@40)
+21:42:31 | INFO |   ep  45 loss 0.5259 acc 91.1 val 88.90 (best 90.65@40)
+21:42:39 | INFO |   ep  50 loss 0.5156 acc 90.8 val 91.53 (best 91.53@50)
+21:42:47 | INFO |   ep  55 loss 0.4839 acc 93.1 val 88.80 (best 91.53@50)
+21:42:56 | INFO |   ep  60 loss 0.5088 acc 91.3 val 91.00 (best 91.53@50)
+21:42:56 | INFO |   early stop at epoch 60 (best 50)
+21:42:57 | INFO | [done] clean acc 99.10 F1 99.09 | best val 91.53@50 | 96s

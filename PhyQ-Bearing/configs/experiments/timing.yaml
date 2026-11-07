@@ -1,0 +1,13 @@
+# Speed test on YOUR GPU (~20-40 min): every model x every dataset, 2 epochs, 1 seed.
+# Then:  python scripts/estimate_time.py   -> estimated hours for every suite of run_all.
+# Results go to results/timing (never used in the paper tables).
+name: timing
+runs:
+  - {dataset: cwru, variants: [within_3HP]}
+  - {dataset: pu, variants: [fold0]}
+  - {dataset: ims, variants: [chrono]}
+  - {dataset: nrel, variants: [expwise]}
+  - {dataset: sdust, variants: [chrono]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0]
+overrides: [train.epochs=2, train.min_epochs=1]

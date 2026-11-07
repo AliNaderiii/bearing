@@ -1,0 +1,9 @@
+# CWRU cross-load generalisation (12 source->target pairs).
+name: cross_load
+runs:
+  - dataset: cwru
+    variants: [cross_0to1, cross_0to2, cross_0to3, cross_1to0, cross_1to2, cross_1to3,
+               cross_2to0, cross_2to1, cross_2to3, cross_3to0, cross_3to1, cross_3to2]
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0, 1, 2]
+overrides: []

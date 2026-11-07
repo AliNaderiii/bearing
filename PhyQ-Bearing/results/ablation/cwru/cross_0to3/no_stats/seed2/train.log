@@ -1,0 +1,27 @@
+20:19:10 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+20:19:10 | INFO | [data] cwru | cross_condition | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+20:19:12 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.3171
+20:19:13 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.4905
+20:19:13 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.6510
+20:19:13 | INFO | [run] cwru | cross_0to3 | phyq_paper | seed 2 | params 1,390,954 | device cuda
+20:19:24 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+20:19:24 | INFO | [data] cwru | cross_condition | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+20:19:24 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+20:19:59 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+20:19:59 | INFO | [data] cwru | cross_condition | train/val/test = 1351/111/111 | C=1 | fs=12000.0
+20:19:59 | WARNING |   [cuda-safe level 2] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache, cuDNN disabled
+20:20:01 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.3170
+20:20:01 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.4917
+20:20:01 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.6558
+20:20:02 | INFO | [run] cwru | cross_0to3 | phyq_paper | seed 2 | params 1,390,954 | device cuda
+20:20:02 | INFO |   [memory] ~13 MB/sample (train), free 3.15/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+20:20:10 | INFO |   ep   1 loss 2.2520 acc 15.6 val 18.74 (best 18.74@1)
+20:20:42 | INFO |   ep   5 loss 1.5349 acc 47.5 val 53.30 (best 53.30@5)
+20:21:21 | INFO |   ep  10 loss 1.0042 acc 71.6 val 63.95 (best 64.12@9)
+20:22:01 | INFO |   ep  15 loss 0.8175 acc 79.7 val 66.18 (best 72.68@14)
+20:22:41 | INFO |   ep  20 loss 0.7809 acc 79.9 val 68.81 (best 73.63@19)
+20:23:20 | INFO |   ep  25 loss 0.7963 acc 78.3 val 72.82 (best 74.96@22)
+20:23:59 | INFO |   ep  30 loss 0.6940 acc 83.4 val 77.33 (best 77.33@30)
+20:24:39 | INFO |   ep  35 loss 0.7477 acc 80.7 val 77.51 (best 77.82@33)
+20:25:19 | INFO |   ep  40 loss 0.6284 acc 85.3 val 78.79 (best 79.10@38)
+20:25:31 | INFO | [done] clean acc 91.89 F1 91.60 | best val 79.10@38 | 317s

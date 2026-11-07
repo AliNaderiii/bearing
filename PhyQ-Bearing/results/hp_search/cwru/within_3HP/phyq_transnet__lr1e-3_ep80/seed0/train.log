@@ -1,0 +1,28 @@
+14:20:55 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+14:20:55 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+14:20:57 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.6671
+14:20:57 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.8796
+14:20:57 | INFO |   [neural-MED] ch0 ep 3/3 loss -6.0497
+14:20:58 | INFO | [run] cwru | within_3HP | phyq_paper | seed 0 | params 1,400,427 | device cuda
+14:21:08 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+14:21:08 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+14:21:08 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+14:21:11 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.6671
+14:21:11 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.8795
+14:21:11 | INFO |   [neural-MED] ch0 ep 3/3 loss -6.0452
+14:21:11 | INFO | [run] cwru | within_3HP | phyq_paper | seed 0 | params 1,400,427 | device cuda
+14:21:12 | INFO |   [memory] ~13 MB/sample (train), free 3.14/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+14:21:15 | INFO |   ep   1 loss 2.2880 acc 13.7 val 10.07 (best 10.07@1)
+14:21:29 | INFO |   ep   5 loss 1.7097 acc 42.3 val 41.04 (best 41.04@5)
+14:21:47 | INFO |   ep  10 loss 1.0044 acc 73.6 val 69.43 (best 69.43@10)
+14:22:04 | INFO |   ep  15 loss 0.8768 acc 77.0 val 76.06 (best 76.12@13)
+14:22:22 | INFO |   ep  20 loss 0.7514 acc 81.5 val 78.47 (best 79.48@19)
+14:22:40 | INFO |   ep  25 loss 0.7474 acc 83.0 val 74.18 (best 79.77@22)
+14:22:58 | INFO |   ep  30 loss 0.7184 acc 82.8 val 75.50 (best 80.50@27)
+14:23:16 | INFO |   ep  35 loss 0.6329 acc 87.1 val 80.15 (best 81.06@33)
+14:23:33 | INFO |   ep  40 loss 0.5838 acc 88.5 val 81.51 (best 81.51@40)
+14:23:51 | INFO |   ep  45 loss 0.6258 acc 86.5 val 80.40 (best 82.14@44)
+14:24:09 | INFO |   ep  50 loss 0.6003 acc 87.9 val 82.02 (best 83.94@46)
+14:24:26 | INFO |   ep  55 loss 0.6206 acc 87.4 val 82.57 (best 83.94@46)
+14:24:30 | INFO |   early stop at epoch 56 (best 46)
+14:24:31 | INFO | [done/val-only] best val 83.94@46

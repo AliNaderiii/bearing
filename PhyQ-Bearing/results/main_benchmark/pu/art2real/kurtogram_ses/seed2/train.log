@@ -1,0 +1,24 @@
+09:15:17 | INFO | [cache] 200/2240 recordings
+09:15:17 | INFO | [cache] 400/2240 recordings
+09:15:17 | INFO | [cache] 600/2240 recordings
+09:15:17 | INFO | [cache] 800/2240 recordings
+09:15:17 | WARNING | [skip] D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn\KA08\N15_M01_F10_KA08_2.mat: Expecting matrix here
+09:15:17 | INFO | [cache] 1000/2240 recordings
+09:15:17 | INFO | [cache] 1200/2240 recordings
+09:15:17 | INFO | [cache] 1400/2240 recordings
+09:15:17 | INFO | [cache] 1600/2240 recordings
+09:15:17 | INFO | [cache] 1800/2240 recordings
+09:15:17 | INFO | [cache] 2000/2240 recordings
+09:15:17 | INFO | [cache] 2200/2240 recordings
+09:15:18 | INFO | [memory] cached signals 0.5 GB, RAM 7.7 GB -> load into RAM
+09:15:18 | INFO | [data] pu | group | train/val/test = 7040/1916/3520 | C=1 | fs=16000.0
+09:15:21 | INFO | [classical] features for 21120 training windows (n_aug=2, fs=16000.0) ...
+09:20:44 | INFO | [classical] 115 features, 325s
+09:23:31 | INFO | [classical] rf_leaf1: val 50.3823 (167s)
+09:26:19 | INFO | [classical] rf_leaf3: val 50.0820 (168s)
+09:28:51 | INFO | [classical] hgb_lr0.05: val 49.5610 (152s)
+09:31:19 | INFO | [classical] hgb_lr0.1: val 49.8671 (148s)
+09:33:43 | INFO | [classical] logreg_C0.1: val 42.7327 (144s)
+09:36:13 | INFO | [classical] logreg_C1.0: val 42.1611 (150s)
+09:38:41 | INFO | [classical] logreg_C10.0: val 40.8037 (149s)
+10:39:34 | INFO | [done] clean acc 58.38 F1 55.94 | best val 50.38@1 | 1403s

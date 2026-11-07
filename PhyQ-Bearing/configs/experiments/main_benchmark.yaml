@@ -1,0 +1,14 @@
+# Main table: every model x every dataset protocol.
+# Repetitions: CWRU 5 seeds; PU 5 bearing-disjoint folds x 2 seeds (=10 runs/model); others 3 seeds.
+# Every trained model is also tested with pink and impulsive noise (replaces the separate noise_types suite).
+name: main_benchmark
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2, 3, 4]}
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4], seeds: [0, 1]}
+  - {dataset: pu, variants: [art2real], seeds: [0, 1, 2]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2]}
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

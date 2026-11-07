@@ -1,0 +1,8 @@
+# Quick look (PhyQ-TransNet only, 1 seed): 3 trainings -> seen_A, seen_C, paper_dong7 and the
+# cross-condition pairs cc_A2B/C/D and cc_C2A/B/D (as extra tests of seen_A / seen_C).
+name: pu_quick
+runs:
+  - {dataset: pu, variants: [seen_A, seen_C, paper_dong7]}
+models: [{tag: phyq_transnet, config: phyq_paper}]
+seeds: [0]
+overrides: []

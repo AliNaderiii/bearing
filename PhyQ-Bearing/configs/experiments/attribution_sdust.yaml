@@ -1,0 +1,10 @@
+# Same attribution question on SDUST (where phyq_nomed is best). Same tuned hyper-parameters as
+# phyq_nomed in main_tuned (lr 2e-3, 80 epochs); seed 0, paired with phyq_nomed seed 0.
+name: main_tuned
+runs:
+  - {dataset: sdust, variants: [chrono], seeds: [0]}
+models:
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false]}
+  - {tag: phyq_nomed_nostats, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.stats=false]}
+seeds: [0]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

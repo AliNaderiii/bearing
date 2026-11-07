@@ -1,0 +1,42 @@
+01:50:59 | INFO | [cache] 200/2376 recordings
+01:50:59 | INFO | [cache] 400/2376 recordings
+01:50:59 | INFO | [cache] 600/2376 recordings
+01:50:59 | INFO | [cache] 800/2376 recordings
+01:50:59 | INFO | [cache] 1000/2376 recordings
+01:50:59 | INFO | [cache] 1200/2376 recordings
+01:50:59 | INFO | [cache] 1400/2376 recordings
+01:50:59 | INFO | [cache] 1600/2376 recordings
+01:50:59 | INFO | [cache] 1800/2376 recordings
+01:50:59 | INFO | [cache] 2000/2376 recordings
+01:50:59 | INFO | [cache] 2200/2376 recordings
+01:50:59 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+01:50:59 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+01:51:00 | INFO | [run] ims | chrono | cnn_transformer | seed 2 | params 170,052 | device cuda
+01:51:00 | INFO |   [memory] ~2 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+01:51:10 | INFO |   ep   1 loss 0.9235 acc 62.7 val 65.14 (best 65.14@1)
+01:51:44 | INFO |   ep   5 loss 0.6301 acc 76.7 val 68.98 (best 69.25@4)
+06:56:55 | INFO | [cache] 200/2376 recordings
+06:56:55 | INFO | [cache] 400/2376 recordings
+06:56:55 | INFO | [cache] 600/2376 recordings
+06:56:55 | INFO | [cache] 800/2376 recordings
+06:56:55 | INFO | [cache] 1000/2376 recordings
+06:56:55 | INFO | [cache] 1200/2376 recordings
+06:56:55 | INFO | [cache] 1400/2376 recordings
+06:56:55 | INFO | [cache] 1600/2376 recordings
+06:56:55 | INFO | [cache] 1800/2376 recordings
+06:56:55 | INFO | [cache] 2000/2376 recordings
+06:56:55 | INFO | [cache] 2200/2376 recordings
+06:59:25 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+06:59:26 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+06:59:27 | INFO | [run] ims | chrono | cnn_transformer | seed 2 | params 170,052 | device cuda
+06:59:31 | INFO |   [memory] ~2 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+06:59:53 | INFO |   ep   1 loss 0.9235 acc 62.7 val 65.00 (best 65.00@1)
+07:00:54 | INFO |   ep   5 loss 0.6299 acc 76.8 val 68.85 (best 70.46@4)
+07:02:05 | INFO |   ep  10 loss 0.5738 acc 80.0 val 74.15 (best 76.71@7)
+07:03:17 | INFO |   ep  15 loss 0.5396 acc 81.9 val 79.60 (best 79.60@15)
+07:04:27 | INFO |   ep  20 loss 0.5109 acc 83.3 val 76.83 (best 79.60@15)
+07:05:37 | INFO |   ep  25 loss 0.4953 acc 84.1 val 80.00 (best 80.00@25)
+07:06:47 | INFO |   ep  30 loss 0.4828 acc 84.6 val 78.90 (best 80.39@28)
+07:07:55 | INFO |   ep  35 loss 0.4804 acc 84.7 val 81.05 (best 81.05@35)
+07:09:11 | INFO |   ep  40 loss 0.4704 acc 85.4 val 80.90 (best 81.17@37)
+07:10:06 | INFO | [done] clean acc 80.20 F1 79.99 | best val 81.17@37 | 577s

@@ -1,0 +1,10 @@
+# Fast end-to-end check on synthetic data (< 2 min). No real data needed.
+name: smoke
+runs:
+  - {dataset: synthetic, variants: [chrono, units, cross]}
+models:
+  - {tag: phyqnet, config: phyqnet, overrides: [model.width=0.25, model.envelope.enabled=true]}
+  - wdcnn
+  - stats_mlp
+seeds: [0]
+overrides: [train.epochs=3, train.min_epochs=1, "eval.snrs=[-6, 0]", data.train_stride=1024]

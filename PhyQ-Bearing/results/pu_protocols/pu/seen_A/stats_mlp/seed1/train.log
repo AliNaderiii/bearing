@@ -1,0 +1,31 @@
+10:17:55 | INFO | [cache] 200/340 recordings
+10:17:55 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+10:17:55 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+10:17:55 | INFO | [run] pu | seen_A | stats_mlp | seed 1 | params 18,563 | device cuda
+10:17:57 | INFO |   [memory] ~1 MB/sample (train), free 3.22/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+10:17:59 | INFO |   ep   1 loss 1.0279 acc 53.1 val 54.48 (best 54.48@1)
+10:18:03 | INFO |   ep   5 loss 0.6151 acc 75.3 val 70.57 (best 74.24@4)
+10:18:08 | INFO |   ep  10 loss 0.5629 acc 76.8 val 82.83 (best 82.83@10)
+10:18:14 | INFO |   ep  15 loss 0.5284 acc 80.3 val 81.98 (best 82.83@10)
+10:18:19 | INFO |   ep  20 loss 0.5020 acc 82.0 val 84.21 (best 84.95@18)
+10:18:24 | INFO |   ep  25 loss 0.5047 acc 81.8 val 83.36 (best 84.95@18)
+10:18:28 | INFO |   early stop at epoch 28 (best 18)
+10:18:29 | INFO | [cache] 200/680 recordings
+10:18:29 | INFO | [cache] 400/680 recordings
+10:18:29 | INFO | [cache] 600/680 recordings
+10:18:29 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+10:18:29 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+10:18:31 | INFO |   [extra-test] cc_A2B: clean acc 54.83 F1 45.38 (same model as seen_A)
+10:18:31 | INFO | [cache] 200/680 recordings
+10:18:31 | INFO | [cache] 400/680 recordings
+10:18:31 | INFO | [cache] 600/680 recordings
+10:18:31 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+10:18:31 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+10:18:32 | INFO |   [extra-test] cc_A2C: clean acc 92.65 F1 92.57 (same model as seen_A)
+10:18:33 | INFO | [cache] 200/680 recordings
+10:18:33 | INFO | [cache] 400/680 recordings
+10:18:33 | INFO | [cache] 600/680 recordings
+10:18:33 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+10:18:33 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+10:18:34 | INFO |   [extra-test] cc_A2D: clean acc 74.37 F1 73.51 (same model as seen_A)
+10:18:34 | INFO | [done] clean acc 97.48 F1 97.36 | best val 84.95@18 | 30s

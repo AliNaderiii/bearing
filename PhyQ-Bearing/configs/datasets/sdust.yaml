@@ -1,0 +1,15 @@
+data:
+  name: sdust
+  root: ${paths.sdust}
+  fs: 25600                     # CHECK against your files
+  n_channels: auto              # use the real channels found (no duplication); or an int
+  target_fs: null
+  # 381 long recordings -> ~465k overlapping train windows without a cap (days on a GTX 1650).
+  # Cap = evenly spaced in time, deterministic; gives ~24k train / ~6k val / ~6k test (same scale as PU).
+  max_windows_per_segment_train: 64
+  max_windows_per_segment_eval: 16
+  train_stride: 1024
+  condition_regex: "(\\d+\\s*rpm(?:[_\\- ]*\\d+\\s*n\\.?m)?)"
+  split: {protocol: chronological, fractions: [0.6, 0.2, 0.2], gap: 2048}
+split_variants:
+  chrono: {}

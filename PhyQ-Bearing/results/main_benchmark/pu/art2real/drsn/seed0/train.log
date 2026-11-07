@@ -1,0 +1,21 @@
+21:52:13 | INFO | [cache] 200/2240 recordings
+21:52:13 | INFO | [cache] 400/2240 recordings
+21:52:13 | INFO | [cache] 600/2240 recordings
+21:52:13 | INFO | [cache] 800/2240 recordings
+21:52:13 | WARNING | [skip] D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn\KA08\N15_M01_F10_KA08_2.mat: Expecting matrix here
+21:52:13 | INFO | [cache] 1000/2240 recordings
+21:52:13 | INFO | [cache] 1200/2240 recordings
+21:52:13 | INFO | [cache] 1400/2240 recordings
+21:52:13 | INFO | [cache] 1600/2240 recordings
+21:52:13 | INFO | [cache] 1800/2240 recordings
+21:52:13 | INFO | [cache] 2000/2240 recordings
+21:52:13 | INFO | [cache] 2200/2240 recordings
+21:52:14 | INFO | [memory] cached signals 0.5 GB, RAM 7.7 GB -> load into RAM
+21:52:14 | INFO | [data] pu | group | train/val/test = 7040/1916/3520 | C=1 | fs=16000.0
+21:52:14 | INFO | [run] pu | art2real | drsn | seed 0 | params 67,003 | device cuda
+21:52:16 | INFO |   [memory] ~5 MB/sample (train), free 3.22/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+21:52:30 | INFO |   ep   1 loss 0.9168 acc 55.5 val 35.45 (best 35.45@1)
+21:53:10 | INFO |   ep   5 loss 0.4832 acc 83.0 val 31.27 (best 58.95@2)
+21:54:01 | INFO |   ep  10 loss 0.4237 acc 86.2 val 47.40 (best 58.95@2)
+21:54:22 | INFO |   early stop at epoch 12 (best 2)
+21:55:43 | INFO | [done] clean acc 40.45 F1 40.24 | best val 58.95@2 | 124s

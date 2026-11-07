@@ -1,0 +1,15 @@
+09:11:27 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+09:11:28 | INFO | [data] pu | recording | train/val/test = 2016/196/196 | C=1 | fs=16000.0
+09:11:28 | INFO | [run] pu | paper_dong7 | qcnn | seed 1 | params 107,967 | device cuda
+09:11:30 | WARNING |   [memory] estimate 1.53 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+09:11:30 | INFO |   [memory] ~98 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+09:11:38 | INFO |   ep   1 loss 1.5558 acc 47.0 val 57.50 (best 57.50@1)
+09:11:56 | INFO |   ep   5 loss 0.5512 acc 88.3 val 76.96 (best 76.96@5)
+09:12:20 | INFO |   ep  10 loss 0.4761 acc 91.9 val 94.52 (best 94.52@10)
+09:12:41 | INFO |   ep  15 loss 0.4159 acc 94.3 val 81.30 (best 94.52@10)
+09:13:01 | INFO |   ep  20 loss 0.3980 acc 95.2 val 88.87 (best 96.21@16)
+09:13:20 | INFO |   ep  25 loss 0.3746 acc 96.1 val 91.94 (best 96.21@16)
+09:13:39 | INFO |   ep  30 loss 0.3484 acc 96.8 val 94.34 (best 96.67@26)
+09:13:58 | INFO |   ep  35 loss 0.3471 acc 97.1 val 96.10 (best 96.67@26)
+09:14:03 | INFO |   early stop at epoch 36 (best 26)
+09:14:06 | INFO | [done] clean acc 100.00 F1 100.00 | best val 96.67@26 | 149s

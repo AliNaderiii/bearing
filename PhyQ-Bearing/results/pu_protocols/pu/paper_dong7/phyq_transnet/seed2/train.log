@@ -1,0 +1,14 @@
+14:23:43 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+14:23:43 | INFO | [data] pu | recording | train/val/test = 2016/196/196 | C=1 | fs=16000.0
+14:23:46 | INFO |   [neural-MED] ch0 ep 1/3 loss -4.8203
+14:23:46 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.0245
+14:23:47 | INFO |   [neural-MED] ch0 ep 3/3 loss -5.2587
+14:23:47 | INFO | [run] pu | paper_dong7 | phyq_paper | seed 2 | params 1,449,192 | device cuda
+14:23:49 | INFO |   [memory] ~48 MB/sample (train), free 3.02/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+14:24:13 | INFO |   ep   1 loss 1.7106 acc 32.8 val 35.73 (best 35.73@1)
+14:25:46 | INFO |   ep   5 loss 0.7369 acc 78.9 val 90.15 (best 90.15@5)
+14:27:43 | INFO |   ep  10 loss 0.5817 acc 85.8 val 85.33 (best 90.15@5)
+14:29:41 | INFO |   ep  15 loss 0.5120 acc 88.6 val 90.03 (best 91.94@11)
+14:31:38 | INFO |   ep  20 loss 0.4859 acc 89.6 val 90.04 (best 91.94@11)
+14:32:01 | INFO |   early stop at epoch 21 (best 11)
+14:32:14 | INFO | [done] clean acc 100.00 F1 100.00 | best val 91.94@11 | 492s

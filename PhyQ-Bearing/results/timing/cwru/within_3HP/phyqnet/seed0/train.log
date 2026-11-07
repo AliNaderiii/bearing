@@ -1,0 +1,4 @@
+18:43:28 | INFO | [run] cwru | within_3HP | phyqnet | seed 0 | params 1,352,672 | device cuda
+18:43:33 | INFO |   ep   1 loss 1.3335 acc 59.2 val 43.48 (best 43.48@1)
+18:43:36 | INFO |   ep   2 loss 0.5885 acc 91.5 val 77.34 (best 77.34@2)
+18:43:38 | INFO | [done] clean acc 100.00 F1 100.00 | best val 77.34@2 | 8s

@@ -1,0 +1,10 @@
+# Same as phyq_nomed_tuned.yaml for PU: identical folds/seeds/settings as main_benchmark (bearing-disjoint
+# 5-fold + artificial->real); only the Neural-MED pre-filter is disabled. Results go into main_benchmark.
+name: main_benchmark
+runs:
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4], seeds: [0, 1]}
+  - {dataset: pu, variants: [art2real], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed, config: phyq_paper, overrides: [model.prefilter.enabled=false]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

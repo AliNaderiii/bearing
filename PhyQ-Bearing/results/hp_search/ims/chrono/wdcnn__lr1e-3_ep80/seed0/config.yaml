@@ -1,0 +1,107 @@
+paths:
+  cache: D:/PhyQ-Bearing/cache
+  cwru:
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/0HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/1HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/2HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/3HP
+  pu: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn
+  ims: D:/Bearing Project/4. Bearings/IMS
+  nrel: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Wind
+    Turbine Gearbox Condition Monitoring Vibration/Data Information
+  sdust: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/SDUST/SDUST_bearing
+device: auto
+deterministic: false
+save_checkpoint: false
+results_dir: results
+data:
+  cache_dir: D:/PhyQ-Bearing/cache
+  window: 2048
+  train_stride: 512
+  eval_stride: 2048
+  preload: auto
+  max_windows_per_segment_train: 16
+  max_windows_per_segment_eval: null
+  name: ims
+  root: D:/Bearing Project/4. Bearings/IMS
+  target_fs: null
+  max_files_per_stream: 300
+  onset:
+    skip_start_frac: 0.02
+    baseline_frac: 0.3
+    n_sigma: 3.0
+    k_consecutive: 5
+    margin_files: 20
+  split:
+    protocol: time_blocks
+    fractions:
+    - 0.6
+    - 0.2
+    - 0.2
+    gap_recs: 5
+train:
+  epochs: 80
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.01
+  scheduler: onecycle
+  warmup_frac: 0.15
+  label_smoothing: 0.05
+  mixup_alpha: 0.0
+  random_shift: true
+  amp_scale: null
+  grad_clip: 5.0
+  auto_micro_batch: true
+  min_micro_batch: 16
+  patience: 10
+  min_epochs: 10
+  amp: true
+  workers: 0
+  log_every: 5
+  noise_aug:
+    enabled: true
+    prob: 0.8
+    snr_range:
+    - -10
+    - 10
+    types:
+    - white
+    mode: mixed
+selection:
+  metric: macro_f1
+  snrs:
+  - clean
+  - 0
+  - -6
+  snr_modes:
+  - relative
+  - absolute
+  noise_type: white
+  noise_seed: 777
+  batch_size: 256
+eval:
+  batch_size: 256
+  noise_seed: 12345
+  noise_types:
+  - white
+  snr_modes:
+  - relative
+  - absolute
+  snrs:
+  - -10
+  - -8
+  - -6
+  - -4
+  - -2
+  - 0
+  - 2
+  - 4
+  - 6
+  - 8
+  - 10
+  tta_shifts: 0
+model:
+  name: wdcnn
+_variant: chrono
+_model_tag: wdcnn__lr1e-3_ep80
+_val_only: true

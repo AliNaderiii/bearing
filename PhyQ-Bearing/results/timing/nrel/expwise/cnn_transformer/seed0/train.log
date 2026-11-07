@@ -1,0 +1,6 @@
+18:52:08 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+18:52:10 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+18:52:10 | INFO | [run] nrel | expwise | cnn_transformer | seed 0 | params 184,258 | device cuda
+18:52:14 | INFO |   ep   1 loss 0.2024 acc 94.7 val 84.15 (best 84.15@1)
+18:52:17 | INFO |   ep   2 loss 0.1238 acc 99.7 val 99.90 (best 99.90@2)
+18:52:24 | INFO | [done] clean acc 100.00 F1 100.00 | best val 99.90@2 | 7s

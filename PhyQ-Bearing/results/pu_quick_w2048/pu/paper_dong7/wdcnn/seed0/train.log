@@ -1,0 +1,14 @@
+20:36:58 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+20:36:58 | INFO | [data] pu | recording | train/val/test = 2016/448/448 | C=1 | fs=16000.0
+20:36:59 | INFO | [run] pu | paper_dong7 | wdcnn | seed 0 | params 41,167 | device cuda
+20:37:00 | INFO |   [memory] ~9 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+20:37:01 | INFO |   ep   1 loss 1.9120 acc 20.5 val 17.61 (best 17.61@1)
+20:37:02 | INFO |   ep   5 loss 0.8644 acc 74.3 val 60.32 (best 60.69@4)
+20:37:04 | INFO |   ep  10 loss 0.5993 acc 85.7 val 85.72 (best 85.72@10)
+20:37:06 | INFO |   ep  15 loss 0.5563 acc 87.8 val 85.99 (best 87.46@14)
+20:37:07 | INFO |   ep  20 loss 0.5472 acc 87.9 val 87.56 (best 88.55@19)
+20:37:09 | INFO |   ep  25 loss 0.4976 acc 89.7 val 89.47 (best 89.47@25)
+20:37:10 | INFO |   ep  30 loss 0.5150 acc 89.5 val 90.52 (best 90.64@28)
+20:37:12 | INFO |   ep  35 loss 0.4863 acc 90.0 val 90.95 (best 90.95@35)
+20:37:13 | INFO |   ep  40 loss 0.4864 acc 90.3 val 90.92 (best 91.21@38)
+20:37:14 | INFO | [done] clean acc 99.78 F1 99.78 | best val 91.21@38 | 13s

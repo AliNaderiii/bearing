@@ -1,0 +1,5 @@
+# Classical baseline: Fast Kurtogram (Antoni 2007) -> squared-envelope spectrum of the max-SK band
+# -> classifier selected on VALIDATION among RF / HGB / SVM / logistic regression (phyq/classical).
+# Training features include n_aug noisy copies drawn from train.noise_aug (same as the deep models).
+model: {name: kurtogram_ses, nlevel: 5, f_max: 1000.0, n_bins: 100, include_stats: true, n_aug: 2,
+        max_train_windows: 30000}

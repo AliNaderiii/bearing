@@ -1,0 +1,25 @@
+08:05:12 | INFO | [cache] 200/2376 recordings
+08:05:12 | INFO | [cache] 400/2376 recordings
+08:05:12 | INFO | [cache] 600/2376 recordings
+08:05:12 | INFO | [cache] 800/2376 recordings
+08:05:12 | INFO | [cache] 1000/2376 recordings
+08:05:12 | INFO | [cache] 1200/2376 recordings
+08:05:12 | INFO | [cache] 1400/2376 recordings
+08:05:12 | INFO | [cache] 1600/2376 recordings
+08:05:12 | INFO | [cache] 1800/2376 recordings
+08:05:12 | INFO | [cache] 2000/2376 recordings
+08:05:12 | INFO | [cache] 2200/2376 recordings
+08:05:13 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+08:05:13 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+08:05:13 | INFO | [run] ims | chrono | qcnn | seed 0 | params 107,664 | device cuda
+08:05:14 | INFO |   [memory] ~9 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+08:05:21 | INFO |   ep   1 loss 1.0566 acc 56.3 val 50.00 (best 50.00@1)
+08:05:39 | INFO |   ep   5 loss 0.6617 acc 75.1 val 68.89 (best 68.89@5)
+08:06:03 | INFO |   ep  10 loss 0.6088 acc 78.0 val 72.70 (best 73.69@9)
+08:06:26 | INFO |   ep  15 loss 0.5827 acc 79.6 val 72.15 (best 74.54@11)
+08:06:50 | INFO |   ep  20 loss 0.5647 acc 80.5 val 74.68 (best 75.37@17)
+08:07:14 | INFO |   ep  25 loss 0.5419 acc 81.7 val 77.61 (best 77.72@22)
+08:07:39 | INFO |   ep  30 loss 0.5339 acc 82.0 val 76.57 (best 77.85@27)
+08:08:03 | INFO |   ep  35 loss 0.5214 acc 82.7 val 77.64 (best 78.12@34)
+08:08:27 | INFO |   ep  40 loss 0.5199 acc 82.6 val 77.46 (best 78.12@34)
+08:08:42 | INFO | [done] clean acc 81.72 F1 81.65 | best val 78.12@34 | 192s

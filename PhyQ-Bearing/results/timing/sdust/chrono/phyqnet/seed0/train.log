@@ -1,0 +1,4 @@
+19:01:41 | INFO | [run] sdust | chrono | phyqnet | seed 0 | params 1,390,592 | device cuda
+19:02:54 | INFO |   ep   1 loss 1.1414 acc 62.3 val 60.64 (best 60.64@1)
+19:04:04 | INFO |   ep   2 loss 0.6788 acc 83.0 val 75.44 (best 75.44@2)
+19:06:12 | INFO | [done] clean acc 89.09 F1 88.90 | best val 75.44@2 | 142s

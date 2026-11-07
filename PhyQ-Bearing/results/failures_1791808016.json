@@ -1,0 +1,14 @@
+[
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_quick\\pu\\paper_dong7\\phyq_transnet\\seed0",
+    "error": "RuntimeError('CUDA error: out of memory\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_quick\\pu\\seen_A\\phyq_transnet\\seed0",
+    "error": "RuntimeError('CUDA error: out of memory\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_quick\\pu\\seen_C\\phyq_transnet\\seed0",
+    "error": "RuntimeError('CUDA error: out of memory\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n')"
+  }
+]

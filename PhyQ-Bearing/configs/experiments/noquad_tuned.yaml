@@ -1,0 +1,15 @@
+# PhyQ-TransNet with Neural-MED AND quadratic layers disabled (phyq_nomed_noquad), on every non-PU task with
+# 3 seeds -- same tuned hyper-parameters as phyq_nomed (lr 2e-3, 80 epochs). Motivation: attribution runs
+# (attribution_*.yaml) showed quad adds nothing under white noise on PU/SDUST, halves compute when removed and
+# is the cause of the impulsive-noise collapse. Whether it becomes the FINAL config is decided on VALIDATION
+# (scripts/val_summary.py main_tuned --reference phyq_nomed); either way these runs are the multi-seed ablation.
+name: main_tuned
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2]}
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

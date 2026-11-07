@@ -1,0 +1,10 @@
+08:37:51 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+08:37:52 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+08:37:52 | INFO | [run] nrel | expwise | wdcnn | seed 0 | params 47,830 | device cuda
+08:37:53 | INFO |   [memory] ~9 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+08:37:57 | INFO |   ep   1 loss 0.4890 acc 79.3 val 91.55 (best 91.55@1)
+08:38:02 | INFO |   ep   5 loss 0.1303 acc 99.5 val 100.00 (best 100.00@5)
+08:38:09 | INFO |   ep  10 loss 0.1274 acc 99.6 val 100.00 (best 100.00@5)
+08:38:16 | INFO |   ep  15 loss 0.1213 acc 99.9 val 100.00 (best 100.00@5)
+08:38:16 | INFO |   early stop at epoch 15 (best 5)
+08:38:33 | INFO | [done] clean acc 100.00 F1 100.00 | best val 100.00@5 | 21s

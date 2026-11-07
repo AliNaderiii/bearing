@@ -1,0 +1,31 @@
+15:14:31 | INFO | [cache] 200/2376 recordings
+15:14:31 | INFO | [cache] 400/2376 recordings
+15:14:31 | INFO | [cache] 600/2376 recordings
+15:14:31 | INFO | [cache] 800/2376 recordings
+15:14:31 | INFO | [cache] 1000/2376 recordings
+15:14:31 | INFO | [cache] 1200/2376 recordings
+15:14:31 | INFO | [cache] 1400/2376 recordings
+15:14:31 | INFO | [cache] 1600/2376 recordings
+15:14:31 | INFO | [cache] 1800/2376 recordings
+15:14:31 | INFO | [cache] 2000/2376 recordings
+15:14:31 | INFO | [cache] 2200/2376 recordings
+15:14:31 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+15:14:32 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+15:14:32 | INFO | [run] ims | chrono | drsn | seed 0 | params 67,068 | device cuda
+15:14:33 | WARNING |   [memory] estimate 2.55 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+15:14:33 | INFO |   [memory] ~163 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 4 (effective batch 64)
+15:15:03 | INFO |   ep   1 loss 1.2057 acc 51.0 val 36.32 (best 36.32@1)
+15:16:58 | INFO |   ep   5 loss 0.7164 acc 72.4 val 69.93 (best 69.93@5)
+15:19:14 | INFO |   ep  10 loss 0.6510 acc 76.6 val 72.42 (best 73.05@7)
+15:21:35 | INFO |   ep  15 loss 0.6071 acc 78.6 val 74.66 (best 75.14@12)
+15:23:55 | INFO |   ep  20 loss 0.5946 acc 79.0 val 73.76 (best 76.44@19)
+15:26:14 | INFO |   ep  25 loss 0.5754 acc 80.2 val 76.43 (best 76.44@19)
+15:28:34 | INFO |   ep  30 loss 0.5618 acc 80.8 val 77.13 (best 77.13@30)
+15:30:50 | INFO |   ep  35 loss 0.5485 acc 81.7 val 76.09 (best 77.96@32)
+15:33:11 | INFO |   ep  40 loss 0.5422 acc 81.9 val 75.70 (best 77.98@39)
+15:35:28 | INFO |   ep  45 loss 0.5306 acc 82.4 val 78.46 (best 78.46@45)
+15:37:49 | INFO |   ep  50 loss 0.5332 acc 82.2 val 78.46 (best 78.46@50)
+15:40:06 | INFO |   ep  55 loss 0.5216 acc 82.7 val 78.25 (best 79.14@51)
+15:42:23 | INFO |   ep  60 loss 0.5129 acc 83.4 val 78.38 (best 79.14@51)
+15:42:50 | INFO |   early stop at epoch 61 (best 51)
+15:42:51 | INFO | [done/val-only] best val 79.14@51

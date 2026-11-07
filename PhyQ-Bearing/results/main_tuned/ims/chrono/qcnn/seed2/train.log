@@ -1,0 +1,33 @@
+08:15:57 | INFO | [cache] 200/2376 recordings
+08:15:57 | INFO | [cache] 400/2376 recordings
+08:15:57 | INFO | [cache] 600/2376 recordings
+08:15:57 | INFO | [cache] 800/2376 recordings
+08:15:57 | INFO | [cache] 1000/2376 recordings
+08:15:57 | INFO | [cache] 1200/2376 recordings
+08:15:57 | INFO | [cache] 1400/2376 recordings
+08:15:57 | INFO | [cache] 1600/2376 recordings
+08:15:57 | INFO | [cache] 1800/2376 recordings
+08:15:57 | INFO | [cache] 2000/2376 recordings
+08:15:57 | INFO | [cache] 2200/2376 recordings
+08:15:58 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+08:15:58 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+08:15:58 | INFO | [run] ims | chrono | qcnn | seed 2 | params 107,664 | device cuda
+08:15:59 | INFO |   [memory] ~9 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+08:16:06 | INFO |   ep   1 loss 1.2237 acc 42.6 val 47.02 (best 47.02@1)
+08:16:24 | INFO |   ep   5 loss 0.7131 acc 71.9 val 67.13 (best 67.13@5)
+08:16:47 | INFO |   ep  10 loss 0.6414 acc 76.2 val 69.00 (best 71.22@8)
+08:17:10 | INFO |   ep  15 loss 0.6059 acc 78.0 val 72.71 (best 72.71@15)
+08:17:32 | INFO |   ep  20 loss 0.5838 acc 79.3 val 72.99 (best 74.31@19)
+08:17:55 | INFO |   ep  25 loss 0.5725 acc 80.0 val 75.00 (best 75.00@25)
+08:18:19 | INFO |   ep  30 loss 0.5523 acc 80.9 val 74.02 (best 76.26@28)
+08:18:42 | INFO |   ep  35 loss 0.5420 acc 81.5 val 74.40 (best 77.10@31)
+08:19:06 | INFO |   ep  40 loss 0.5352 acc 82.0 val 75.54 (best 77.61@38)
+08:19:30 | INFO |   ep  45 loss 0.5259 acc 82.6 val 77.01 (best 77.79@41)
+08:19:53 | INFO |   ep  50 loss 0.5211 acc 82.6 val 77.64 (best 77.97@49)
+08:20:17 | INFO |   ep  55 loss 0.5156 acc 82.7 val 77.27 (best 78.21@54)
+08:20:40 | INFO |   ep  60 loss 0.5139 acc 83.2 val 77.55 (best 78.21@54)
+08:21:02 | INFO |   ep  65 loss 0.5097 acc 83.6 val 77.93 (best 78.38@62)
+08:21:25 | INFO |   ep  70 loss 0.5129 acc 83.2 val 77.66 (best 78.56@69)
+08:21:48 | INFO |   ep  75 loss 0.5099 acc 83.5 val 78.23 (best 78.62@74)
+08:22:11 | INFO |   ep  80 loss 0.5051 acc 83.4 val 78.24 (best 78.62@74)
+08:22:25 | INFO | [done] clean acc 82.02 F1 82.13 | best val 78.62@74 | 371s

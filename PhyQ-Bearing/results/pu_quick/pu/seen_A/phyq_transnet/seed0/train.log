@@ -1,0 +1,60 @@
+14:58:44 | INFO | [cache] 200/340 recordings
+14:58:44 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+14:58:44 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+14:58:47 | INFO |   [neural-MED] ch0 ep 1/3 loss -2.5327
+14:58:47 | INFO |   [neural-MED] ch0 ep 2/3 loss -2.7474
+14:58:48 | INFO |   [neural-MED] ch0 ep 3/3 loss -3.0324
+14:58:48 | INFO | [run] pu | seen_A | phyq_paper | seed 0 | params 1,448,676 | device cuda
+14:58:50 | INFO |   [memory] ~48 MB/sample (train), free 3.02/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+14:59:46 | INFO |   ep   1 loss 0.9096 acc 55.9 val 70.65 (best 70.65@1)
+15:03:22 | INFO |   ep   5 loss 0.4146 acc 87.8 val 88.81 (best 88.81@5)
+15:07:51 | INFO |   ep  10 loss 0.3561 acc 90.7 val 88.07 (best 93.54@8)
+15:12:21 | INFO |   ep  15 loss 0.3207 acc 92.2 val 90.72 (best 93.54@8)
+15:16:50 | INFO |   ep  20 loss 0.3162 acc 92.1 val 88.67 (best 93.97@16)
+15:21:20 | INFO |   ep  25 loss 0.2786 acc 94.4 val 95.42 (best 95.42@25)
+19:08:45 | INFO | [cache] 200/340 recordings
+19:08:52 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+19:08:52 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+19:08:55 | INFO |   [neural-MED] ch0 ep 1/3 loss -2.5327
+19:08:56 | INFO |   [neural-MED] ch0 ep 2/3 loss -2.7480
+19:08:56 | INFO |   [neural-MED] ch0 ep 3/3 loss -3.0335
+19:08:57 | INFO | [run] pu | seen_A | phyq_paper | seed 0 | params 1,448,676 | device cuda
+19:08:58 | INFO |   [memory] ~48 MB/sample (train), free 3.02/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+19:09:54 | INFO |   ep   1 loss 0.9091 acc 56.0 val 70.81 (best 70.81@1)
+19:13:35 | INFO |   ep   5 loss 0.4157 acc 87.7 val 36.22 (best 84.57@3)
+19:18:02 | INFO | [cache] 200/340 recordings
+19:18:10 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+19:18:10 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+19:18:14 | INFO |   [neural-MED] ch0 ep 1/3 loss -2.5328
+19:18:15 | INFO |   [neural-MED] ch0 ep 2/3 loss -2.7482
+19:18:15 | INFO |   [neural-MED] ch0 ep 3/3 loss -3.0334
+19:18:16 | INFO | [run] pu | seen_A | phyq_paper | seed 0 | params 1,448,676 | device cuda
+19:18:17 | INFO |   [memory] ~48 MB/sample (train), free 3.02/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+19:19:14 | INFO |   ep   1 loss 0.9047 acc 56.0 val 72.29 (best 72.29@1)
+19:22:59 | INFO |   ep   5 loss 0.4330 acc 86.5 val 85.03 (best 87.68@3)
+19:27:42 | INFO |   ep  10 loss 0.3824 acc 89.0 val 92.14 (best 92.14@10)
+19:32:24 | INFO |   ep  15 loss 0.3368 acc 92.0 val 90.00 (best 93.77@11)
+19:37:07 | INFO |   ep  20 loss 0.3204 acc 92.3 val 90.39 (best 94.47@19)
+19:41:50 | INFO |   ep  25 loss 0.2948 acc 93.5 val 95.26 (best 95.26@25)
+19:46:33 | INFO |   ep  30 loss 0.2679 acc 95.2 val 95.53 (best 95.53@30)
+19:51:15 | INFO |   ep  35 loss 0.2630 acc 95.2 val 95.76 (best 95.76@35)
+19:55:57 | INFO |   ep  40 loss 0.2560 acc 95.5 val 94.35 (best 95.84@38)
+19:56:28 | INFO | [cache] 200/680 recordings
+19:56:28 | INFO | [cache] 400/680 recordings
+19:56:28 | INFO | [cache] 600/680 recordings
+19:56:33 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+19:56:33 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+19:57:03 | INFO |   [extra-test] cc_A2B: clean acc 66.60 F1 62.31 (same model as seen_A)
+19:57:03 | INFO | [cache] 200/680 recordings
+19:57:03 | INFO | [cache] 400/680 recordings
+19:57:03 | INFO | [cache] 600/680 recordings
+19:57:10 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+19:57:10 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+19:57:40 | INFO |   [extra-test] cc_A2C: clean acc 100.00 F1 100.00 (same model as seen_A)
+19:57:40 | INFO | [cache] 200/680 recordings
+19:57:40 | INFO | [cache] 400/680 recordings
+19:57:40 | INFO | [cache] 600/680 recordings
+19:57:46 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+19:57:46 | INFO | [data] pu | recording | train/val/test = 4896/476/476 | C=1 | fs=16000.0
+19:58:16 | INFO |   [extra-test] cc_A2D: clean acc 89.92 F1 89.43 (same model as seen_A)
+19:58:16 | INFO | [done] clean acc 100.00 F1 100.00 | best val 95.84@38 | 2260s

@@ -1,0 +1,21 @@
+13:35:23 | INFO | [cache] 200/1360 recordings
+13:35:23 | INFO | [cache] 400/1360 recordings
+13:35:23 | INFO | [cache] 600/1360 recordings
+13:35:23 | INFO | [cache] 800/1360 recordings
+13:35:23 | INFO | [cache] 1000/1360 recordings
+13:35:23 | INFO | [cache] 1200/1360 recordings
+13:35:23 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+13:35:23 | INFO | [data] pu | group_kfold | train/val/test = 5760/1600/960 | C=1 | fs=16000.0
+13:35:25 | INFO | [classical] features for 17280 training windows (n_aug=2, fs=16000.0) ...
+13:39:51 | INFO | [classical] 115 features, 267s
+13:42:00 | INFO | [classical] rf_leaf1: val 38.8485 (129s)
+13:44:07 | INFO | [classical] rf_leaf3: val 38.6539 (127s)
+13:46:08 | INFO | [classical] hgb_lr0.05: val 37.5493 (120s)
+13:48:07 | INFO | [classical] hgb_lr0.1: val 37.4377 (119s)
+13:50:03 | INFO | [classical] logreg_C0.1: val 39.1422 (116s)
+13:52:00 | INFO | [classical] logreg_C1.0: val 40.7042 (117s)
+13:53:59 | INFO | [classical] logreg_C10.0: val 43.8865 (119s)
+13:56:57 | INFO | [classical] svm_C1.0: val 34.4249 (179s)
+13:59:41 | INFO | [classical] svm_C10.0: val 33.3281 (163s)
+14:02:28 | INFO | [classical] svm_C100.0: val 34.7771 (168s)
+14:17:20 | INFO | [done] clean acc 83.12 F1 82.90 | best val 43.89@7 | 1625s

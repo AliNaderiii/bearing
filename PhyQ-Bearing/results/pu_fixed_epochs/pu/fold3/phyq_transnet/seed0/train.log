@@ -1,0 +1,19 @@
+23:06:24 | INFO | [cache] 200/1360 recordings
+23:06:24 | INFO | [cache] 400/1360 recordings
+23:06:24 | INFO | [cache] 600/1360 recordings
+23:06:24 | INFO | [cache] 800/1360 recordings
+23:06:24 | INFO | [cache] 1000/1360 recordings
+23:06:24 | INFO | [cache] 1200/1360 recordings
+23:06:24 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+23:06:24 | INFO | [data] pu | group_kfold | train/val/test = 7040/960/960 | C=1 | fs=16000.0
+23:06:27 | INFO |   [neural-MED] ch0 ep 1/3 loss -2.4704
+23:06:27 | INFO |   [neural-MED] ch0 ep 2/3 loss -2.5829
+23:06:28 | INFO |   [neural-MED] ch0 ep 3/3 loss -2.7372
+23:06:28 | INFO | [run] pu | fold3 | phyq_paper | seed 0 | params 1,448,676 | device cuda
+23:06:29 | INFO |   [memory] ~48 MB/sample (train), free 3.02/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+23:07:41 | INFO |   ep   1 loss 0.8749 acc 58.8 val nan (best -1.00@-1)
+23:12:27 | INFO |   ep   5 loss 0.4712 acc 84.8 val nan (best -1.00@-1)
+23:18:25 | INFO |   ep  10 loss 0.4100 acc 88.1 val nan (best -1.00@-1)
+23:24:23 | INFO |   ep  15 loss 0.3637 acc 90.1 val nan (best -1.00@-1)
+23:30:34 | INFO |   ep  20 loss 0.3372 acc 91.8 val 43.75 (best 43.75@20)
+23:33:29 | INFO | [done] clean acc 58.13 F1 51.27 | best val 43.75@20 | 1445s

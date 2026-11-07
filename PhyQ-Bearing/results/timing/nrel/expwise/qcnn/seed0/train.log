@@ -1,0 +1,4 @@
+18:53:22 | INFO | [run] nrel | expwise | qcnn | seed 0 | params 128,966 | device cuda
+18:53:24 | INFO |   ep   1 loss 0.2458 acc 92.5 val 99.97 (best 99.97@1)
+18:53:27 | INFO |   ep   2 loss 0.1340 acc 99.3 val 99.93 (best 99.97@1)
+18:53:32 | INFO | [done] clean acc 100.00 F1 100.00 | best val 99.97@1 | 5s

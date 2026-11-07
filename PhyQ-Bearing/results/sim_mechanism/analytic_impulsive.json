@@ -1,0 +1,578 @@
+[
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "linear",
+  "distortion_db": -9.27072552419138,
+  "prominence_db": 3.735033118698171
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "relu",
+  "distortion_db": -9.224486097084473,
+  "prominence_db": 19.694421180590716
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "square",
+  "distortion_db": -12.33828181912737,
+  "prominence_db": 19.99528750576217
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "abs",
+  "distortion_db": -8.598375914826983,
+  "prominence_db": 19.681542834384356
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "linear",
+  "distortion_db": -9.087187342199881,
+  "prominence_db": 5.803616959563062
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "relu",
+  "distortion_db": -8.64372937093746,
+  "prominence_db": 16.06552345761722
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "square",
+  "distortion_db": -11.544012528696964,
+  "prominence_db": 16.408759016043163
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "abs",
+  "distortion_db": -7.695815405572656,
+  "prominence_db": 16.075558435700678
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "linear",
+  "distortion_db": -9.195662149336075,
+  "prominence_db": 4.728802900097577
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "relu",
+  "distortion_db": -8.733892159223668,
+  "prominence_db": 16.042581404657923
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "square",
+  "distortion_db": -11.862177272289157,
+  "prominence_db": 16.856003122302077
+ },
+ {
+  "snr": 6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "abs",
+  "distortion_db": -7.78984349175021,
+  "prominence_db": 16.045638499593235
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "linear",
+  "distortion_db": -9.322351508349644,
+  "prominence_db": 3.051615955638203
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "relu",
+  "distortion_db": -9.133709256756148,
+  "prominence_db": 18.585978247048363
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "square",
+  "distortion_db": -7.437626566532957,
+  "prominence_db": 18.144566454533987
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "abs",
+  "distortion_db": -8.308044907650542,
+  "prominence_db": 18.578759522529694
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "linear",
+  "distortion_db": -9.091929111586486,
+  "prominence_db": 5.79896989777572
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "relu",
+  "distortion_db": -8.647734478037624,
+  "prominence_db": 15.495243225300115
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "square",
+  "distortion_db": -6.672517916648852,
+  "prominence_db": 15.066193273179119
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "abs",
+  "distortion_db": -7.5547670618935765,
+  "prominence_db": 15.497890795113404
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "linear",
+  "distortion_db": -9.15781631129764,
+  "prominence_db": 4.422765923828768
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "relu",
+  "distortion_db": -8.762058957051696,
+  "prominence_db": 15.240117122877415
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "square",
+  "distortion_db": -7.595922315836299,
+  "prominence_db": 15.360146417824684
+ },
+ {
+  "snr": 6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "abs",
+  "distortion_db": -7.773444612433002,
+  "prominence_db": 15.239092610876261
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "outer",
+  "detector": "linear",
+  "distortion_db": -3.254392218482734,
+  "prominence_db": 1.245850160443248
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "outer",
+  "detector": "relu",
+  "distortion_db": -3.538587745324216,
+  "prominence_db": 16.495141563703427
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "outer",
+  "detector": "square",
+  "distortion_db": -5.718937513979981,
+  "prominence_db": 17.180720798764884
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "outer",
+  "detector": "abs",
+  "distortion_db": -3.41729538490365,
+  "prominence_db": 16.493256048687243
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "inner",
+  "detector": "linear",
+  "distortion_db": -3.0839357258813376,
+  "prominence_db": 3.0105018842579314
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "inner",
+  "detector": "relu",
+  "distortion_db": -3.021743189596654,
+  "prominence_db": 13.663100263945417
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "inner",
+  "detector": "square",
+  "distortion_db": -4.614145530736105,
+  "prominence_db": 14.186235409740558
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "inner",
+  "detector": "abs",
+  "distortion_db": -2.5878010114415453,
+  "prominence_db": 13.680137855465517
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "ball",
+  "detector": "linear",
+  "distortion_db": -3.2364078131290595,
+  "prominence_db": 1.8392688078522512
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "ball",
+  "detector": "relu",
+  "distortion_db": -3.139252834192124,
+  "prominence_db": 13.499505531118356
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "ball",
+  "detector": "square",
+  "distortion_db": -5.298543965206036,
+  "prominence_db": 14.542006899157471
+ },
+ {
+  "snr": 0,
+  "noise": "white",
+  "class": "ball",
+  "detector": "abs",
+  "distortion_db": -2.694879759070006,
+  "prominence_db": 13.490297649398373
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "linear",
+  "distortion_db": -3.33515624888935,
+  "prominence_db": 1.2285059562127665
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "relu",
+  "distortion_db": -2.994423378731751,
+  "prominence_db": 14.813485321100663
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "square",
+  "distortion_db": 3.31300193263231,
+  "prominence_db": 10.92725944966027
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "abs",
+  "distortion_db": -2.1440514422911034,
+  "prominence_db": 14.812838257967734
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "linear",
+  "distortion_db": -3.116342608546726,
+  "prominence_db": 3.0648809888089943
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "relu",
+  "distortion_db": -2.6196324716291457,
+  "prominence_db": 12.248468435744446
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "square",
+  "distortion_db": 3.8240083656686092,
+  "prominence_db": 8.370883669731246
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "abs",
+  "distortion_db": -1.5096203133482744,
+  "prominence_db": 12.257864111357634
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "linear",
+  "distortion_db": -3.192960618263898,
+  "prominence_db": 1.9383388696767172
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "relu",
+  "distortion_db": -2.6829948521613827,
+  "prominence_db": 12.116297407379696
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "square",
+  "distortion_db": 3.7798465338939344,
+  "prominence_db": 8.42834932122041
+ },
+ {
+  "snr": 0,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "abs",
+  "distortion_db": -1.6385086630300798,
+  "prominence_db": 12.12006537136802
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "linear",
+  "distortion_db": 2.6310253623301074,
+  "prominence_db": 0.16372898053350413
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "relu",
+  "distortion_db": 2.155522479931677,
+  "prominence_db": 10.514096122343012
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "square",
+  "distortion_db": 2.275187189117017,
+  "prominence_db": 11.308098950215683
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "outer",
+  "detector": "abs",
+  "distortion_db": 1.6548963302069217,
+  "prominence_db": 10.517572720381754
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "linear",
+  "distortion_db": 2.9743642470111817,
+  "prominence_db": 1.9121350651698261
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "relu",
+  "distortion_db": 2.7383169028772705,
+  "prominence_db": 8.296710291965184
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "square",
+  "distortion_db": 3.190507344398224,
+  "prominence_db": 8.97330555728795
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "inner",
+  "detector": "abs",
+  "distortion_db": 2.6127665095286536,
+  "prominence_db": 8.29450295876418
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "linear",
+  "distortion_db": 2.821038981971817,
+  "prominence_db": 1.3708316173111386
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "relu",
+  "distortion_db": 2.5517118328287722,
+  "prominence_db": 8.824357650378241
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "square",
+  "distortion_db": 2.7957012573710127,
+  "prominence_db": 9.556756152404429
+ },
+ {
+  "snr": -6,
+  "noise": "white",
+  "class": "ball",
+  "detector": "abs",
+  "distortion_db": 2.381694768278758,
+  "prominence_db": 8.822858900763716
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "linear",
+  "distortion_db": 2.688716582760514,
+  "prominence_db": -0.4542621017710867
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "relu",
+  "distortion_db": 3.065052441410021,
+  "prominence_db": 8.90616287507411
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "square",
+  "distortion_db": 15.056781170952792,
+  "prominence_db": 2.9524169431604235
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "outer",
+  "detector": "abs",
+  "distortion_db": 3.8890159203971297,
+  "prominence_db": 8.906504686573324
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "linear",
+  "distortion_db": 2.892891776540134,
+  "prominence_db": 2.104837511497929
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "relu",
+  "distortion_db": 3.5161975803579533,
+  "prominence_db": 6.982061397758418
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "square",
+  "distortion_db": 16.060479951051487,
+  "prominence_db": 2.0812237942859553
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "inner",
+  "detector": "abs",
+  "distortion_db": 4.641426851068712,
+  "prominence_db": 6.9872944689521646
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "linear",
+  "distortion_db": 2.8239386139572877,
+  "prominence_db": 0.9412625704493521
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "relu",
+  "distortion_db": 3.4414928435537306,
+  "prominence_db": 6.804380784857724
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "square",
+  "distortion_db": 15.36020280798653,
+  "prominence_db": 1.9831402081461635
+ },
+ {
+  "snr": -6,
+  "noise": "impulsive",
+  "class": "ball",
+  "detector": "abs",
+  "distortion_db": 4.518290239351737,
+  "prominence_db": 6.802842896211191
+ }
+]

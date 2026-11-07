@@ -1,0 +1,12 @@
+# Same as pu_quick but with 2048-sample windows (0.128 s at 16 kHz) for EVERY model (+ WDCNN as reference).
+# Why: PhyQ-TransNet was designed for 2048-sample inputs and is ~4x cheaper there. In a sandbox check
+# (seen_A, 8 epochs, seed 0) it reached 96.9 % (WDCNN 92.3 %) and kept 63 % at -10 dB (WDCNN 46 %).
+# Choose between 8192 and 2048 on the VALIDATION score (best_val in metrics.json), never on test.
+name: pu_quick_w2048
+runs:
+  - {dataset: pu, variants: [seen_A, seen_C, paper_dong7]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn]
+seeds: [0]
+overrides: ["data.window=2048", "data.train_stride=1024", "data.eval_stride=2048",
+            "data.max_windows_per_segment_train=24", "data.max_windows_per_segment_eval=16",
+            "train.batch_size=64", "eval.batch_size=256", "selection.batch_size=256"]

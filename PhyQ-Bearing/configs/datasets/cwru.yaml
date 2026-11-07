@@ -1,0 +1,34 @@
+data:
+  name: cwru
+  root: ${paths.cwru}
+  loads: [0, 1, 2, 3]
+  channels: [DE, FE]           # multi-point fusion (paper 4.1.3). BA is FORBIDDEN: it is missing in the
+                               # normal-baseline files and was zero-filled in the old code (label shortcut)
+  target_fs: null              # native 12 kHz
+  # Normal-baseline recordings are 2-4x longer than fault recordings: windows are
+  # capped (evenly spaced in time, deterministic) so every class has the same weight.
+  max_windows_per_segment_train: 140
+  max_windows_per_segment_eval: 12
+  split:
+    protocol: chronological
+    conditions: [3HP]
+    fractions: [0.6, 0.2, 0.2]
+    gap: 2048
+split_variants:
+  within_0HP: {protocol: chronological, conditions: [0HP]}
+  within_1HP: {protocol: chronological, conditions: [1HP]}
+  within_2HP: {protocol: chronological, conditions: [2HP]}
+  within_3HP: {protocol: chronological, conditions: [3HP]}
+  within_all: {protocol: chronological, conditions: [0HP, 1HP, 2HP, 3HP]}
+  cross_0to1: {protocol: cross_condition, source: [0HP], target: [1HP]}
+  cross_0to2: {protocol: cross_condition, source: [0HP], target: [2HP]}
+  cross_0to3: {protocol: cross_condition, source: [0HP], target: [3HP]}
+  cross_1to0: {protocol: cross_condition, source: [1HP], target: [0HP]}
+  cross_1to2: {protocol: cross_condition, source: [1HP], target: [2HP]}
+  cross_1to3: {protocol: cross_condition, source: [1HP], target: [3HP]}
+  cross_2to0: {protocol: cross_condition, source: [2HP], target: [0HP]}
+  cross_2to1: {protocol: cross_condition, source: [2HP], target: [1HP]}
+  cross_2to3: {protocol: cross_condition, source: [2HP], target: [3HP]}
+  cross_3to0: {protocol: cross_condition, source: [3HP], target: [0HP]}
+  cross_3to1: {protocol: cross_condition, source: [3HP], target: [1HP]}
+  cross_3to2: {protocol: cross_condition, source: [3HP], target: [2HP]}

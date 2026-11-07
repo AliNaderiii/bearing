@@ -1,0 +1,32 @@
+12:19:17 | INFO | [cache] 200/2376 recordings
+12:19:17 | INFO | [cache] 400/2376 recordings
+12:19:17 | INFO | [cache] 600/2376 recordings
+12:19:17 | INFO | [cache] 800/2376 recordings
+12:19:17 | INFO | [cache] 1000/2376 recordings
+12:19:17 | INFO | [cache] 1200/2376 recordings
+12:19:17 | INFO | [cache] 1400/2376 recordings
+12:19:17 | INFO | [cache] 1600/2376 recordings
+12:19:17 | INFO | [cache] 1800/2376 recordings
+12:19:17 | INFO | [cache] 2000/2376 recordings
+12:19:17 | INFO | [cache] 2200/2376 recordings
+12:19:17 | INFO | [memory] cached signals 0.2 GB, RAM 7.7 GB -> load into RAM
+12:19:18 | INFO | [data] ims | time_blocks | train/val/test = 22032/4590/4600 | C=1 | fs=20000.0
+12:19:18 | INFO | [run] ims | chrono | phyq_paper | seed 2 | params 786,917 | device cuda
+12:19:19 | INFO |   [memory] ~11 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+12:20:05 | INFO |   ep   1 loss 0.7700 acc 69.8 val 65.23 (best 65.23@1)
+12:22:58 | INFO |   ep   5 loss 0.5147 acc 82.5 val 69.58 (best 73.14@2)
+12:26:32 | INFO |   ep  10 loss 0.4912 acc 83.9 val 75.23 (best 75.23@10)
+12:30:07 | INFO |   ep  15 loss 0.4651 acc 85.2 val 71.20 (best 76.45@13)
+12:33:41 | INFO |   ep  20 loss 0.4515 acc 86.1 val 75.40 (best 81.29@16)
+12:37:16 | INFO |   ep  25 loss 0.4421 acc 86.6 val 79.25 (best 81.71@21)
+12:40:50 | INFO |   ep  30 loss 0.4355 acc 86.7 val 80.84 (best 82.23@27)
+12:44:25 | INFO |   ep  35 loss 0.4292 acc 87.1 val 82.55 (best 82.55@35)
+12:47:59 | INFO |   ep  40 loss 0.4297 acc 86.9 val 82.38 (best 82.55@35)
+12:51:34 | INFO |   ep  45 loss 0.4198 acc 87.5 val 81.17 (best 83.74@44)
+12:55:08 | INFO |   ep  50 loss 0.4168 acc 87.6 val 83.26 (best 84.19@49)
+12:58:43 | INFO |   ep  55 loss 0.4075 acc 88.1 val 83.73 (best 84.19@49)
+13:02:17 | INFO |   ep  60 loss 0.4045 acc 88.2 val 84.41 (best 84.53@57)
+13:05:52 | INFO |   ep  65 loss 0.4050 acc 88.1 val 84.55 (best 84.98@62)
+13:09:26 | INFO |   ep  70 loss 0.3944 acc 88.9 val 83.56 (best 84.98@62)
+13:10:52 | INFO |   early stop at epoch 72 (best 62)
+13:13:04 | INFO | [done] clean acc 79.22 F1 79.12 | best val 84.98@62 | 3092s

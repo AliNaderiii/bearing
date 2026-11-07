@@ -1,0 +1,62 @@
+[
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\paper_dong7\\qcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\paper_dong7\\wdcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_A\\qcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_A\\wdcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_B\\qcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_B\\wdcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_C\\qcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_C\\wdcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_D\\qcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_D\\wdcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_all\\qcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  },
+  {
+    "run": "D:\\PhyQ-Bearing\\results\\pu_protocols\\pu\\seen_all\\wdcnn\\seed0",
+    "kind": "error",
+    "error": "RuntimeError('not enough GPU memory: micro-batch 16 needs ~1.53 GB, budget 1.52 GB (free 3.22 GB). Close other GPU programs or use a shorter data.window for ALL models.')"
+  }
+]

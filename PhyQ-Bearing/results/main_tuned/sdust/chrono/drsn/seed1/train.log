@@ -1,0 +1,24 @@
+13:42:56 | INFO | [cache] 200/381 recordings
+13:42:56 | INFO | [memory] cached signals 8.9 GB, RAM 7.7 GB -> memory-map from disk
+13:42:57 | INFO | [data] sdust | chronological | train/val/test = 24384/6096/6096 | C=6 | fs=25600.0
+13:42:58 | INFO | [run] sdust | chrono | drsn | seed 1 | params 68,658 | device cuda
+13:42:59 | WARNING |   [memory] estimate 2.55 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+13:42:59 | INFO |   [memory] ~163 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 4 (effective batch 64)
+13:44:06 | INFO |   ep   1 loss 2.2228 acc 21.1 val 16.34 (best 16.34@1)
+13:47:40 | INFO |   ep   5 loss 1.0204 acc 69.5 val 72.92 (best 72.92@5)
+13:51:58 | INFO |   ep  10 loss 0.7394 acc 82.1 val 80.15 (best 80.15@10)
+13:56:03 | INFO |   ep  15 loss 0.6486 acc 86.1 val 84.63 (best 84.63@15)
+13:59:21 | INFO |   ep  20 loss 0.6021 acc 87.6 val 87.04 (best 87.04@20)
+14:02:39 | INFO |   ep  25 loss 0.5625 acc 89.2 val 87.96 (best 87.96@25)
+14:05:57 | INFO |   ep  30 loss 0.5502 acc 89.9 val 89.10 (best 89.28@29)
+14:09:15 | INFO |   ep  35 loss 0.5354 acc 90.3 val 88.86 (best 89.28@29)
+14:13:05 | INFO |   ep  40 loss 0.5208 acc 90.9 val 90.11 (best 90.11@40)
+14:16:24 | INFO |   ep  45 loss 0.5084 acc 91.3 val 89.81 (best 90.15@44)
+14:19:41 | INFO |   ep  50 loss 0.4956 acc 91.8 val 90.73 (best 90.81@49)
+14:22:58 | INFO |   ep  55 loss 0.4982 acc 91.9 val 91.15 (best 91.23@52)
+14:26:18 | INFO |   ep  60 loss 0.4849 acc 92.4 val 90.82 (best 91.48@59)
+14:30:49 | INFO |   ep  65 loss 0.4745 acc 92.8 val 91.52 (best 91.66@64)
+14:34:25 | INFO |   ep  70 loss 0.4694 acc 92.8 val 91.58 (best 91.79@67)
+14:37:42 | INFO |   ep  75 loss 0.4696 acc 92.7 val 91.64 (best 91.82@71)
+14:41:33 | INFO |   ep  80 loss 0.4727 acc 92.7 val 91.89 (best 91.89@80)
+14:43:46 | INFO | [done] clean acc 99.43 F1 99.41 | best val 91.89@80 | 3512s

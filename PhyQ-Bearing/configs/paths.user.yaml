@@ -1,0 +1,10 @@
+# Prefilled with YOUR folders (read-only: nothing is ever written inside them).
+# Everything the code writes goes to D:/PhyQ-Bearing/cache and D:/PhyQ-Bearing/results.
+paths:
+  cache: "D:/PhyQ-Bearing/cache"
+  # CWRU: the 0HP..3HP folders used by your old scripts. CHECK with:  python scripts/find_cwru.py --write
+  cwru: ["D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/0HP", "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/1HP", "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/2HP", "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/3HP"]
+  pu: "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn"
+  ims: "D:/Bearing Project/4. Bearings/IMS"
+  nrel: "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Wind Turbine Gearbox Condition Monitoring Vibration/Data Information"
+  sdust: "D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/SDUST/SDUST_bearing"

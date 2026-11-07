@@ -1,0 +1,153 @@
+{
+  "dataset": "pu",
+  "variant": "fold0",
+  "model": "phyqnet",
+  "model_tag": "med",
+  "seed": 0,
+  "val_only": true,
+  "val": {
+    "clean": {
+      "acc": 46.5625,
+      "macro_f1": 37.16684893582851,
+      "bal_acc": 46.5625,
+      "nll": NaN,
+      "ece": 47.01276804630955,
+      "n": 960,
+      "confusion": [
+        [
+          320,
+          0,
+          0
+        ],
+        [
+          193,
+          127,
+          0
+        ],
+        [
+          309,
+          11,
+          0
+        ]
+      ]
+    },
+    "noise": {
+      "white": {
+        "relative": {
+          "-6": {
+            "acc": 35.0,
+            "macro_f1": 23.28769008599293,
+            "bal_acc": 35.0,
+            "nll": 1.3111858367919922,
+            "ece": 29.838135801255707,
+            "n": 960,
+            "confusion": [
+              [
+                31,
+                2,
+                287
+              ],
+              [
+                16,
+                7,
+                297
+              ],
+              [
+                19,
+                3,
+                298
+              ]
+            ]
+          },
+          "0": {
+            "acc": 60.20833333333333,
+            "macro_f1": 58.73466810966811,
+            "bal_acc": 60.20833333333333,
+            "nll": 0.8721927404403687,
+            "ece": 7.059063684816161,
+            "n": 960,
+            "confusion": [
+              [
+                252,
+                6,
+                62
+              ],
+              [
+                48,
+                106,
+                166
+              ],
+              [
+                84,
+                16,
+                220
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "train": {
+    "best_val": 34.5518025270995,
+    "best_epoch": 7,
+    "epochs_run": 15,
+    "train_time_s": 770.8703379631042
+  },
+  "profile": {
+    "params": 1351769,
+    "macs": 516241976.0,
+    "latency_ms_bs1": 7.836033333326971
+  },
+  "data": {
+    "dataset": "pu",
+    "protocol": "group_kfold",
+    "n_recordings": 1360,
+    "fs": 16000.0,
+    "window": 8192,
+    "channels": 1,
+    "classes": [
+      "Healthy",
+      "OR",
+      "IR"
+    ],
+    "n_train": 5760,
+    "n_val": 960,
+    "n_test": 1600,
+    "train_per_class": [
+      1920,
+      1920,
+      1920
+    ],
+    "val_per_class": [
+      320,
+      320,
+      320
+    ],
+    "test_per_class": [
+      640,
+      320,
+      640
+    ],
+    "test_groups": [
+      "K005",
+      "K006",
+      "KA15",
+      "KI04",
+      "KI17"
+    ],
+    "train_groups": [
+      "K001",
+      "K002",
+      "K004",
+      "KA04",
+      "KA16",
+      "KA30",
+      "KI14",
+      "KI16",
+      "KI18"
+    ],
+    "skipped_recordings": []
+  },
+  "wall_time_s": 781.9139654636383
+}

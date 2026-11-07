@@ -1,0 +1,13 @@
+19:22:15 | INFO | [cache] 200/381 recordings
+19:22:15 | INFO | [memory] cached signals 8.9 GB, RAM 7.7 GB -> memory-map from disk
+19:22:17 | INFO | [data] sdust | chronological | train/val/test = 24384/6096/6096 | C=6 | fs=25600.0
+19:22:59 | INFO | [classical] features for 73152 training windows (n_aug=2, fs=25600.0) ...
+19:48:28 | INFO | [classical] 690 features, 1570s
+20:00:25 | INFO | [classical] rf_leaf1: val 68.2778 (716s)
+20:12:14 | INFO | [classical] rf_leaf3: val 67.9135 (709s)
+20:29:48 | INFO | [classical] hgb_lr0.05: val 74.6055 (1055s)
+20:45:37 | INFO | [classical] hgb_lr0.1: val 74.9824 (949s)
+20:56:14 | INFO | [classical] logreg_C0.1: val 65.8240 (637s)
+21:07:35 | INFO | [classical] logreg_C1.0: val 66.3895 (681s)
+21:19:41 | INFO | [classical] logreg_C10.0: val 66.3343 (726s)
+23:33:52 | INFO | [done] clean acc 92.52 F1 92.32 | best val 74.98@4 | 7044s

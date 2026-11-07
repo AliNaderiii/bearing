@@ -1,0 +1,31 @@
+14:27:21 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+14:27:21 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+14:27:23 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.6671
+14:27:23 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.8794
+14:27:23 | INFO |   [neural-MED] ch0 ep 3/3 loss -6.0483
+14:27:24 | INFO | [run] cwru | within_3HP | phyq_paper | seed 0 | params 1,400,427 | device cuda
+14:27:34 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+14:27:34 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+14:27:34 | WARNING |   [cuda-safe level 1] cuDNN heuristics (no benchmark), math attention, no cuFFT plan cache
+14:27:37 | INFO |   [neural-MED] ch0 ep 1/3 loss -5.6671
+14:27:37 | INFO |   [neural-MED] ch0 ep 2/3 loss -5.8795
+14:27:37 | INFO |   [neural-MED] ch0 ep 3/3 loss -6.0452
+14:27:37 | INFO | [run] cwru | within_3HP | phyq_paper | seed 0 | params 1,400,427 | device cuda
+14:27:38 | INFO |   [memory] ~13 MB/sample (train), free 3.14/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+14:27:41 | INFO |   ep   1 loss 2.2486 acc 16.0 val 13.00 (best 13.00@1)
+14:27:55 | INFO |   ep   5 loss 1.4796 acc 53.3 val 49.93 (best 49.93@5)
+14:28:13 | INFO |   ep  10 loss 0.9247 acc 75.5 val 72.33 (best 72.33@10)
+14:28:31 | INFO |   ep  15 loss 0.8590 acc 78.1 val 72.87 (best 77.59@12)
+14:28:48 | INFO |   ep  20 loss 0.7374 acc 81.9 val 77.18 (best 78.99@19)
+14:29:06 | INFO |   ep  25 loss 0.7325 acc 83.4 val 77.08 (best 79.46@22)
+14:29:24 | INFO |   ep  30 loss 0.7134 acc 81.8 val 74.48 (best 80.40@26)
+14:29:41 | INFO |   ep  35 loss 0.6256 acc 86.8 val 80.03 (best 80.79@34)
+14:29:59 | INFO |   ep  40 loss 0.5814 acc 89.0 val 80.82 (best 81.74@38)
+14:30:17 | INFO |   ep  45 loss 0.6128 acc 86.5 val 78.40 (best 81.74@38)
+14:30:34 | INFO |   ep  50 loss 0.5949 acc 87.9 val 81.39 (best 82.96@46)
+14:30:52 | INFO |   ep  55 loss 0.6193 acc 87.0 val 83.63 (best 83.63@55)
+14:31:10 | INFO |   ep  60 loss 0.6497 acc 85.6 val 84.47 (best 84.47@60)
+14:31:28 | INFO |   ep  65 loss 0.5792 acc 88.8 val 83.60 (best 84.47@60)
+14:31:45 | INFO |   ep  70 loss 0.6239 acc 87.0 val 84.02 (best 84.47@60)
+14:31:45 | INFO |   early stop at epoch 70 (best 60)
+14:31:46 | INFO | [done/val-only] best val 84.47@60

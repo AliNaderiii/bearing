@@ -1,0 +1,10 @@
+09:14:11 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+09:14:12 | INFO | [data] pu | recording | train/val/test = 2016/196/196 | C=1 | fs=16000.0
+09:14:12 | INFO | [run] pu | paper_dong7 | stats_mlp | seed 1 | params 19,079 | device cuda
+09:14:14 | INFO |   [memory] ~1 MB/sample (train), free 3.22/4.00 GB -> micro-batch 32 x accum 1 (effective batch 32)
+09:14:18 | INFO |   ep   1 loss 1.8479 acc 28.6 val 20.41 (best 20.41@1)
+09:14:23 | INFO |   ep   5 loss 0.7094 acc 82.7 val 84.77 (best 85.60@4)
+09:14:30 | INFO |   ep  10 loss 0.6040 acc 86.1 val 88.01 (best 90.08@9)
+09:14:37 | INFO |   ep  15 loss 0.5834 acc 86.6 val 89.46 (best 90.08@9)
+09:14:42 | INFO |   early stop at epoch 19 (best 9)
+09:14:44 | INFO | [done] clean acc 100.00 F1 100.00 | best val 90.08@9 | 25s

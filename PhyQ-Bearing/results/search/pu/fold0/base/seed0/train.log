@@ -1,0 +1,6 @@
+19:48:04 | INFO | [run] pu | fold0 | phyqnet | seed 0 | params 1,351,769 | device cuda
+19:49:00 | INFO |   ep   1 loss 0.5557 acc 79.8 val 27.91 (best 27.91@1)
+19:53:09 | INFO |   ep   5 loss 0.3463 acc 91.2 val 36.47 (best 41.25@4)
+19:58:18 | INFO |   ep  10 loss 0.3036 acc 93.2 val 33.61 (best 41.25@4)
+20:00:21 | INFO |   early stop at epoch 12 (best 4)
+20:00:29 | INFO | [done/val-only] best val 41.25@4

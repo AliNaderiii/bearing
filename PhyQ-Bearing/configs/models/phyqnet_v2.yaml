@@ -1,0 +1,6 @@
+# Candidate improved variant (physics stream on). Whether it wins is decided by search.py.
+extends: phyqnet.yaml
+model:
+  envelope: {enabled: true}
+  attention: se_temporal
+  shrink: true

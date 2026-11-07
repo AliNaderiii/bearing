@@ -1,0 +1,83 @@
+{
+  "n_recordings": 2376,
+  "variants": {
+    "chrono": {
+      "dataset": "ims",
+      "protocol": "time_blocks",
+      "n_recordings": 2376,
+      "fs": 20000.0,
+      "window": 2048,
+      "channels": 1,
+      "classes": [
+        "Normal",
+        "Inner",
+        "Roller",
+        "Outer"
+      ],
+      "n_train": 22032,
+      "n_val": 4590,
+      "n_test": 4600,
+      "train_per_class": [
+        10896,
+        2784,
+        2784,
+        5568
+      ],
+      "val_per_class": [
+        2270,
+        580,
+        580,
+        1160
+      ],
+      "test_per_class": [
+        2280,
+        580,
+        580,
+        1160
+      ],
+      "test_groups": [
+        "1st_test_B3",
+        "1st_test_B4",
+        "2nd_test_B1",
+        "3rd_test_B3"
+      ],
+      "train_groups": [
+        "1st_test_B3",
+        "1st_test_B4",
+        "2nd_test_B1",
+        "3rd_test_B3"
+      ],
+      "skipped_recordings": []
+    }
+  },
+  "ims_onset": {
+    "1st_test_B3": {
+      "onset_file": "2003.11.14.23.08.46",
+      "onset_idx": 963,
+      "n_files": 2156,
+      "n_healthy": 603,
+      "n_faulty": 1193
+    },
+    "1st_test_B4": {
+      "onset_file": "2003.11.19.12.36.07",
+      "onset_idx": 1448,
+      "n_files": 2156,
+      "n_healthy": 603,
+      "n_faulty": 708
+    },
+    "2nd_test_B1": {
+      "onset_file": "2004.02.16.03.12.39",
+      "onset_idx": 532,
+      "n_files": 984,
+      "n_healthy": 276,
+      "n_faulty": 452
+    },
+    "3rd_test_B3": {
+      "onset_file": "2004.04.03.13.11.57",
+      "onset_idx": 4274,
+      "n_files": 6324,
+      "n_healthy": 1771,
+      "n_faulty": 2050
+    }
+  }
+}

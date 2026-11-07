@@ -1,0 +1,29 @@
+15:32:24 | INFO | [cache] 200/381 recordings
+15:32:24 | INFO | [memory] cached signals 8.9 GB, RAM 7.7 GB -> memory-map from disk
+15:32:25 | INFO | [data] sdust | chronological | train/val/test = 24384/6096/6096 | C=6 | fs=25600.0
+15:32:26 | INFO | [run] sdust | chrono | phyq_paper | seed 1 | params 1,411,147 | device cuda
+15:32:27 | INFO |   [memory] ~14 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+15:34:24 | INFO |   ep   1 loss 1.8704 acc 34.4 val 45.33 (best 45.33@1)
+18:21:33 | INFO | [cache] 200/381 recordings
+18:21:38 | INFO | [memory] cached signals 8.9 GB, RAM 7.7 GB -> memory-map from disk
+18:21:40 | INFO | [data] sdust | chronological | train/val/test = 24384/6096/6096 | C=6 | fs=25600.0
+18:21:41 | INFO | [run] sdust | chrono | phyq_paper | seed 1 | params 1,411,147 | device cuda
+18:21:44 | INFO |   [memory] ~14 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+18:23:43 | INFO |   ep   1 loss 1.8705 acc 34.3 val 45.26 (best 45.26@1)
+18:30:57 | INFO |   ep   5 loss 0.7847 acc 78.8 val 71.20 (best 71.37@4)
+18:37:58 | INFO |   ep  10 loss 0.5862 acc 88.0 val 85.33 (best 85.33@10)
+18:45:25 | INFO |   ep  15 loss 0.5542 acc 89.6 val 88.62 (best 88.62@15)
+18:52:50 | INFO |   ep  20 loss 0.5080 acc 91.2 val 89.40 (best 89.52@17)
+19:00:10 | INFO |   ep  25 loss 0.4970 acc 91.6 val 90.80 (best 90.80@25)
+19:07:14 | INFO |   ep  30 loss 0.4894 acc 92.1 val 90.84 (best 91.00@29)
+19:14:38 | INFO |   ep  35 loss 0.4546 acc 93.2 val 90.32 (best 91.48@34)
+19:22:04 | INFO |   ep  40 loss 0.4477 acc 93.4 val 91.68 (best 91.68@40)
+19:29:03 | INFO |   ep  45 loss 0.4421 acc 93.6 val 92.69 (best 92.69@45)
+19:36:04 | INFO |   ep  50 loss 0.4420 acc 93.7 val 92.23 (best 92.69@45)
+19:43:04 | INFO |   ep  55 loss 0.4169 acc 94.8 val 93.14 (best 93.14@55)
+19:50:03 | INFO |   ep  60 loss 0.4199 acc 94.5 val 93.16 (best 93.29@56)
+19:57:03 | INFO |   ep  65 loss 0.4122 acc 94.9 val 93.18 (best 93.63@62)
+20:04:02 | INFO |   ep  70 loss 0.4066 acc 95.1 val 93.69 (best 93.71@68)
+20:11:02 | INFO |   ep  75 loss 0.4045 acc 95.2 val 93.72 (best 93.90@73)
+20:18:02 | INFO |   ep  80 loss 0.4032 acc 95.2 val 93.73 (best 93.90@73)
+20:24:06 | INFO | [done] clean acc 99.06 F1 99.03 | best val 93.90@73 | 6976s

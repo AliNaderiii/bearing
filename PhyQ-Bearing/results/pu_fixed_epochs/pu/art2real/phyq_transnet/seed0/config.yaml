@@ -1,0 +1,189 @@
+paths:
+  cache: D:/PhyQ-Bearing/cache
+  cwru:
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/0HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/1HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/2HP
+  - D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/3HP
+  pu: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn
+  ims: D:/Bearing Project/4. Bearings/IMS
+  nrel: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Wind
+    Turbine Gearbox Condition Monitoring Vibration/Data Information
+  sdust: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/SDUST/SDUST_bearing
+device: auto
+deterministic: false
+save_checkpoint: false
+results_dir: results
+data:
+  cache_dir: D:/PhyQ-Bearing/cache
+  window: 8192
+  train_stride: 2048
+  eval_stride: 8192
+  preload: auto
+  max_windows_per_segment_train: 8
+  max_windows_per_segment_eval: 4
+  name: pu
+  root: D:/Bearing Project/CWRU/CWRU Case 08/QCNN for bearing diagnosis/data/Paderborn
+  channels:
+  - vibration_1
+  target_fs: 16000
+  conditions:
+  - N15_M07_F10
+  - N09_M07_F10
+  - N15_M01_F10
+  - N15_M07_F04
+  max_files_per_condition: 20
+  optional_bearings:
+  - K006
+  - KI17
+  classes:
+    Healthy:
+    - K001
+    - K002
+    - K003
+    - K004
+    - K005
+    - K006
+    OR:
+    - KA01
+    - KA03
+    - KA05
+    - KA06
+    - KA07
+    - KA08
+    - KA09
+    - KA04
+    - KA15
+    - KA16
+    - KA22
+    - KA30
+    IR:
+    - KI01
+    - KI03
+    - KI05
+    - KI07
+    - KI08
+    - KI04
+    - KI14
+    - KI16
+    - KI18
+    - KI21
+  split:
+    protocol: group
+    assignment:
+      train:
+      - K002
+      - K003
+      - K004
+      - KA01
+      - KA05
+      - KA06
+      - KA07
+      - KA09
+      - KI01
+      - KI05
+      - KI07
+      val:
+      - K005
+      - K006
+      - KA03
+      - KA08
+      - KI03
+      - KI08
+      test:
+      - K001
+      - KA04
+      - KA15
+      - KA16
+      - KA22
+      - KA30
+      - KI04
+      - KI14
+      - KI16
+      - KI18
+      - KI21
+train:
+  epochs: 20
+  batch_size: 32
+  lr: 0.002
+  weight_decay: 0.01
+  scheduler: onecycle
+  warmup_frac: 0.15
+  label_smoothing: 0.05
+  mixup_alpha: 0.0
+  random_shift: true
+  amp_scale: null
+  grad_clip: 5.0
+  auto_micro_batch: true
+  min_micro_batch: 16
+  patience: 10
+  min_epochs: 10
+  amp: false
+  workers: 0
+  log_every: 5
+  noise_aug:
+    enabled: true
+    prob: 0.8
+    snr_range:
+    - -10
+    - 10
+    types:
+    - white
+    mode: mixed
+  select: last
+  eval_every: 20
+selection:
+  metric: macro_f1
+  snrs:
+  - clean
+  - 0
+  - -6
+  snr_modes:
+  - relative
+  - absolute
+  noise_type: white
+  noise_seed: 777
+  batch_size: 64
+eval:
+  batch_size: 64
+  noise_seed: 12345
+  noise_types:
+  - white
+  - pink
+  - impulsive
+  snr_modes:
+  - relative
+  - absolute
+  snrs:
+  - -10
+  - -8
+  - -6
+  - -4
+  - -2
+  - 0
+  - 2
+  - 4
+  - 6
+  - 8
+  - 10
+  tta_shifts: 0
+model:
+  name: phyq_paper
+  quad: true
+  attention: true
+  shrink: true
+  transformer: true
+  stats: true
+  act: metaacon
+  input_norm: instance
+  prefilter:
+    enabled: true
+    epochs: 3
+    batch_size: 64
+    lr: 0.001
+    kurt_alpha: 0.5
+    recon_alpha: 0.5
+    max_windows: 2000
+_variant: art2real
+_model_tag: phyq_transnet
+_val_only: false
