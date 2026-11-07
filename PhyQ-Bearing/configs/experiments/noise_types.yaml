@@ -1,0 +1,8 @@
+# OPTIONAL (not in run_all): pink/impulsive noise is now evaluated inside main_benchmark.
+name: noise_types
+runs:
+  - {dataset: cwru, variants: [within_3HP, cross_0to3]}
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]", "eval.snr_modes=[absolute]"]

@@ -1,0 +1,12 @@
+# v10.2 (MSSP revision): classical Fast-Kurtogram + envelope-spectrum baseline on the main_tuned tasks.
+# No epochs/lr: the classifier is selected internally on VALIDATION. Results merge into results/main_tuned.
+name: main_tuned
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2]}
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2]}
+models:
+  - {tag: kurtogram_ses, config: kurtogram_ses}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

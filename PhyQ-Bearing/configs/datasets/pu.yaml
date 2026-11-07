@@ -1,0 +1,226 @@
+data:
+  name: pu
+  root: ${paths.pu}
+  channels: [vibration_1]       # add phase_current_1 / phase_current_2 for multi-sensor runs
+  target_fs: 16000              # 64 kHz -> 16 kHz (anti-aliased)
+  # 0.512 s windows (8192 samples): envelope-spectrum resolution ~2 Hz, i.e. fault frequencies
+  # (BPFO ~76 Hz, BPFI ~124 Hz at 1500 rpm) and harmonics are resolved. Bearing-wise studies use
+  # long segments for this reason (Vieira et al., MSSP 2026: 1 s windows). Same window for ALL models.
+  window: 8192
+  train_stride: 2048
+  eval_stride: 8192
+  max_windows_per_segment_train: 8   # 8 x 8192 = same number of samples per file as before (32 x 2048)
+  max_windows_per_segment_eval: 4
+  conditions: [N15_M07_F10, N09_M07_F10, N15_M01_F10, N15_M07_F04]
+  max_files_per_condition: 20
+  # Real-damage set of Lessmeier et al. (2016) + K006 and KI17 (as in Vieira et al., 2026):
+  # more training bearings per class -> better bearing-wise generalisation. Skipped if not on disk.
+  optional_bearings: [K006, KI17]
+  classes:                      # 3-class real-damage problem (bearing-disjoint folds)
+    Healthy: [K001, K002, K003, K004, K005, K006]
+    OR: [KA04, KA15, KA16, KA22, KA30]
+    IR: [KI04, KI14, KI16, KI17, KI18, KI21]
+  split: {protocol: group_kfold, n_folds: 5, fold: 0, fold_seed: 0}
+train:
+  batch_size: 32                # 4x longer windows -> smaller batch (4 GB GPU)
+selection:
+  batch_size: 64
+eval:
+  batch_size: 64                # fixed for every model on PU (noise realisations are tied to batches)
+split_variants:
+  fold0: {protocol: group_kfold, n_folds: 5, fold: 0, fold_seed: 0}
+  fold1: {protocol: group_kfold, n_folds: 5, fold: 1, fold_seed: 0}
+  fold2: {protocol: group_kfold, n_folds: 5, fold: 2, fold_seed: 0}
+  fold3: {protocol: group_kfold, n_folds: 5, fold: 3, fold_seed: 0}
+  fold4: {protocol: group_kfold, n_folds: 5, fold: 4, fold_seed: 0}
+  # Lessmeier et al. (2016): train on ARTIFICIAL damage, test on REAL damage.
+  # Validation = held-out artificial/healthy bearings (never real ones).
+  art2real:
+    protocol: group
+    data_overrides:
+      classes:
+        Healthy: [K001, K002, K003, K004, K005, K006]
+        OR: [KA01, KA03, KA05, KA06, KA07, KA08, KA09, KA04, KA15, KA16, KA22, KA30]
+        IR: [KI01, KI03, KI05, KI07, KI08, KI04, KI14, KI16, KI18, KI21]
+    assignment:
+      train: [K002, K003, K004, KA01, KA05, KA06, KA07, KA09, KI01, KI05, KI07]
+      val: [K005, K006, KA03, KA08, KI03, KI08]
+      test: [K001, KA04, KA15, KA16, KA22, KA30, KI04, KI14, KI16, KI18, KI21]
+
+  # ---------------------------------------------------------------------------------------------
+  # SEEN-BEARING protocols (v9). Same bearings in train and test, but WHOLE RECORDINGS are disjoint
+  # (PU has 20 separate 4-s measurements per bearing x condition: 1-12 train, 13-16 val, 17-20 test).
+  # This is the clean counterpart of the random window/sample splits used by most PU papers
+  # (refs: Niu 2025, Dong 2025, Xu 2026, Wang 2025, Wu 2026) and measures generalisation to NEW
+  # MEASUREMENTS of KNOWN bearings -- NOT to new bearings. Report it under that name, always next
+  # to the bearing-wise folds (fold0-4) and art2real.
+  # ---------------------------------------------------------------------------------------------
+  seen_all:                       # 17 real-damage/healthy bearings, all 4 operating conditions
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+  # seen_X = single condition X. The SAME trained model is also tested on the other three
+  # conditions (extra_tests -> results of cc_X2Y), because cc_X2Y has an identical train/val split
+  # (verified by the runner). 4 trainings give seen_A..D + all 12 cross-condition pairs.
+  seen_A:  # (setting of Niu 2025 / Wu 2026)
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    extra_tests: [cc_A2B, cc_A2C, cc_A2D]
+    data_overrides:
+      conditions: [N15_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  seen_B:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    extra_tests: [cc_B2A, cc_B2C, cc_B2D]
+    data_overrides:
+      conditions: [N09_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  seen_C:  # (condition of Dong 2025)
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    extra_tests: [cc_C2A, cc_C2B, cc_C2D]
+    data_overrides:
+      conditions: [N15_M01_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  seen_D:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    extra_tests: [cc_D2A, cc_D2B, cc_D2C]
+    data_overrides:
+      conditions: [N15_M07_F04]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  # Dong et al., MSSP 240 (2025) 113371: 7 classes, ONE bearing per class, N15_M01_F10.
+  # NOTE: class == bearing identity here -> this is bearing identification, not fault diagnosis.
+  paper_dong7:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    data_overrides:
+      conditions: [N15_M01_F10]
+      optional_bearings: []
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+      classes:
+        Normal: [K001]
+        OR_EDM_L1: [KA01]
+        OR_engraver_L2: [KA03]
+        OR_drill_L1: [KA07]
+        IR_EDM_L1: [KI01]
+        IR_engraver_L1: [KI03]
+        IR_engraver_L2: [KI08]
+  # ---------------------------------------------------------------------------------------------
+  # CROSS-CONDITION (operating-condition generalisation), same bearings, recording-disjoint test:
+  # train/val on recordings 1-16 of the SOURCE condition, test on recordings 17-20 of the TARGET.
+  # A=N15_M07_F10  B=N09_M07_F10  C=N15_M01_F10  D=N15_M07_F04 (naming of Wang 2025 / Liu 2025).
+  # ---------------------------------------------------------------------------------------------
+  cc_A2B:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M07_F10]
+    target: [N09_M07_F10]
+    data_overrides:
+      conditions: [N15_M07_F10, N09_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_A2C:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M07_F10]
+    target: [N15_M01_F10]
+    data_overrides:
+      conditions: [N15_M07_F10, N15_M01_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_A2D:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M07_F10]
+    target: [N15_M07_F04]
+    data_overrides:
+      conditions: [N15_M07_F10, N15_M07_F04]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_B2A:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N09_M07_F10]
+    target: [N15_M07_F10]
+    data_overrides:
+      conditions: [N09_M07_F10, N15_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_B2C:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N09_M07_F10]
+    target: [N15_M01_F10]
+    data_overrides:
+      conditions: [N09_M07_F10, N15_M01_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_B2D:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N09_M07_F10]
+    target: [N15_M07_F04]
+    data_overrides:
+      conditions: [N09_M07_F10, N15_M07_F04]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_C2A:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M01_F10]
+    target: [N15_M07_F10]
+    data_overrides:
+      conditions: [N15_M01_F10, N15_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_C2B:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M01_F10]
+    target: [N09_M07_F10]
+    data_overrides:
+      conditions: [N15_M01_F10, N09_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_C2D:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M01_F10]
+    target: [N15_M07_F04]
+    data_overrides:
+      conditions: [N15_M01_F10, N15_M07_F04]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_D2A:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M07_F04]
+    target: [N15_M07_F10]
+    data_overrides:
+      conditions: [N15_M07_F04, N15_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_D2B:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M07_F04]
+    target: [N09_M07_F10]
+    data_overrides:
+      conditions: [N15_M07_F04, N09_M07_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7
+  cc_D2C:
+    protocol: recording
+    fractions: [0.6, 0.2, 0.2]
+    source: [N15_M07_F04]
+    target: [N15_M01_F10]
+    data_overrides:
+      conditions: [N15_M07_F04, N15_M01_F10]
+      max_windows_per_segment_train: 24
+      max_windows_per_segment_eval: 7

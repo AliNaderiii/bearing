@@ -1,0 +1,18 @@
+# Written by scripts/select_hparams.py -- per-model hyper-parameters chosen on VALIDATION
+# (results/hp_search/selection.md). Same data/protocols/noise tests as main_benchmark.
+name: main_tuned
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2, 3, 4]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2]}
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_transnet, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80]}   # phyq_transnet__lr2e-3_ep80
+  - {tag: wdcnn, config: wdcnn, overrides: [train.lr=0.002, train.epochs=80]}   # wdcnn__lr2e-3_ep80
+  - {tag: qcnn, config: qcnn, overrides: [train.lr=0.001, train.epochs=80]}   # qcnn__lr1e-3_ep80
+  - {tag: drsn, config: drsn, overrides: [train.lr=0.001, train.epochs=80]}   # drsn__lr1e-3_ep80
+  - {tag: cnn_transformer, config: cnn_transformer, overrides: [train.lr=0.002, train.epochs=40]}   # cnn_transformer__lr2e-3_ep40
+  - {tag: stats_mlp, config: stats_mlp, overrides: [train.lr=0.002, train.epochs=80]}   # stats_mlp__lr2e-3_ep80
+  - {tag: classbd, config: classbd, overrides: [train.lr=0.001, train.epochs=40, model.physics_loss=false]}   # classbd__lr1e-3_ep40_nophys
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

@@ -1,0 +1,13 @@
+data:
+  name: synthetic
+  root: none
+  n_classes: 4
+  n_units: 3
+  n_conditions: 2
+  length: 40000
+  fs: 12000
+  split: {protocol: chronological, gap: 2048}
+split_variants:
+  chrono: {}
+  units: {protocol: group_kfold, n_folds: 3, fold: 0}
+  cross: {protocol: cross_condition, source: [k0], target: [k1]}

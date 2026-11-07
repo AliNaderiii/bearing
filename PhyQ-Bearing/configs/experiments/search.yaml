@@ -1,0 +1,20 @@
+# Validation-only architecture search, PHASE 2 (the test set is never evaluated).
+# Phase 1 (results/search, 9 candidates, PU with 0.128 s windows) showed:
+#   * mixed-SNR augmentation was best -> it is now the training protocol of ALL models (base.yaml);
+#   * on bearing-disjoint PU every variant was close to chance, physics-informed variants (med, envelope)
+#     were the least bad -> PU now uses 0.512 s windows (2 Hz envelope resolution) and K006/KI17.
+# Phase 2 re-ranks the physics-related candidates under this protocol.
+name: search_v2
+val_only: true
+runs:
+  - {dataset: cwru, variants: [cross_0to3, cross_3to0]}
+  - {dataset: pu, variants: [fold0, fold1]}
+models:
+  - {tag: base, config: phyqnet}
+  - {tag: envelope, config: phyqnet, overrides: [model.envelope.enabled=true]}
+  - {tag: med, config: phyqnet, overrides: [model.med.enabled=true]}
+  - {tag: envelope_med, config: phyqnet, overrides: [model.envelope.enabled=true, model.med.enabled=true]}
+  - {tag: width_0p5, config: phyqnet, overrides: [model.width=0.5]}
+  - {tag: envelope_width_0p5, config: phyqnet, overrides: [model.envelope.enabled=true, model.width=0.5]}
+seeds: [0]
+overrides: [train.epochs=25, train.patience=8]

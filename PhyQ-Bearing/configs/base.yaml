@@ -1,0 +1,58 @@
+# Global defaults. Every dataset/model/experiment file overrides parts of this.
+extends: paths.yaml          # local data locations (copy paths.example.yaml -> paths.yaml)
+device: auto                 # auto | cuda | cpu
+deterministic: false         # true = bit-exact but slower cuDNN kernels; false = fastest (seeds still fixed)
+save_checkpoint: false
+results_dir: results
+
+data:
+  cache_dir: ${paths.cache}
+  window: 2048
+  train_stride: 512          # overlap only INSIDE the training segment
+  eval_stride: 2048          # non-overlapping val/test windows
+  preload: auto              # auto: RAM if signals < 30% of RAM, else memory-map (true | false to force)
+  max_windows_per_segment_train: null
+  max_windows_per_segment_eval: null
+
+train:
+  epochs: 40
+  batch_size: 64
+  lr: 0.002
+  weight_decay: 0.01
+  scheduler: onecycle
+  warmup_frac: 0.15
+  label_smoothing: 0.05
+  mixup_alpha: 0.0
+  random_shift: true          # cyclic shift (windows are stationary segments)
+  amp_scale: null             # e.g. [0.8, 1.25] random gain augmentation
+  grad_clip: 5.0
+  auto_micro_batch: true      # v9.2: measure GPU memory first and pick micro-batch x grad_accum (same effective batch)
+  min_micro_batch: 16         # CUDA-OOM retries never go below this micro-batch (BatchNorm needs it)
+  patience: 10
+  min_epochs: 10
+  amp: true
+  workers: 0
+  log_every: 5
+  noise_aug:                  # on-the-fly noise augmentation (applied to ALL models equally)
+    enabled: true
+    prob: 0.8
+    snr_range: [-10, 10]
+    types: [white]
+    mode: mixed               # relative | absolute | mixed  (mixed won the phase-1 validation search;
+                              #  applied to ALL models so the comparison stays fair)
+
+selection:                    # early stopping / model selection on VALIDATION only
+  metric: macro_f1
+  snrs: [clean, 0, -6]
+  snr_modes: [relative, absolute]   # averages clean + both SNR definitions
+  noise_type: white
+  noise_seed: 777             # different from the test noise seed
+  batch_size: 256
+
+eval:
+  batch_size: 256             # keep fixed: noise realisations are tied to batches
+  noise_seed: 12345
+  noise_types: [white]
+  snr_modes: [relative, absolute]
+  snrs: [-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]
+  tta_shifts: 0

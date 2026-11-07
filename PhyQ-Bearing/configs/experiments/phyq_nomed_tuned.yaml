@@ -1,0 +1,14 @@
+# PhyQ-TransNet (the author's model) with the Neural-MED pre-filter DISABLED -- all other components,
+# hyper-parameters (validation winner: lr 2e-3, 80 epochs) and protocols identical to main_tuned.
+# Motivation: component ablation (results/ablation) -- decision taken on VALIDATION (val_summary.py).
+# name = main_tuned -> results land next to the baselines and make_tables compares them directly.
+name: main_tuned
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2]}
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

@@ -1,0 +1,8 @@
+# Copy to paths.yaml and edit. Use forward slashes "/" even on Windows.
+paths:
+  cache: D:/PhyQ_cache             # resampled .npy cache (several GB for PU/IMS)
+  cwru: D:/Datasets/CWRU           # folder (or a LIST of folders, e.g. [".../0HP", ".../3HP"]) with 12k DE .mat files
+  pu: D:/Datasets/PU               # folder containing K001/, KA04/, KI04/, ...
+  ims: D:/Datasets/IMS             # folder containing 1st_test/, 2nd_test/, 3rd_test/ (or 4th_test/txt)
+  nrel: D:/Datasets/NREL           # CSV(s) with {exp}_AN{n} columns or H1.mat ... D10.mat
+  sdust: D:/Datasets/SDUST         # SDUST root (labels parsed from path tokens)

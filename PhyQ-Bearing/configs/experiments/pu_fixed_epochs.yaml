@@ -1,0 +1,10 @@
+# Sensitivity check for the bearing-wise PU protocol: NO early stopping / NO validation-based model
+# selection (validation bearings proved uninformative, many baselines stopped at epoch 1-2).
+# Every model trains a fixed 20 epochs (same OneCycle schedule) and the LAST model is tested,
+# as in Vieira et al., MSSP 258 (2026) 114640. Same data, folds, augmentation and seeds as main_benchmark.
+name: pu_fixed_epochs
+runs:
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4, art2real], seeds: [0]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0]
+overrides: ["eval.noise_types=[white, pink, impulsive]", "train.select=last", "train.epochs=20", "train.eval_every=20"]

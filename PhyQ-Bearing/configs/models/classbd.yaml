@@ -1,0 +1,6 @@
+# ClassBD (Liao et al., MSSP 222 (2025) 111750): quadratic time-domain BD filter + frequency linear filter
+# + WDCNN classifier. Re-implemented in phyq/models/baselines.py (official code has no licence).
+# physics_loss: true  = method as described in the paper (differentiable kurtosis + l2/l4 terms, UW weights)
+# physics_loss: false = effective behaviour of the official code (its physics terms are detached)
+# Both are hyper-parameter candidates in hp_search.yaml (chosen on validation).
+model: {name: classbd, physics_loss: true, bd_kernel: 63}

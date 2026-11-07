@@ -1,0 +1,25 @@
+# Full configurable PhyQNet. The final variant is chosen by scripts/search.py on VALIDATION only
+# and written to phyqnet_selected.yaml (used by all main suites).
+model:
+  name: phyqnet
+  width: 1.0
+  base_channels: 32
+  conv: quad                 # quad | quad_gated | linear
+  quad_scope: all            # all | stem | none
+  act: metaacon              # metaacon | relu | gelu | silu
+  attention: se              # se | se_temporal | none
+  shrink: false              # DRSN-style learned soft thresholding inside residual blocks
+  instance_norm: true
+  stem_kernel: 63
+  stem_stride: 4
+  multiscale: [31, 15, 7]
+  stage_mult: [1, 2, 4]
+  blocks: [1, 1, 1]
+  block_kernel: 7
+  transformer: {enabled: true, layers: 2, heads: 4, ff_mult: 2, dropout: 0.1, pos: learned}
+  stats: {enabled: true, amplitude: true}
+  envelope: {enabled: false, n_filters: 8, kernel: 63, bins: 256, dim: 64, decim: 4}
+  med: {enabled: false, length: 32, iters: 30, fit_windows: 64}
+  fusion: gate               # gate | concat | mean
+  fusion_dim: 128
+  dropout: 0.2

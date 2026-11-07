@@ -1,0 +1,25 @@
+# PhyQ-TransNet: the author's model (original QDCA_Hybrid_Pro architecture, ported 1:1).
+# Every switch below is ON in the full model; the ablation suite turns exactly one of them off.
+model:
+  name: phyq_paper
+  quad: true             # Enhanced Quadratic Convolution (false = ordinary linear Conv1d, same shapes)
+  attention: true        # attention block inside QResBlock-Pro
+  shrink: true           # soft thresholding inside QResBlock-Pro
+  transformer: true      # Transformer encoder (false = global average pooling)
+  stats: true            # statistical stream + adaptive gated fusion
+  act: metaacon          # metaacon | relu
+  input_norm: instance   # instance (Eq. 8) | none (only the global train-fitted scaling)
+  prefilter:             # Neural MED (original LearnedFilter), fitted on TRAIN windows only, then frozen
+    enabled: true
+    epochs: 3
+    batch_size: 64
+    lr: 0.001
+    kurt_alpha: 0.5
+    recon_alpha: 0.5
+    max_windows: 2000
+train:
+  # v9.1: float16 AMP overflows in the quadratic convolutions (x*x and (Wr x)(Wg x) on the residual
+  # stream) -> NaN loss on GPU (PU, 8192 windows). The model is trained and evaluated in float32.
+  # Other models keep AMP (accuracy-neutral; it only changes speed/memory). If a run with AMP ever
+  # hits a NaN loss, the runner restarts it in float32 automatically.
+  amp: false

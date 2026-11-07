@@ -1,0 +1,1 @@
+model: {name: stats_mlp, amplitude: true, hidden: 128}

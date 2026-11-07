@@ -1,0 +1,20 @@
+# Component ablation of PhyQ-TransNet (the author's model): ONE component removed at a time.
+# The first five variants are exactly the rows of Table 9 / Table 10 of the paper; the others are extra
+# components described in the paper (soft thresholding, Meta-ACON, Neural MED, instance norm, noise aug).
+# Same setting as the paper (CWRU 3HP) plus the two hardest CWRU cross-load tasks. 3 seeds each.
+name: ablation
+runs:
+  - {dataset: cwru, variants: [within_3HP, cross_0to3, cross_3to0], seeds: [0, 1, 2]}
+models:
+  - {tag: full, config: phyq_paper}
+  - {tag: no_quad, config: phyq_paper, overrides: [model.quad=false]}            # w/o Quadratic (Linear CNN)
+  - {tag: no_attention, config: phyq_paper, overrides: [model.attention=false]}  # w/o Attention
+  - {tag: no_transformer, config: phyq_paper, overrides: [model.transformer=false]}  # w/o Transformer
+  - {tag: no_stats, config: phyq_paper, overrides: [model.stats=false]}          # w/o Statistical Stream
+  - {tag: no_shrink, config: phyq_paper, overrides: [model.shrink=false]}        # w/o Soft Thresholding
+  - {tag: relu, config: phyq_paper, overrides: [model.act=relu]}                 # w/o Meta-ACON
+  - {tag: no_prefilter, config: phyq_paper, overrides: [model.prefilter.enabled=false]}  # w/o Neural MED
+  - {tag: no_instance_norm, config: phyq_paper, overrides: [model.input_norm=none]}
+  - {tag: no_noise_aug, config: phyq_paper, overrides: [train.noise_aug.enabled=false]}
+seeds: [0]
+overrides: []

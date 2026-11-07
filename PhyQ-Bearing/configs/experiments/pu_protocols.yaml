@@ -1,0 +1,13 @@
+# PU under every evaluation protocol used in the PU literature (see docs/PU_REFERENCES_REVIEW_FA.md).
+# Report each protocol under its own name; the bearing-wise folds/art2real of main_benchmark stay the
+# headline "unseen bearings" result.
+#   seen_all, seen_A..D, paper_dong7 : SEEN bearings, UNSEEN recordings (recording-disjoint)
+#   cc_X2Y (12 pairs)                 : operating-condition generalisation, same bearings, unseen
+#                                       recordings. Produced automatically by seen_X (extra_tests:
+#                                       same trained model, identical train/val split -> no extra training).
+name: pu_protocols
+runs:
+  - {dataset: pu, variants: [seen_A, seen_B, seen_C, seen_D, seen_all, paper_dong7], seeds: [0, 1, 2]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0]
+overrides: []

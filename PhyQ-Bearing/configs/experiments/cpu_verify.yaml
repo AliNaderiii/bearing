@@ -1,0 +1,14 @@
+# Reduced-budget verification (what was run in the sandbox): 1 seed, 25 epochs, PhyQNet width 0.25.
+name: cpu_verify
+runs:
+  - {dataset: cwru, variants: [within_3HP, cross_0to3, cross_3to0]}
+models:
+  - {tag: phyqnet, config: phyqnet, overrides: [model.width=0.25, model.fusion_dim=64]}
+  - {tag: phyqnet_cnn_only, config: phyqnet, overrides: [model.width=0.25, model.fusion_dim=64, model.stats.enabled=false]}
+  - wdcnn
+  - qcnn
+  - drsn
+  - cnn_transformer
+  - stats_mlp
+seeds: [0]
+overrides: [train.epochs=25, train.patience=10, train.log_every=5]

@@ -1,0 +1,9 @@
+# Fast end-to-end check of the v10.2 baselines (ClassBD, classical kurtogram) on synthetic data.
+name: smoke_mssp
+runs:
+  - {dataset: synthetic, variants: [chrono]}
+models:
+  - {tag: classbd, config: classbd}
+  - {tag: kurtogram_ses, config: kurtogram_ses, overrides: [model.n_aug=1, model.nlevel=4]}
+seeds: [0]
+overrides: [train.epochs=2, train.min_epochs=1, "eval.snrs=[-6, 0]", data.train_stride=1024, "eval.noise_types=[white, impulsive]"]

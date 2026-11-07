@@ -1,0 +1,17 @@
+data:
+  name: nrel
+  root: ${paths.nrel}
+  fs: 40000
+  target_fs: null
+  channels: null                # e.g. [AN3, AN4, AN5, AN6, AN7, AN8, AN9, AN10]
+  max_windows_per_segment_train: 400
+  max_windows_per_segment_eval: 200
+  train_stride: 1024
+  split:
+    protocol: group
+    assignment:                 # experiment-wise (identical to the legacy split)
+      train: [D3, D4, D5, D7, D8, H1, H2, H3, H4, H5, H6, H8]
+      val: [D1, D2, D6, H7]
+      test: [D9, D10, H9, H10]
+split_variants:
+  expwise: {}

@@ -1,0 +1,9 @@
+# phyq_nomed_noquad on PU with exactly the seeds of phyq_nomed (bearing-disjoint 5-fold x2 seeds + art2real x3).
+name: main_benchmark
+runs:
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4], seeds: [0, 1]}
+  - {dataset: pu, variants: [art2real], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

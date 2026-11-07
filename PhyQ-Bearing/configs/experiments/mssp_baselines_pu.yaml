@@ -1,0 +1,12 @@
+# v10.2 (MSSP revision): ClassBD and the classical baseline on PU (same folds/seeds as main_benchmark).
+# ClassBD uses the shared defaults like every other baseline on PU; set model.physics_loss to the value
+# chosen in results/hp_search/selection.md (default true).
+name: main_benchmark
+runs:
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4], seeds: [0, 1]}
+  - {dataset: pu, variants: [art2real], seeds: [0, 1, 2]}
+models:
+  - {tag: classbd, config: classbd}
+  - {tag: kurtogram_ses, config: kurtogram_ses}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

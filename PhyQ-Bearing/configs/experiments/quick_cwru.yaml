@@ -1,0 +1,7 @@
+# First real test on your GPU (~10-20 min): CWRU, 1 seed, all models, one within- and one cross-load task.
+name: quick_cwru
+runs:
+  - {dataset: cwru, variants: [within_3HP, cross_0to3]}
+models: [{tag: phyq_transnet, config: phyq_paper}, wdcnn, qcnn, drsn, cnn_transformer, stats_mlp]
+seeds: [0]
+overrides: []
