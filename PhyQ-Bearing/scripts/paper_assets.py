@@ -106,12 +106,23 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "results", "_paper_assets"))
     a = ap.parse_args()
     res = os.path.join(ROOT, "results")
-    df = pd.concat([collect(res, e) for e in a.exps], ignore_index=True)
-    if df.empty:
+    parts = []
+    for rank, e in enumerate(a.exps):
+        d = collect(res, e)
+        if not d.empty:
+            d = d.copy(); d["_exp_rank"] = rank
+            parts.append(d)
+    if not parts:
         raise SystemExit("no results found")
+    df = pd.concat(parts, ignore_index=True)
     df = df[df["eval"] == "test"].copy()
     df["group"] = [group_of(d, v) for d, v in zip(df.dataset, df.variant)]
     df = df[df.group.notna() & df.model.isin([m for m, _ in MODELS])]
+    # never pool experiments: for every (group, model) keep only the FIRST experiment of --exps that
+    # contains it (e.g. tuned CWRU/IMS/NREL/SDUST runs from main_tuned, PU runs from main_benchmark);
+    # otherwise untuned main_benchmark runs would be averaged with the tuned ones.
+    first = df.groupby(["group", "model"])["_exp_rank"].transform("min")
+    df = df[df["_exp_rank"] == first].drop(columns="_exp_rank")
     order = ["CWRU", "IMS", "NREL", "SDUST", "PU 5-fold", "PU art2real", "SYNTHETIC"]
     groups = [g for g in order if g in set(df.group)]
     os.makedirs(a.out, exist_ok=True)
@@ -162,8 +173,11 @@ def main():
     import matplotlib.pyplot as plt
     plt.rcParams.update({"font.size": 8, "font.family": "serif", "pdf.fonttype": 42})
     snrs = sorted(df[(df.noise == "white") & (df["mode"] == "absolute")].snr.dropna().unique())
-    fig, axes = plt.subplots(1, len(groups), figsize=(1.9 * len(groups) + 0.6, 2.3), squeeze=False)
-    for ax, g in zip(axes[0], groups):
+    ncol_f = min(3, len(groups)); nrow_f = int(np.ceil(len(groups) / ncol_f))
+    fig, axes = plt.subplots(nrow_f, ncol_f, figsize=(7.0, 2.0 * nrow_f + 0.7), squeeze=False)
+    for ax in axes.flat[len(groups):]:
+        ax.set_visible(False)
+    for ax, g in zip(axes.flat, groups):
         for m, lab in MODELS:
             ys = []
             for s in snrs:
@@ -174,14 +188,17 @@ def main():
                 continue
             st = dict(lw=1.6, color="k") if m == "phyq_nomed" else dict(lw=0.8)
             ax.plot(snrs, ys, marker="o", ms=2.5, label=lab, **st)
-        ax.set_title(g); ax.set_xlabel("SNR (dB)"); ax.grid(alpha=0.3)
-    axes[0][0].set_ylabel("Accuracy (%)")
+        ax.set_title(g); ax.grid(alpha=0.3)
+    for ax in axes[-1]:
+        ax.set_xlabel("SNR (dB)")
+    for row in axes:
+        row[0].set_ylabel("Accuracy (%)")
     h, lab = axes[0][0].get_legend_handles_labels()
-    fig.legend(h, lab, loc="lower center", ncol=min(5, len(lab)), frameon=False, bbox_to_anchor=(0.5, -0.02))
-    fig.tight_layout(rect=(0, 0.12, 1, 1))
+    fig.legend(h, lab, loc="lower center", ncol=min(5, len(lab)), frameon=False, bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(rect=(0, 0.09, 1, 1))
     fig.savefig(os.path.join(a.out, "Figure_5_snr_curves.pdf")); plt.close(fig)
 
-    fig, ax = plt.subplots(figsize=(7, 2.4))
+    fig, ax = plt.subplots(figsize=(7, 2.8))
     present = [m for m, _ in MODELS if m in set(df.model)]
     w = 0.8 / max(1, len(present))
     for i, m in enumerate(present):
@@ -193,7 +210,8 @@ def main():
         ax.bar(np.arange(len(groups)) + (i - len(present) / 2 + 0.5) * w, ys, w, label=labels[m],
                color="k" if m == "phyq_nomed" else None)
     ax.set_xticks(np.arange(len(groups)), groups); ax.set_ylabel("Accuracy (%)\nimpulsive, -6 dB")
-    ax.legend(ncol=3, frameon=False, fontsize=6)
+    ax.set_ylim(0, 105); ax.grid(axis="y", alpha=0.3)
+    ax.legend(ncol=5, frameon=False, fontsize=6.5, loc="lower center", bbox_to_anchor=(0.5, 1.0))
     fig.tight_layout(); fig.savefig(os.path.join(a.out, "Figure_6_impulsive.pdf")); plt.close(fig)
     print(f"-> {a.out}")
     for f in sorted(os.listdir(a.out)):
