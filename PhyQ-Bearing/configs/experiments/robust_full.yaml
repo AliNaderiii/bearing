@@ -1,0 +1,19 @@
+# v10.4 STAGE 2: the full phyq_nomed protocol for the robustness variants (same runs/seeds as phyq_nomed in
+# main_tuned + main_benchmark). Runs already finished in stage 1 are skipped (metrics.json exists).
+# Use --models to restrict to the variants you want to complete (e.g. --models phyq_rc phyq_rc_rn).
+name: robust
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2], overrides: [train.lr=0.002, train.epochs=80]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2], overrides: [train.lr=0.002, train.epochs=80]}
+  - {dataset: pu, variants: [art2real], seeds: [0, 1, 2]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2], overrides: [train.lr=0.002, train.epochs=80]}
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4], seeds: [0, 1]}
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2], overrides: [train.lr=0.002, train.epochs=80]}
+models:
+  - {tag: phyq_rc,    config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9]}
+  - {tag: phyq_rn,    config: phyq_paper, overrides: [model.prefilter.enabled=false, model.input_norm=robust]}
+  - {tag: phyq_rc_rn, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9, model.input_norm=robust]}
+  - {tag: phyq_imp,   config: phyq_paper, overrides: [model.prefilter.enabled=false, "train.noise_aug.types=[white, impacts]"]}
+  - {tag: noquad_imp, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false, "train.noise_aug.types=[white, impacts]"]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]

@@ -1,0 +1,27 @@
+# v10.4 - theory-driven ROBUSTNESS VARIANTS of PhyQ-TransNet (phyq_nomed). STAGE 1 = seed 0 only, on the
+# tasks where the impulsive-noise collapse is visible (CWRU 4 loads, NREL, SDUST, PU art2real). ~13 h on a
+# GTX 1650. The proposed model is NOT changed; these are reported as a remedy/extension (Corollary 1).
+# Every variant uses EXACTLY the phyq_nomed protocol: same splits, seeds, epochs/lr (80 ep / 2e-3 outside PU,
+# config defaults on PU, as phyq_nomed_tuned.yaml / phyq_nomed_pu.yaml), same white-noise augmentation and the
+# same deterministic test noise -> paired comparison with results/main_tuned and results/main_benchmark.
+# NOTHING is tuned: c = 9 comes from the simulation (Table 3), robust norm and the 'impacts' model are fixed.
+#   phyq_rc     E1: robust clipping after every quadratic layer (model.eqc_clip=9)
+#   phyq_rn     E3: median/MAD input normalisation instead of mean/std (model.input_norm=robust)
+#   phyq_rc_rn  E1 + E3
+#   phyq_imp    E2: training noise = white OR 'impacts' (a train-only impulse model != test 'impulsive')
+#   noquad_imp  E2 for the linear twin (quad=false) -> is the gain specific to the square law?
+# Stage 2 (robust_full.yaml) adds the remaining seeds / tasks; finished runs are skipped automatically.
+name: robust
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0], overrides: [train.lr=0.002, train.epochs=80]}
+  - {dataset: nrel, variants: [expwise], seeds: [0], overrides: [train.lr=0.002, train.epochs=80]}
+  - {dataset: pu, variants: [art2real], seeds: [0]}
+  - {dataset: sdust, variants: [chrono], seeds: [0], overrides: [train.lr=0.002, train.epochs=80]}
+models:
+  - {tag: phyq_rc,    config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9]}
+  - {tag: phyq_rn,    config: phyq_paper, overrides: [model.prefilter.enabled=false, model.input_norm=robust]}
+  - {tag: phyq_rc_rn, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9, model.input_norm=robust]}
+  - {tag: phyq_imp,   config: phyq_paper, overrides: [model.prefilter.enabled=false, "train.noise_aug.types=[white, impacts]"]}
+  - {tag: noquad_imp, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false, "train.noise_aug.types=[white, impacts]"]}
+seeds: [0]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]
