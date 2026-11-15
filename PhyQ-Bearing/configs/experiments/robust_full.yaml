@@ -15,5 +15,10 @@ models:
   - {tag: phyq_rc_rn, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9, model.input_norm=robust]}
   - {tag: phyq_imp,   config: phyq_paper, overrides: [model.prefilter.enabled=false, "train.noise_aug.types=[white, impacts]"]}
   - {tag: noquad_imp, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false, "train.noise_aug.types=[white, impacts]"]}
+  # v10.4b: the missing cell of the 2x2 design E1 x E2 (added after stage 1, see docs/RUN_GUIDE_FA.md section 14).
+  # Prediction from Proposition 3: impulsive batches inflate the square-law variance and pollute the BatchNorm
+  # running statistics; clipping (E1) bounds that variance, so E1+E2 should keep the impulsive gain of E2 without
+  # its white-noise cost. Falsifiable: if phyq_rc_imp is not better than phyq_imp on white noise, it is wrong.
+  - {tag: phyq_rc_imp, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9, "train.noise_aug.types=[white, impacts]"]}
 seeds: [0, 1, 2]
 overrides: ["eval.noise_types=[white, pink, impulsive]"]

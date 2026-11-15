@@ -27,7 +27,7 @@ from phyq.analysis.stats_tests import mcnemar  # noqa: E402
 
 RES = os.path.join(ROOT, "results")
 REF_TAGS = ["phyq_nomed", "phyq_nomed_noquad", "classbd"]
-VAR_TAGS = ["phyq_rc", "phyq_rn", "phyq_rc_rn", "phyq_imp", "noquad_imp"]
+VAR_TAGS = ["phyq_rc", "phyq_rn", "phyq_rc_rn", "phyq_imp", "noquad_imp", "phyq_rc_imp"]
 COLS = [("clean", None, None), ("w0", "white", 0), ("w-6", "white", -6), ("w-10", "white", -10),
         ("i0", "impulsive", 0), ("i-6", "impulsive", -6), ("i-10", "impulsive", -10), ("p-6", "pink", -6)]
 TASKS = [("CWRU", "cwru", ["within_0HP", "within_1HP", "within_2HP", "within_3HP"]),

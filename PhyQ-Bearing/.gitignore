@@ -1,0 +1,8 @@
+configs/paths.yaml
+cache/
+results/
+data/
+__pycache__/
+*.pyc
+*.log
+.pytest_cache/

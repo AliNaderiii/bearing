@@ -268,6 +268,7 @@ python scripts/run_suite.py configs/experiments/interp.yaml --datasets sdust --m
 | `phyq_rc_rn` | E1+E3 | هر دو تغییر |
 | `phyq_imp` | E2 | در augmentation آموزش، نوع نویز به‌طور تصادفی white یا `impacts` است. `impacts` یک مدل ضربه‌ای **فقط برای آموزش** است و با نویز `impulsive` تست فرق دارد. |
 | `noquad_imp` | E2 | همان E2 برای Linear twin (quad=false) |
+| `phyq_rc_imp` | E1+E2 | (v10.4b، بعد از مرحلهٔ ۱ اضافه شد) خانهٔ خالی طرح ۲×۲. پیش‌بینی نظریه: clipping واریانس را محدود می‌کند و آمار BatchNorm را از آلودگی ضربه‌ها حفظ می‌کند. اجرا: `--models phyq_rc_imp` |
 
 **ضمانت پروتکل:** همه چیز دیگر یکسان است: splitها، seedها، epoch و lr (خارج از PU: ۸۰ epoch و 2e-3؛ در PU: پیش‌فرض)، و نویز قطعی تست. بنابراین مقایسه با `results/main_tuned` و `results/main_benchmark` جفت‌شده است.
 
