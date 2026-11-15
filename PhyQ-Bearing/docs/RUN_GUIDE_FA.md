@@ -230,6 +230,70 @@ Compress-Archive -Path results -DestinationPath results.zip -Force
 
 ---
 
+
+## مرحلهٔ ۱۳ — شکل‌های تفسیرپذیری روی دادهٔ واقعی (Fig. 10 و Fig. 11، جدید در v10.3)
+
+هدف: نشان دادن این‌که مدل آموزش‌دیده روی دادهٔ **واقعی** چه یاد گرفته است (نه فقط شبیه‌سازی).
+
+۱. آموزش دوباره با ذخیرهٔ وزن‌ها — همان تنظیمات و seed مدل اصلی `main_tuned`، فقط `save_checkpoint=true`.
+   خروجی در `results/interp/` می‌رود و `main_tuned` دست نمی‌خورد.
+   - CWRU (۴ بار، مدل اصلی + Linear twin): حدود ۲۰ دقیقه
+   - SDUST (فقط مدل اصلی): حدود ۲ ساعت
+```
+python scripts/run_suite.py configs/experiments/interp.yaml --datasets cwru
+python scripts/run_suite.py configs/experiments/interp.yaml --datasets sdust --models phyq_nomed
+```
+۲. تحلیل وزن‌ها (چند دقیقه): `python scripts/interpret.py analyze`
+   خروجی: `results/interp/_analysis/*.npz` و `summary.json` (چند مگابایت). فقط پنجره‌های **test** خوانده می‌شوند.
+   - پاسخ فرکانسی کرنل‌های لایهٔ اول
+   - طیف کلاس‌به‌کلاس نقشه‌های ویژگی، شامل جملهٔ ضربی، جملهٔ توان، و قبل/بعد از فعال‌سازی
+   - prominence خطوط فرکانس عیب (BPFO/BPFI/BSF در CWRU) با همان معیار شبیه‌سازی
+   - وزن گیت α
+   - اندازهٔ فعال‌سازی‌ها در عمق شبکه
+   - بازنمایی‌های z، z_d و z_s برای t-SNE
+۳. شکل‌ها: `python scripts/pro_figures.py --only interp`
+
+برای ارسال، فایل‌های `model.pt` لازم نیستند؛ فقط `results/interp/**.json` و پوشهٔ `_analysis` را push کنید.
+
+## مرحلهٔ ۱۴ — نسخه‌های مقاوم در برابر نویز ضربه‌ای (E1–E3، جدید در v10.4)
+
+**هدف:** آزمودن راه‌حل‌هایی که نظریهٔ مقاله پیشنهاد می‌کند. **مدل پیشنهادی مقاله تغییر نمی‌کند.** این نسخه‌ها در مقاله به‌عنوان «اصلاح نظری‌محور» (variant) گزارش می‌شوند.
+
+اگر تنظیمات پیش‌فرض بمانند، مدل اصلی دقیقاً همان مدل قبلی است: همان 1,404,715 پارامتر و همان خروجی. تست `tests/test_robust_variants.py` همین را بررسی می‌کند.
+
+| تگ | آزمایش | تغییر (تنها تفاوت با `phyq_nomed`) |
+|---|---|---|
+| `phyq_rc` | E1 | خروجی هر لایهٔ درجه‌دو، به‌ازای هر نمونه و هر کانال، به ±(9/0.4549)·median\|out\| بریده می‌شود (Corollary 1). پارامتر جدیدی ندارد. مقدار c=9 از شبیه‌سازی آمده و تنظیم نشده است. |
+| `phyq_rn` | E3 | نرمال‌سازی هر پنجره با median/MAD به‌جای میانگین/انحراف معیار (Eq. 8) |
+| `phyq_rc_rn` | E1+E3 | هر دو تغییر |
+| `phyq_imp` | E2 | در augmentation آموزش، نوع نویز به‌طور تصادفی white یا `impacts` است. `impacts` یک مدل ضربه‌ای **فقط برای آموزش** است و با نویز `impulsive` تست فرق دارد. |
+| `noquad_imp` | E2 | همان E2 برای Linear twin (quad=false) |
+| `phyq_rc_imp` | E1+E2 | (v10.4b، بعد از مرحلهٔ ۱ اضافه شد) خانهٔ خالی طرح ۲×۲. پیش‌بینی نظریه: clipping واریانس را محدود می‌کند و آمار BatchNorm را از آلودگی ضربه‌ها حفظ می‌کند. اجرا: `--models phyq_rc_imp` |
+
+**ضمانت پروتکل:** همه چیز دیگر یکسان است: splitها، seedها، epoch و lr (خارج از PU: ۸۰ epoch و 2e-3؛ در PU: پیش‌فرض)، و نویز قطعی تست. بنابراین مقایسه با `results/main_tuned` و `results/main_benchmark` جفت‌شده است.
+
+**مرحلهٔ ۱ (یک شب، حدود ۱۲ تا ۱۴ ساعت):** seed 0 روی CWRU (۴ بار)، NREL، PU-a2r و SDUST، برای ۵ نسخه، یعنی ۳۵ اجرا.
+
+```
+python scripts/run_suite.py configs/experiments/robust_stage1.yaml
+```
+
+بعد از پایان:
+
+```
+python scripts/robust_report.py
+```
+
+**مرحلهٔ ۲ (اختیاری، بعد از دیدن مرحلهٔ ۱):** پروتکل کامل (۳ seed، به‌علاوهٔ IMS و PU 5-fold). اجراهای تمام‌شده خودکار رد می‌شوند.
+
+```
+python scripts/run_suite.py configs/experiments/robust_full.yaml --models phyq_rc phyq_rc_rn
+```
+
+**ارسال:** پوشهٔ `results/robust` را با `git add -f` push کنید. فایل‌های `test_probs.npz` برای آزمون McNemar لازم‌اند.
+
+> قاعدهٔ صداقت: هر ۵ نسخه، هر نتیجه‌ای که داشته باشند، در مقاله گزارش می‌شوند. هیچ‌کدام بر اساس تست انتخاب یا تنظیم نمی‌شود.
+
 ## رفع مشکلات رایج
 
 * **`CUDA error: out of memory` یا `illegal memory access` (v9.2):**

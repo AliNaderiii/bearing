@@ -1,0 +1,15 @@
+# Interpretability runs on REAL data (Fig. 10/11 of the MSSP manuscript).
+# Identical configuration, hyper-parameters, splits and seed 0 as main_tuned (phyq_nomed / phyq_nomed_noquad);
+# the only difference is save_checkpoint=true, so that the trained weights can be inspected afterwards with
+#     python scripts/interpret.py analyze
+# Results land in results/interp/ (main_tuned is NOT touched). Approximate time on a GTX 1650:
+#   CWRU, 4 loads x 2 models : ~20 min        SDUST, phyq_nomed : ~2 h      SDUST, linear twin : ~2 h (optional)
+name: interp
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0]}
+  - {dataset: sdust, variants: [chrono], seeds: [0]}
+models:
+  - {tag: phyq_nomed, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false]}
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false]}
+seeds: [0]
+overrides: ["eval.noise_types=[white, pink, impulsive]", save_checkpoint=true]

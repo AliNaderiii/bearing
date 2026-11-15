@@ -1,0 +1,23 @@
+14:24:46 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+14:24:48 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+14:24:49 | INFO | [run] nrel | expwise | phyq_paper | seed 0 | params 1,414,403 | device cuda
+14:24:54 | INFO |   [memory] ~14 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+14:25:22 | INFO |   ep   1 loss 0.6111 acc 68.9 val 80.81 (best 80.81@1)
+14:26:29 | INFO |   ep   5 loss 0.1387 acc 98.9 val 85.50 (best 97.93@3)
+11:57:52 | INFO | [memory] cached signals 1.4 GB, RAM 7.7 GB -> load into RAM
+11:57:53 | INFO | [data] nrel | group | train/val/test = 4800/800/800 | C=8 | fs=40000.0
+11:57:54 | INFO | [run] nrel | expwise | phyq_paper | seed 0 | params 1,414,403 | device cuda
+11:57:58 | INFO |   [memory] ~14 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+11:58:21 | INFO |   ep   1 loss 0.6111 acc 68.9 val 80.81 (best 80.81@1)
+11:59:27 | INFO |   ep   5 loss 0.1384 acc 98.8 val 83.56 (best 98.01@3)
+12:00:49 | INFO |   ep  10 loss 0.1444 acc 98.7 val 95.49 (best 98.19@8)
+12:02:13 | INFO |   ep  15 loss 0.1401 acc 98.8 val 99.09 (best 99.21@13)
+12:03:37 | INFO |   ep  20 loss 0.1408 acc 98.9 val 98.54 (best 99.24@19)
+12:05:09 | INFO |   ep  25 loss 0.1345 acc 99.0 val 99.80 (best 99.80@25)
+12:06:33 | INFO |   ep  30 loss 0.1315 acc 99.3 val 99.87 (best 99.87@30)
+12:07:58 | INFO |   ep  35 loss 0.1345 acc 99.2 val 99.66 (best 99.87@30)
+12:09:20 | INFO |   ep  40 loss 0.1293 acc 99.5 val 99.93 (best 99.93@40)
+12:10:41 | INFO |   ep  45 loss 0.1285 acc 99.4 val 99.73 (best 99.93@40)
+12:12:02 | INFO |   ep  50 loss 0.1250 acc 99.7 val 99.83 (best 99.93@40)
+12:12:02 | INFO |   early stop at epoch 50 (best 40)
+12:13:14 | INFO | [done] clean acc 100.00 F1 100.00 | best val 99.93@40 | 841s

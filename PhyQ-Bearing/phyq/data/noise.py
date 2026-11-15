@@ -13,6 +13,13 @@ Noise types: ``white`` (Gaussian), ``pink`` (1/f power), ``impulsive``
 (Bernoulli-Gaussian impulses on a small Gaussian floor), all normalised to the
 requested power.
 
+``impacts`` (v10.4, TRAINING augmentation only - experiment E2): sparse, randomly
+decaying impact bursts (Poisson-like arrivals, rate ~1e-3/sample, random sign,
+log-normal amplitudes, exponential decay over a few samples, random oscillation)
+on a Gaussian floor. It is deliberately a DIFFERENT impulse model from the
+``impulsive`` test noise (i.i.d. single-sample spikes, p = 0.01, fixed scale), so
+an E2 model is evaluated on an impulse model it never saw during training.
+
 Evaluation noise is **deterministic**: generated on CPU from a generator seeded
 by ``(base_seed, snr, type, batch_id)``. With a fixed evaluation order and batch
 size, every model sees the identical noisy test set -> paired tests.
@@ -23,6 +30,25 @@ import zlib
 from typing import Optional, Sequence
 
 import torch
+
+
+def _impact_bursts(shape, gen: Optional[torch.Generator], device, rate: float = 1e-3, klen: int = 24) -> torch.Tensor:
+    """Train-only impulse model (see module docstring): decaying oscillating bursts + Gaussian floor."""
+    B, C, L = shape
+    floor = 0.2 * torch.randn(shape, generator=gen, device=device)
+    spikes = (torch.rand(shape, generator=gen, device=device) < rate).float()
+    amp = torch.exp(0.75 * torch.randn(shape, generator=gen, device=device))          # log-normal amplitudes
+    sign = torch.where(torch.rand(shape, generator=gen, device=device) < 0.5, -1.0, 1.0)
+    drive = spikes * amp * sign
+    # one random burst shape per call: exp decay (tau 2..8 samples) x cosine (random normalised frequency)
+    u = torch.rand(2, generator=gen, device=device)
+    tau = 2.0 + 6.0 * float(u[0])
+    f = 0.05 + 0.35 * float(u[1])
+    t = torch.arange(klen, device=device, dtype=torch.float32)
+    k = torch.exp(-t / tau) * torch.cos(2 * torch.pi * f * t)
+    burst = torch.nn.functional.conv1d(drive.view(B * C, 1, L), k.flip(0).view(1, 1, -1), padding=klen - 1)
+    burst = burst[..., :L].view(B, C, L)
+    return floor + 8.0 * burst
 
 
 def _unit_noise(shape, kind: str, gen: Optional[torch.Generator], device, impulse_p: float = 0.01) -> torch.Tensor:
@@ -40,6 +66,8 @@ def _unit_noise(shape, kind: str, gen: Optional[torch.Generator], device, impuls
         mask = (torch.rand(shape, generator=gen, device=device) < impulse_p).float()
         imp = torch.randn(shape, generator=gen, device=device) * 10.0
         n = floor + mask * imp
+    elif kind == "impacts":
+        n = _impact_bursts(shape, gen, device)
     else:
         raise ValueError(f"Unknown noise type '{kind}'")
     p = n.pow(2).mean(-1, keepdim=True).clamp_min(1e-12)   # unit power per (b, c)

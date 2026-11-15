@@ -1,0 +1,12 @@
+# Fast end-to-end CPU check of the v10.4 robustness variants (E1-E3) on synthetic data (~3-5 min on CPU).
+name: smoke_robust
+runs:
+  - {dataset: synthetic, variants: [chrono]}
+models:
+  - {tag: phyq_rc,    config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9]}
+  - {tag: phyq_rn,    config: phyq_paper, overrides: [model.prefilter.enabled=false, model.input_norm=robust]}
+  - {tag: phyq_rc_rn, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.eqc_clip=9, model.input_norm=robust]}
+  - {tag: phyq_imp,   config: phyq_paper, overrides: [model.prefilter.enabled=false, "train.noise_aug.types=[white, impacts]"]}
+  - {tag: noquad_imp, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false, "train.noise_aug.types=[white, impacts]"]}
+seeds: [0]
+overrides: [train.epochs=2, train.min_epochs=1, train.batch_size=16, "eval.snrs=[-6, 0]", data.train_stride=1024, "eval.noise_types=[white, impulsive]"]

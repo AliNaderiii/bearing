@@ -18,6 +18,11 @@ Only the *plumbing* changed, so that the model runs inside the leakage-free pipe
 
 Ablation switches (each removes ONE component of the full model): quad, attention, shrink,
 transformer, stats, act, prefilter.enabled, input_norm.
+
+v10.4 theory-driven robustness VARIANTS (the proposed model itself is unchanged; defaults reproduce it
+bit-for-bit and add no parameters):
+* ``eqc_clip: 9`` (E1) - parameter-free robust clipping of every quadratic-layer output (Corollary 1);
+* ``input_norm: robust`` (E3) - median/MAD window normalisation instead of mean/std (Eq. 8).
 """
 from __future__ import annotations
 
@@ -73,8 +78,15 @@ class CoordinateAttention(nn.Module):
 class QuadraticConv1d(nn.Module):
     """y = (Wr*x + br)(Wg*x + bg) + Wb*x^2 + c   (original implementation and initialisation)."""
 
-    def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True):
+    def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True,
+                 clip: Optional[float] = None):
         super().__init__()
+        # v10.4 (experiment E1, "robust clipping", Corollary 1 of the paper). clip=None -> original layer.
+        # clip=c -> out is clipped per (sample, channel) to +/- tau, tau = (c / 0.4549) * median_t |out|.
+        # For a pure square-law output z = y^2 (y Gaussian, variance s2) median(z) = 0.4549 s2, so
+        # tau = c * s2 exactly as in Corollary 1; for a Gaussian (linear-path) output tau = 13.3 sigma (c=9),
+        # i.e. Gaussian content is never touched, only impulsive excursions. Parameter-free; scale detached.
+        self.clip = None if clip in (None, 0, False) else float(clip)
         self.conv_r = nn.Conv1d(in_channels, out_channels, kernel_size, stride, padding, bias=bias)
         self.conv_g = nn.Conv1d(in_channels, out_channels, kernel_size, stride, padding, bias=bias)
         self.conv_b = nn.Conv1d(in_channels, out_channels, kernel_size, stride, padding, bias=False)
@@ -97,12 +109,24 @@ class QuadraticConv1d(nn.Module):
 
     def forward(self, x):
         out = self.conv_r(x) * self.conv_g(x) + self.conv_b(x * x)
-        return out + self.c.view(1, -1, 1) if self.c is not None else out
+        out = out + self.c.view(1, -1, 1) if self.c is not None else out
+        if self.clip is not None:
+            out = robust_clip(out, self.clip)
+        return out
 
 
-def _conv(quad: bool, cin, cout, k, s, p):
-    """Quadratic conv (full model) or an ordinary linear conv of the same shape (w/o Quadratic ablation)."""
-    return QuadraticConv1d(cin, cout, k, s, p) if quad else nn.Conv1d(cin, cout, k, s, p, bias=True)
+def robust_clip(out: torch.Tensor, c: float) -> torch.Tensor:
+    """Symmetric, parameter-free robust clip (E1): +/- (c/0.4549) * median_t|out| per (sample, channel)."""
+    with torch.no_grad():
+        tau = (c / 0.4549) * out.detach().float().abs().median(dim=-1, keepdim=True).values
+        tau = tau.clamp_min(1e-6).to(out.dtype)
+    return torch.maximum(torch.minimum(out, tau), -tau)
+
+
+def _conv(quad: bool, cin, cout, k, s, p, clip: Optional[float] = None):
+    """Quadratic conv (full model) or an ordinary linear conv of the same shape (w/o Quadratic ablation).
+    ``clip`` (E1) only affects quadratic layers; the linear twin is left untouched."""
+    return QuadraticConv1d(cin, cout, k, s, p, clip=clip) if quad else nn.Conv1d(cin, cout, k, s, p, bias=True)
 
 
 class SoftThresholding(nn.Module):
@@ -121,12 +145,12 @@ class SoftThresholding(nn.Module):
 
 
 class QResBlock_Pro(nn.Module):
-    def __init__(self, channels, quad=True, attention=True, shrink=True, act="metaacon"):
+    def __init__(self, channels, quad=True, attention=True, shrink=True, act="metaacon", clip=None):
         super().__init__()
-        self.conv1 = _conv(quad, channels, channels, 3, 1, 1)
+        self.conv1 = _conv(quad, channels, channels, 3, 1, 1, clip)
         self.bn1 = nn.BatchNorm1d(channels)
         self.act1 = _act(act, channels)
-        self.conv2 = _conv(quad, channels, channels, 3, 1, 1)
+        self.conv2 = _conv(quad, channels, channels, 3, 1, 1, clip)
         self.bn2 = nn.BatchNorm1d(channels)
         self.attn = CoordinateAttention(channels, channels, act=act) if attention else nn.Identity()
         self.shrinkage = SoftThresholding(channels) if shrink else nn.Identity()
@@ -204,7 +228,18 @@ class PhyQTransNet(nn.Module):
         act = str(cfg.get("act", "metaacon"))
         self.use_tf = bool(cfg.get("transformer", True))
         self.use_stats = bool(cfg.get("stats", True))
-        self.input_norm = str(cfg.get("input_norm", "instance"))
+        self.input_norm = str(cfg.get("input_norm", "instance"))   # instance | robust (E3) | none
+        if self.input_norm not in ("instance", "robust", "none"):
+            raise ValueError(f"input_norm must be instance|robust|none, got {self.input_norm}")
+        # E1: robust clipping after the quadratic layers (None = original model). eqc_clip_layers: all | front
+        # (front = stem + multi-scale branches only, i.e. the layers that see the raw band-passed signal).
+        clip = cfg.get("eqc_clip", None)
+        clip = None if clip in (None, "null", "none", 0, False) else float(clip)
+        clip_layers = str(cfg.get("eqc_clip_layers", "all"))
+        if clip_layers not in ("all", "front"):
+            raise ValueError("eqc_clip_layers must be all|front")
+        clip_deep = clip if clip_layers == "all" else None
+        self.eqc_clip, self.eqc_clip_layers = clip, clip_layers
         pcfg = cfg.get("prefilter", {}) or {}
         self.pcfg = pcfg
         self.length = int(length)
@@ -220,14 +255,14 @@ class PhyQTransNet(nn.Module):
             self.register_buffer("prefilter_fitted", torch.zeros((), dtype=torch.bool))
 
         # ---- A. CNN backbone (original)
-        self.stem = nn.Sequential(_conv(quad, in_ch, 32, 15, 2, 7), nn.BatchNorm1d(32), _act(act, 32),
+        self.stem = nn.Sequential(_conv(quad, in_ch, 32, 15, 2, 7, clip), nn.BatchNorm1d(32), _act(act, 32),
                                   nn.MaxPool1d(2))
-        self.branch_1 = nn.Sequential(_conv(quad, 32, 64, 31, 1, 15), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
-        self.branch_2 = nn.Sequential(_conv(quad, 32, 64, 15, 1, 7), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
-        self.branch_3 = nn.Sequential(_conv(quad, 32, 64, 7, 1, 3), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
+        self.branch_1 = nn.Sequential(_conv(quad, 32, 64, 31, 1, 15, clip), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
+        self.branch_2 = nn.Sequential(_conv(quad, 32, 64, 15, 1, 7, clip), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
+        self.branch_3 = nn.Sequential(_conv(quad, 32, 64, 7, 1, 3, clip), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
         self.fusion_conv = nn.Conv1d(64, 128, 1)
-        self.deep_stage = nn.Sequential(QResBlock_Pro(128, quad, att, shrink, act), nn.MaxPool1d(2),
-                                        QResBlock_Pro(128, quad, att, shrink, act))
+        self.deep_stage = nn.Sequential(QResBlock_Pro(128, quad, att, shrink, act, clip_deep), nn.MaxPool1d(2),
+                                        QResBlock_Pro(128, quad, att, shrink, act, clip_deep))
 
         # ---- B. Transformer (original: learned positional embedding, 2 layers, 4 heads, FF 512, dropout 0.2)
         if self.use_tf:
@@ -314,6 +349,12 @@ class PhyQTransNet(nn.Module):
         xs = x
         if self.input_norm == "instance":                 # Eq. (8)
             xs = (x - x.mean(-1, keepdim=True)) / (x.std(-1, keepdim=True) + 1e-5)
+        elif self.input_norm == "robust":                 # E3: median / MAD (impulse-insensitive scale)
+            with torch.autocast(device_type=x.device.type, enabled=False):
+                xf = x.float()
+                med = xf.median(dim=-1, keepdim=True).values
+                mad = (xf - med).abs().median(dim=-1, keepdim=True).values
+                xs = ((xf - med) / (1.4826 * mad + 1e-5)).to(x.dtype)
         h = self.stem(xs)
         fused = (self.branch_1(h) + self.branch_2(h) + self.branch_3(h)) / 3.0
         cnn_out = self.deep_stage(self.fusion_conv(fused))
