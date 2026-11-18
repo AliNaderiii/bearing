@@ -72,12 +72,17 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=RES, help="results folder (default: <repo>/results)")
-    RES = ap.parse_args().results
+    ap.add_argument("--seeds", nargs="*", type=int, default=None,
+                    help="restrict to these seeds (e.g. --seeds 0 for the stage-1 screening table)")
+    ap.add_argument("--suffix", default="", help="output name suffix, e.g. _seed0 -> robust_report_seed0.md")
+    args = ap.parse_args()
+    RES = args.results
     seeds_found = defaultdict(set)
     for p in glob.glob(os.path.join(RES, "robust", "*", "*", "*", "seed*", "metrics.json")):
         parts = os.path.relpath(p, os.path.join(RES, "robust")).replace("\\", "/").split("/")
         ds, var, tag, sd = parts[:4]
-        seeds_found[(ds, var, tag)].add(int(sd[4:]))
+        if args.seeds is None or int(sd[4:]) in args.seeds:
+            seeds_found[(ds, var, tag)].add(int(sd[4:]))
     if not seeds_found:
         print("No finished runs in results/robust yet.")
         return
@@ -110,6 +115,7 @@ def main():
                     rows[rt].append(m)
             if not used:
                 continue
+            out[task][tag] = {}
             # McNemar on impulsive -6 (pooled over the paired runs)
             k = probs_key(COLS[5])
             A, B, Y = [], [], []
@@ -117,14 +123,14 @@ def main():
                 pa = os.path.join(run_dir("robust", ds, v, tag, s), "test_probs.npz")
                 pb = os.path.join(run_dir(ref_exp(ds), ds, v, "phyq_nomed", s), "test_probs.npz")
                 if os.path.exists(pa) and os.path.exists(pb):
-                    a, b = np.load(pa), np.load(pb)
-                    if k in a.files and k in b.files and len(a["y"]) == len(b["y"]) and (a["y"] == b["y"]).all():
-                        A.append(a[k].argmax(1)); B.append(b[k].argmax(1)); Y.append(a["y"])
+                    za, zb = np.load(pa), np.load(pb)
+                    if k in za.files and k in zb.files and len(za["y"]) == len(zb["y"]) and (za["y"] == zb["y"]).all():
+                        A.append(za[k].argmax(1)); B.append(zb[k].argmax(1)); Y.append(za["y"])
             pmc = float("nan")
             if Y:
                 r = mcnemar(np.concatenate(Y), np.concatenate(A), np.concatenate(B))
                 pmc = float(r.get("p", r.get("p_value", float("nan"))))
-            out[task][tag] = {"n": len(used), "runs": used, "mcnemar_p_i6": pmc}
+            out[task][tag] = {"n": len(used), "runs": used, "mcnemar_p_i6": pmc, "vals": {}, "std": {}, "refs": {}}
             for t in [tag] + REF_TAGS:
                 ms = [m for m in rows[t] if m is not None]
                 if len(ms) != len(used):
@@ -133,24 +139,29 @@ def main():
                     continue
                 vals = [float(np.mean([acc(m, c) for m in ms])) for c in COLS]
                 val = float(np.mean([m.get("train", {}).get("best_val", np.nan) for m in ms]))
-                out[task].setdefault("_" + t if t != tag else tag + "_vals", {})
-                out[task][("_" + t) if t != tag else tag + "_vals"] = dict(zip([c[0] for c in COLS], vals), val=val)
+                rec = dict(zip([c[0] for c in COLS], vals), val=val)
+                if t == tag:
+                    out[task][tag]["vals"] = rec
+                    out[task][tag]["std"] = {c[0]: float(np.std([acc(m, c) for m in ms])) for c in COLS}
+                else:
+                    out[task][tag]["refs"][t] = rec
                 name = f"**{t}**" if t == tag else f"&nbsp;&nbsp;{t}"
                 extra = f"{pmc:.1e}" if t == tag and pmc == pmc else ""
                 lines.append(f"| {name} | {len(ms)} | {val:.1f} | " + " | ".join(f"{x:.1f}" for x in vals) + f" | {extra} |")
-            vv = out[task][tag + "_vals"]
-            rv = out[task].get("_phyq_nomed")
+            vv = out[task][tag]["vals"]
+            rv = out[task][tag]["refs"].get("phyq_nomed")
             if rv:
                 lines.append(f"| &nbsp;&nbsp;Delta vs nomed | | {vv['val'] - rv['val']:+.1f} | " +
                              " | ".join(f"{vv[c[0]] - rv[c[0]]:+.1f}" for c in COLS) + " | |")
     md = "\n".join(lines) + "\n"
     os.makedirs(os.path.join(RES, "robust"), exist_ok=True)
-    with open(os.path.join(RES, "robust", "robust_report.md"), "w", encoding="utf-8") as f:
+    base = os.path.join(RES, "robust", f"robust_report{args.suffix}")
+    with open(base + ".md", "w", encoding="utf-8") as f:
         f.write(md)
-    with open(os.path.join(RES, "robust", "robust_report.json"), "w", encoding="utf-8") as f:
+    with open(base + ".json", "w", encoding="utf-8") as f:
         json.dump(out, f, indent=1)
     print(md)
-    print("-> results/robust/robust_report.md / .json")
+    print(f"-> results/robust/robust_report{args.suffix}.md / .json")
 
 
 if __name__ == "__main__":

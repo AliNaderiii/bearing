@@ -292,6 +292,18 @@ python scripts/run_suite.py configs/experiments/robust_full.yaml --models phyq_r
 
 **ارسال:** پوشهٔ `results/robust` را با `git add -f` push کنید. فایل‌های `test_probs.npz` برای آزمون McNemar لازم‌اند.
 
+**جدول‌های مقاله (v10.4c، به‌طور خودکار و بدون تایپ دستی عدد):**
+
+```
+python scripts\robust_report.py --seeds 0 --suffix _seed0; python scripts\robust_table.py --report results\robust\robust_report_seed0.json --kind screen --out results\robust\tab_remedies_screen.tex
+```
+
+بعد از پایان مرحلهٔ ۲:
+
+```
+python scripts\robust_report.py; python scripts\robust_table.py --report results\robust\robust_report.json --kind main --out results\robust\tab_remedies.tex
+```
+
 > قاعدهٔ صداقت: هر ۵ نسخه، هر نتیجه‌ای که داشته باشند، در مقاله گزارش می‌شوند. هیچ‌کدام بر اساس تست انتخاب یا تنظیم نمی‌شود.
 
 ## رفع مشکلات رایج

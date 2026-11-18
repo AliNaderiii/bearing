@@ -1,0 +1,31 @@
+14:25:10 | INFO | [cache] 200/1360 recordings
+14:25:10 | INFO | [cache] 400/1360 recordings
+14:25:10 | INFO | [cache] 600/1360 recordings
+14:25:10 | INFO | [cache] 800/1360 recordings
+14:25:10 | INFO | [cache] 1000/1360 recordings
+14:25:10 | INFO | [cache] 1200/1360 recordings
+14:25:10 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+14:25:11 | INFO | [data] pu | group_kfold | train/val/test = 7040/960/960 | C=1 | fs=16000.0
+14:25:11 | INFO | [run] pu | fold2 | phyq_paper | seed 0 | params 1,448,676 | device cuda
+14:25:13 | INFO |   [memory] ~56 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+14:26:51 | INFO |   ep   1 loss 0.7703 acc 65.8 val 73.89 (best 73.89@1)
+14:33:17 | INFO |   ep   5 loss 0.3152 acc 92.9 val 80.93 (best 90.58@3)
+14:41:18 | INFO |   ep  10 loss 0.2712 acc 95.3 val 87.70 (best 90.58@3)
+13:00:27 | INFO | [cache] 200/1360 recordings
+13:00:27 | INFO | [cache] 400/1360 recordings
+13:00:27 | INFO | [cache] 600/1360 recordings
+13:00:27 | INFO | [cache] 800/1360 recordings
+13:00:27 | INFO | [cache] 1000/1360 recordings
+13:00:27 | INFO | [cache] 1200/1360 recordings
+13:01:01 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+13:01:02 | INFO | [data] pu | group_kfold | train/val/test = 7040/960/960 | C=1 | fs=16000.0
+13:01:04 | INFO | [run] pu | fold2 | phyq_paper | seed 0 | params 1,448,676 | device cuda
+13:01:09 | INFO |   [memory] ~56 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+13:02:57 | INFO |   ep   1 loss 0.7717 acc 65.6 val 75.94 (best 75.94@1)
+13:09:46 | INFO |   ep   5 loss 0.3053 acc 93.5 val 85.89 (best 86.30@4)
+13:18:19 | INFO |   ep  10 loss 0.2513 acc 96.1 val 91.23 (best 91.23@10)
+13:27:01 | INFO |   ep  15 loss 0.2400 acc 96.9 val 88.64 (best 91.89@11)
+13:35:32 | INFO |   ep  20 loss 0.2277 acc 97.3 val 74.86 (best 93.30@18)
+13:44:00 | INFO |   ep  25 loss 0.2198 acc 97.8 val 72.42 (best 93.30@18)
+13:48:58 | INFO |   early stop at epoch 28 (best 18)
+13:52:43 | INFO | [done] clean acc 46.67 F1 41.93 | best val 93.30@18 | 2866s
