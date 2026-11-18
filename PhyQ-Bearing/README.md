@@ -1,10 +1,11 @@
 # PhyQ-Bearing
 
 Leakage-safe, config-driven benchmark of **PhyQ-TransNet** (the author's model, `configs/models/phyq_paper.yaml`,
-ported 1:1 from the original `QDCA_Hybrid_Pro`; 1,404,715 parameters). `phyqnet` is an optional re-designed variant
-(not used by run_all)
-(physics-informed quadratic network) for noise-robust rolling-bearing fault diagnosis
-on **CWRU, Paderborn (PU), IMS, NREL and SDUST**.
+ported 1:1 from the original `QDCA_Hybrid_Pro`; 1,404,715 parameters with the MED pre-filter). The configuration
+reported in the MSSP manuscript is **`phyq_nomed`** = `phyq_paper` with `model.prefilter.enabled=false`
+(1,399,653 parameters; selected on validation, see `results/ablation`). `phyqnet` is an optional re-designed
+variant that is not used in the paper. Benchmarks: **CWRU, Paderborn (PU), IMS, NREL and SDUST**, plus a
+physics-based bearing simulator (`phyq/sim`).
 
 One codebase, one command per experiment suite, no commenting/uncommenting of code.
 
@@ -14,7 +15,8 @@ configs/
   paths.example.yaml        -> copy to paths.yaml and point to your local datasets
   datasets/*.yaml           dataset adapters + named split variants (protocols)
   models/*.yaml             PhyQNet (+ candidate variants) and 5 re-implemented baselines
-  experiments/*.yaml        suites: main_benchmark, cross_load, ablation, noise_types, search, smoke
+  experiments/*.yaml        suites: main_benchmark, main_tuned, hp_search, ablation, attribution_*, pu_protocols,
+                            noquad_*, classical_tuned, interp, robust_stage1/robust_full, timing, smoke*
 phyq/
   data/        recording abstraction, signal cache, splits (+ leakage assertions), windows, noise
   data/datasets/  cwru.py pu.py ims.py nrel.py sdust.py synthetic.py
@@ -24,7 +26,7 @@ phyq/
   analysis/    aggregation, LaTeX/Markdown tables, noise curves, Wilcoxon/McNemar/bootstrap
 scripts/       run.py, run_suite.py, search.py, make_tables.py, sanity_check_data.py, profile_models.py,
                prepare_cache.py, run_all.ps1, run_all.sh
-tests/         42 unit tests incl. mock files in the on-disk format of every dataset
+tests/         94 unit tests incl. mock files in the on-disk format of every dataset
 docs/          PROTOCOLS.md, LEGACY_MAPPING.md, CHANGES_vs_paper.md, RUN_GUIDE_FA.md
 ```
 
@@ -94,3 +96,21 @@ python scripts/run_suite.py configs/experiments/pu_protocols.yaml  # 6 models, 1
 `seen_*` / `paper_dong7` = seen bearings, unseen recordings; `cc_X2Y` = cross-condition, same
 bearings; `fold0..4` (main benchmark) = unseen bearings. Review of the 10 PU reference papers:
 `docs/PU_REFERENCES_REVIEW_FA.md`.
+
+## MSSP manuscript: what reproduces what
+| Paper item | Command (suite) | Output |
+|---|---|---|
+| Main benchmark, tuned (Tables 3-5) | `run_suite.py configs/experiments/main_tuned.yaml` (+ `phyq_nomed_tuned`, `noquad_tuned`, `classical_tuned`) | `results/main_tuned` |
+| Hyper-parameter search (validation only) | `hp_search.yaml` -> `select_hparams.py` | `results/hp_search/selection.md` |
+| PU bearing-wise / art2real protocols | `pu_protocols.yaml`, `phyq_nomed_pu.yaml`, `noquad_pu.yaml`, `mssp_baselines_pu.yaml` | `results/pu_protocols`, `results/main_benchmark` |
+| Ablation / attribution | `ablation.yaml`, `attribution_pu.yaml`, `attribution_sdust.yaml` | `results/ablation`, `results/main_benchmark` |
+| Mechanism simulation, detector laws | `sim_mechanism.py`, `sim_saturation.py`, `sim_detector_laws.py`, `sim_figures.py` | `results/sim_mechanism` |
+| Interpretability | `interp.yaml` -> `interpret.py` | `results/interp` |
+| Robust variants E1-E3 (Sec. remedies) | `robust_stage1.yaml`, `robust_full.yaml` -> `robust_report.py`, `robust_table.py` | `results/robust` |
+| Statistics | `mcnemar_recheck.py`, `bootstrap_recheck.py`, `task_level_report.py` | stdout / `_report` |
+| Latency / parameters | `timing.yaml`, `profile_models.py` | `results/timing` |
+
+Robust variants: `phyq_rc` = clip after every quadratic layer (E1), `phyq_rc_imp` = E1 + training-only impulsive
+augmentation (E2), `phyq_rn`/`phyq_rc_rn` = median/MAD input normalisation (E3; reported, not recommended).
+Every metrics.json stores accuracies in percent; `test_probs.npz` stores the paired test predictions used
+for McNemar tests.
