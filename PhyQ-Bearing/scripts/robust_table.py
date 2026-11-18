@@ -19,7 +19,7 @@ KINDS = {
     "screen": ["phyq_nomed", "phyq_rc", "phyq_rn", "phyq_rc_rn", "phyq_imp", "phyq_rc_imp",
                "phyq_nomed_noquad", "noquad_imp", "classbd"],
     # stage-2 full protocol: the variants carried forward
-    "main": ["phyq_nomed", "phyq_rc", "phyq_rc_imp", "phyq_nomed_noquad", "noquad_imp", "classbd"],
+    "main": ["phyq_nomed", "phyq_rc", "phyq_rc_imp", "phyq_nomed_noquad", "classbd"],
 }
 HEAD = {"phyq_nomed": "PhyQ", "phyq_rc": "+RC", "phyq_rn": "+RN", "phyq_rc_rn": "+RC+RN", "phyq_imp": "+IA",
         "phyq_rc_imp": "+RC+IA", "phyq_nomed_noquad": "Lin.", "noquad_imp": "Lin.+IA", "classbd": "ClassBD"}
