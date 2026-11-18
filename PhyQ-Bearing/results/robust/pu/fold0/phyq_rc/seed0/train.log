@@ -1,0 +1,16 @@
+09:46:32 | INFO | [cache] 200/1360 recordings
+09:46:32 | INFO | [cache] 400/1360 recordings
+09:46:32 | INFO | [cache] 600/1360 recordings
+09:46:32 | INFO | [cache] 800/1360 recordings
+09:46:32 | INFO | [cache] 1000/1360 recordings
+09:46:32 | INFO | [cache] 1200/1360 recordings
+09:46:33 | INFO | [memory] cached signals 0.3 GB, RAM 7.7 GB -> load into RAM
+09:46:34 | INFO | [data] pu | group_kfold | train/val/test = 5760/960/1600 | C=1 | fs=16000.0
+09:46:34 | INFO | [run] pu | fold0 | phyq_paper | seed 0 | params 1,448,676 | device cuda
+09:46:36 | INFO |   [memory] ~56 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+09:48:00 | INFO |   ep   1 loss 0.6854 acc 73.4 val 55.88 (best 55.88@1)
+09:53:29 | INFO |   ep   5 loss 0.2910 acc 94.5 val 58.04 (best 58.04@5)
+10:00:19 | INFO |   ep  10 loss 0.2474 acc 96.8 val 53.69 (best 58.04@5)
+10:07:08 | INFO |   ep  15 loss 0.2301 acc 97.6 val 53.39 (best 58.04@5)
+10:07:08 | INFO |   early stop at epoch 15 (best 5)
+10:13:18 | INFO | [done] clean acc 43.56 F1 41.21 | best val 58.04@5 | 1230s

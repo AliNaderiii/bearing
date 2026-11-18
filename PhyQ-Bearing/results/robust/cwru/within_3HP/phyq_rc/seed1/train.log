@@ -1,0 +1,27 @@
+13:19:35 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+13:19:35 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+13:19:36 | INFO | [run] cwru | within_3HP | phyq_paper | seed 1 | params 1,400,427 | device cuda
+13:19:39 | INFO |   [memory] ~15 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+13:19:48 | INFO |   ep   1 loss 2.2329 acc 20.1 val 14.12 (best 14.12@1)
+13:20:06 | INFO |   ep   5 loss 1.0188 acc 74.4 val 55.67 (best 69.65@4)
+13:20:27 | INFO |   ep  10 loss 0.6288 acc 86.7 val 81.59 (best 81.59@10)
+13:20:49 | INFO |   ep  15 loss 0.5483 acc 90.7 val 90.77 (best 90.77@15)
+13:21:10 | INFO |   ep  20 loss 0.5088 acc 91.1 val 86.07 (best 92.81@18)
+13:21:30 | INFO |   ep  25 loss 0.4772 acc 93.1 val 90.57 (best 92.81@18)
+13:21:50 | INFO |   ep  30 loss 0.4529 acc 93.4 val 92.17 (best 93.48@28)
+13:22:10 | INFO |   ep  35 loss 0.4554 acc 93.7 val 92.70 (best 93.48@28)
+06:27:34 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+06:27:34 | INFO | [data] cwru | chronological | train/val/test = 1354/111/111 | C=1 | fs=12000.0
+06:27:35 | INFO | [run] cwru | within_3HP | phyq_paper | seed 1 | params 1,400,427 | device cuda
+06:27:39 | INFO |   [memory] ~15 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+06:27:52 | INFO |   ep   1 loss 2.2324 acc 20.3 val 14.22 (best 14.22@1)
+06:28:10 | INFO |   ep   5 loss 1.0157 acc 74.6 val 58.56 (best 68.20@4)
+06:28:31 | INFO |   ep  10 loss 0.6091 acc 88.8 val 85.62 (best 85.62@10)
+06:28:53 | INFO |   ep  15 loss 0.5585 acc 91.0 val 87.95 (best 87.95@15)
+06:29:15 | INFO |   ep  20 loss 0.5101 acc 90.9 val 92.11 (best 92.11@20)
+06:29:37 | INFO |   ep  25 loss 0.4642 acc 93.5 val 91.98 (best 94.36@23)
+06:30:00 | INFO |   ep  30 loss 0.4477 acc 93.2 val 94.93 (best 94.93@30)
+06:30:23 | INFO |   ep  35 loss 0.4460 acc 94.1 val 93.66 (best 94.93@30)
+06:30:45 | INFO |   ep  40 loss 0.4258 acc 95.1 val 93.06 (best 94.93@30)
+06:30:45 | INFO |   early stop at epoch 40 (best 30)
+06:30:55 | INFO | [done] clean acc 100.00 F1 100.00 | best val 94.93@30 | 180s
