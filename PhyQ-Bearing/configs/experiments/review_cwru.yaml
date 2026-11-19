@@ -1,0 +1,29 @@
+# v10.5 - reviewer/advisor requests on CWRU (4 loads x 3 seeds, test noise never seen in training):
+#   (i)  ablation AROUND THE FINAL CONFIGURATION phyq_nomed (one component removed at a time; the earlier
+#        ablation suite removed components from the configuration WITH the MED pre-filter), incl. the
+#        gate of the fusion (fusion=mean: fixed weight 0.5) -> comment 6;
+#   (ii) two additional test-noise families -> comment 4:
+#        harmonic = gear-mesh-like periodic interference with sidebands (phyq/data/noise.py),
+#        recorded = REAL vibration of the healthy NREL wind-turbine gearbox (H* experiments), resampled
+#                   to 12 kHz and added as noise (phyq/data/noise_bank.py; reads the NREL folder read-only).
+# Hyper-parameters = per-model winners of hp_search (identical to main_tuned).
+# ~144 runs, about 4-5 h on a GTX 1650.
+name: review_cwru
+runs:
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false]}
+  - {tag: nomed_noquad, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false]}
+  - {tag: nomed_noattention, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.attention=false]}
+  - {tag: nomed_notransformer, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.transformer=false]}
+  - {tag: nomed_noshrink, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.shrink=false]}
+  - {tag: nomed_relu, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.act=relu]}
+  - {tag: nomed_nostats, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.stats=false]}
+  - {tag: nomed_fusionmean, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.fusion=mean]}
+  - {tag: nomed_noinorm, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.input_norm=none]}
+  - {tag: classbd, config: classbd, overrides: [train.lr=0.001, train.epochs=40, model.physics_loss=false]}
+  - {tag: wdcnn, config: wdcnn, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: drsn, config: drsn, overrides: [train.lr=0.001, train.epochs=80]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive, harmonic, recorded]", "eval.snr_modes=[absolute]",
+            "eval.snrs=[-10, -6, 0, 6]", "eval.recorded_noise={dataset: nrel, label: Healthy, channel: 0}"]

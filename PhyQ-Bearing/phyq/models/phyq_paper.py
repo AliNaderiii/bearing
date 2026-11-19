@@ -228,6 +228,9 @@ class PhyQTransNet(nn.Module):
         act = str(cfg.get("act", "metaacon"))
         self.use_tf = bool(cfg.get("transformer", True))
         self.use_stats = bool(cfg.get("stats", True))
+        self.fusion = str(cfg.get("fusion", "gated"))   # gated (original) | mean (fixed alpha = 0.5; ablation)
+        if self.fusion not in ("gated", "mean"):
+            raise ValueError(f"model.fusion must be 'gated' or 'mean', got {self.fusion!r}")
         self.input_norm = str(cfg.get("input_norm", "instance"))   # instance | robust (E3) | none
         if self.input_norm not in ("instance", "robust", "none"):
             raise ValueError(f"input_norm must be instance|robust|none, got {self.input_norm}")
@@ -369,7 +372,10 @@ class PhyQTransNet(nn.Module):
                 feats = self.stats_scaler(stat_features_11(x.float()))
                 aux_rep = self.aux_net(feats)
                 deep32 = deep_rep.float()
-                alpha = self.fusion_gate(torch.cat([deep32, aux_rep], dim=1))
+                if self.fusion == "gated":
+                    alpha = self.fusion_gate(torch.cat([deep32, aux_rep], dim=1))
+                else:
+                    alpha = torch.full((deep32.shape[0], 1), 0.5, device=deep32.device)
                 final = (1 - alpha) * deep32 + alpha * aux_rep
             self.last_alpha = alpha.detach()               # weight of the statistical stream
             return self.classifier(final)

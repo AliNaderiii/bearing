@@ -306,6 +306,24 @@ python scripts\robust_report.py; python scripts\robust_table.py --report results
 
 > قاعدهٔ صداقت: هر ۵ نسخه، هر نتیجه‌ای که داشته باشند، در مقاله گزارش می‌شوند. هیچ‌کدام بر اساس تست انتخاب یا تنظیم نمی‌شود.
 
+## مرحلهٔ ۱۵ — پاسخ به ۱۰ نظر استاد راهنما (جدید در v10.5) — فقط بعد از تمام شدن batch 2
+
+همهٔ دستورها در `D:\PhyQ-Bearing` و هر کدام یک خط:
+
+| کار | دستور | زمان تقریبی (GTX 1650) | نظر |
+|---|---|---|---|
+| آزمایش ablation حول مدل نهایی + نویز هارمونیک چرخ‌دنده + نویز واقعی ثبت‌شده (NREL سالم) روی CWRU | `python scripts/run_suite.py configs/experiments/review_cwru.yaml` | ۴–۵ ساعت | ۴، ۶ |
+| ماتریس کامل cross-load روی CWRU (۱۲ جفت بار، ۳ seed) | `python scripts/run_suite.py configs/experiments/cross_load_tuned.yaml` | ۴–۶ ساعت | ۷ |
+| تأخیر با batch=1/8/64، CPU تک‌رشته‌ای، حافظهٔ اوج و هزینهٔ هر ماژول | `python scripts/profile_e2e.py --out results/_paper_assets/profile_e2e.json` | چند دقیقه | ۱۰ |
+| کالیبراسیون (ECE/Brier/NLL، سهم خروجی‌های NaN، نمودار reliability) | `python scripts/calibration_report.py --out results/_paper_assets/calibration` | چند دقیقه (CPU) | ۹ |
+| جدول واحدهای فیزیکی هر بخش (train/val/test) | `python scripts/units_table.py` | ثانیه | ۲، ۸ |
+
+نکته‌ها:
+- `review_cwru` پوشهٔ NREL را **فقط می‌خواند** (نویز واقعی گیربکس سالم) و هیچ فایلی در آن نمی‌نویسد.
+- `fusion=mean` یعنی دروازهٔ ادغام حذف و وزن ثابت ۰٫۵ است (ablation دروازه).
+- CWRU از این نسخه فقط کانال DE را می‌خواند (همان چیزی که نتایج قبلی با آن گرفته شده‌اند؛ اگر کانال دیگری در config باشد خطا می‌دهد).
+- منبع همهٔ عددهای مقاله در `docs/NUMBER_PROVENANCE.md` آمده است.
+
 ## رفع مشکلات رایج
 
 * **`CUDA error: out of memory` یا `illegal memory access` (v9.2):**

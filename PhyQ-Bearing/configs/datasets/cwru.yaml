@@ -2,8 +2,11 @@ data:
   name: cwru
   root: ${paths.cwru}
   loads: [0, 1, 2, 3]
-  channels: [DE, FE]           # multi-point fusion (paper 4.1.3). BA is FORBIDDEN: it is missing in the
-                               # normal-baseline files and was zero-filled in the old code (label shortcut)
+  channels: [DE]               # v10.5: ALL reported CWRU runs used the drive-end channel only (C=1 in every
+                               # train.log): the signal cache was first built with [DE] and its file names did
+                               # not depend on the channel list. The config now states what was used, and
+                               # SignalCache refuses a cached array whose channel count differs.
+                               # BA is FORBIDDEN: it is missing in the normal-baseline files (label shortcut).
   target_fs: null              # native 12 kHz
   # Normal-baseline recordings are 2-4x longer than fault recordings: windows are
   # capped (evenly spaced in time, deterministic) so every class has the same weight.

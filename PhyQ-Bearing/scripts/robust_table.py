@@ -87,7 +87,7 @@ def main():
                         "from the test impulses; Lin.: linear twin. Val.: validation score used for model selection "
                         "(macro-F1, clean and white noise only). All models of a block use the same runs and test noise.")
     lab = a.label or ("tab:remedies_screen" if a.kind == "screen" else "tab:remedies")
-    tex = ["\\begin{table*}[t]", "\\centering", "\\small" if len(cols) <= 7 else "\\footnotesize",
+    tex = ["\\begin{table*}[!htbp]", "\\centering", "\\footnotesize",
            f"\\caption{{{cap}}}\\label{{{lab}}}",
            "\\begin{tabular}{l" + "r" * len(cols) + "}", "\\toprule",
            " & " + " & ".join(HEAD[c] for c in cols) + " \\\\", "\\midrule", *body, "\\bottomrule",
