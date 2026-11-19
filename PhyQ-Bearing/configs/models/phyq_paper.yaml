@@ -7,6 +7,7 @@ model:
   shrink: true           # soft thresholding inside QResBlock-Pro
   transformer: true      # Transformer encoder (false = global average pooling)
   stats: true            # statistical stream + adaptive gated fusion
+  fusion: gated          # gated (original) | mean (fixed weight 0.5; ablation of the gate)
   act: metaacon          # metaacon | relu
   input_norm: instance   # instance (Eq. 8) | none (only the global train-fitted scaling)
   prefilter:             # Neural MED (original LearnedFilter), fitted on TRAIN windows only, then frozen

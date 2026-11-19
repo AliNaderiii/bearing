@@ -1,0 +1,18 @@
+# v10.5 - full CWRU cross-load transfer matrix (advisor comment 7): train on one load, test on another,
+# all 12 source->target pairs, 3 seeds, tuned hyper-parameters of main_tuned. Validation = held-out
+# segments of the SOURCE load only (the target load is never used for any decision).
+# 180 runs, about 4-5 h on a GTX 1650.
+name: cross_load_tuned
+runs:
+  - dataset: cwru
+    variants: [cross_0to1, cross_0to2, cross_0to3, cross_1to0, cross_1to2, cross_1to3,
+               cross_2to0, cross_2to1, cross_2to3, cross_3to0, cross_3to1, cross_3to2]
+    seeds: [0, 1, 2]
+models:
+  - {tag: phyq_nomed, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false]}
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false]}
+  - {tag: classbd, config: classbd, overrides: [train.lr=0.001, train.epochs=40, model.physics_loss=false]}
+  - {tag: wdcnn, config: wdcnn, overrides: [train.lr=0.002, train.epochs=80]}
+  - {tag: drsn, config: drsn, overrides: [train.lr=0.001, train.epochs=80]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, impulsive]", "eval.snr_modes=[absolute]", "eval.snrs=[-10, -6, 0]"]

@@ -13,7 +13,8 @@ Step 3: figures (also works on another computer that only has the small analysis
 For every trained model, ``analyze`` stores in results/interp/_analysis/<dataset>__<variant>__<tag>.npz:
   * the learned kernels of the first (stem) layer (W_r, W_g, W_b for the quadratic model, W for the twin);
   * class-averaged power spectra (0 - fs/4) of the raw input, of the stem output before batch normalisation,
-    of its bilinear (product) and power terms, and of the stem output after BN + activation, for clean
+    of its bilinear (product) and power terms, of the stem output after BN + activation, and the two
+    classical references (squared Hilbert envelope and Teager-Kaiser energy of the raw input), for clean
     windows and for white (0 dB), impulsive and pink noise (-6 dB, absolute SNR, paired evaluation noise);
   * the fusion gate alpha (weight of the statistical stream) of every test window under each condition;
   * the RMS activation (log10) of every convolutional stage, the 1x1 fusion and z_d, per window and condition;
@@ -200,6 +201,9 @@ def analyze_run(run_dir: Path, out_dir: Path, max_windows: int, n_emb: int, devi
                     if x.shape[-1] % 2 == 0:
                         h[x.shape[-1] // 2] = 1
                     reps["input_env"] = torch.fft.ifft(Xf * h, dim=-1).abs().pow(2)
+                    # second classical square-law demodulator: Teager-Kaiser energy operator of the raw input
+                    xf = x.float()
+                    reps["input_tkeo"] = torch.nn.functional.pad(xf[..., 1:-1].pow(2) - xf[..., :-2] * xf[..., 2:], (1, 1))  # same length L
                     for rk, rv in reps.items():
                         P = _psd(rv).cpu().numpy()                       # (B, C, F)
                         if np.isfinite(ffc).any():

@@ -83,9 +83,20 @@ class SignalCache:
         os.replace(tmp, p)
         return p
 
+    def _check_channels(self, rec: Recording, n_cached: int) -> None:
+        """v10.5: the cache file name does not encode the channel list, so a cache written with another
+        channel selection would be reused silently. Refuse it instead."""
+        if rec.channels and n_cached != len(rec.channels):
+            raise RuntimeError(
+                f"Cached signal {self.path(rec)} has {n_cached} channel(s) but the config asks for "
+                f"{len(rec.channels)} ({list(rec.channels)}). Use the channel list the cache was built with, "
+                f"or point paths.cache to a new folder.")
+
     def get(self, rec: Recording) -> np.ndarray:
         if rec.rid not in self._mm:
-            self._mm[rec.rid] = np.load(self.materialize(rec), mmap_mode="r")
+            arr = np.load(self.materialize(rec), mmap_mode="r")
+            self._check_channels(rec, int(arr.shape[0]))
+            self._mm[rec.rid] = arr
         return self._mm[rec.rid]
 
     def shape(self, rec: Recording) -> tuple:
@@ -101,7 +112,9 @@ class SignalCache:
                     shp = np.lib.format.read_array_header_1_0(f)[0]
                 else:
                     shp = np.lib.format.read_array_header_2_0(f)[0]
-            self._shape[rec.rid] = shp = tuple(int(v) for v in shp)
+            shp = tuple(int(v) for v in shp)
+            self._check_channels(rec, shp[0] if len(shp) > 1 else 1)
+            self._shape[rec.rid] = shp
         return shp
 
     def length(self, rec: Recording) -> int:

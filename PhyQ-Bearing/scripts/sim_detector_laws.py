@@ -10,6 +10,8 @@ Fixed band-pass FIR (15 taps, 2.4-4.2 kHz, as in Table 2 / Fig. 2) followed by a
     clip_sq     min(y^2, c s^2)               (clipped square law)
     tanh_sq     c s^2 tanh(y^2 / (c s^2))     (smoothly saturated square law)
     log_sq      log(1 + y^2 / s^2)            (log-envelope-type compression)
+    hilbert_sq  |y + j H{y}|^2                (classical squared envelope, the SES detector)
+    tkeo        y(n)^2 - y(n-1) y(n+1)        (Teager-Kaiser energy operator; a 3-tap 2nd-order Volterra kernel)
     bn_sigmoid  sigmoid(relu((y^2 - mean)/std))   (ClassBD-like; statistics of the NOISY window)
 s^2 is a robust noise-level estimate of the NOISY window itself, s^2 = median(y^2)/0.4549 (median of chi^2_1),
 i.e. no clean-signal information is used; c = 9 (clip at 3 s in amplitude).
@@ -32,7 +34,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from scipy.signal import firwin, lfilter
+from scipy.signal import firwin, hilbert, lfilter
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -65,10 +67,14 @@ DETECTORS = {
     "tanh_sq": lambda y: C_SAT * _s2(y) * np.tanh(y ** 2 / (C_SAT * _s2(y))),
     "log_sq": lambda y: np.log1p(y ** 2 / _s2(y)),
     "bn_sigmoid": _bn_sigmoid,
+    # v10.5 (reviewer request): classical demodulators for reference
+    "hilbert_sq": lambda y: np.abs(hilbert(y, axis=-1)) ** 2,                    # squared envelope (SES)
+    "tkeo": lambda y: y ** 2 - np.roll(y, 1, -1) * np.roll(y, -1, -1),          # Teager-Kaiser energy operator
 }
 LABELS = {"linear": "none (linear)", "relu": "ReLU / |·| (linear law)", "abs": "|·| (linear law)", "square": "square law",
           "clip_sq": "clipped square", "tanh_sq": "tanh-saturated square", "log_sq": "log square",
-          "bn_sigmoid": "BN-ReLU-sigmoid (window stats)"}
+          "bn_sigmoid": "BN-ReLU-sigmoid (window stats)", "hilbert_sq": "squared Hilbert envelope",
+          "tkeo": "Teager-Kaiser energy"}
 
 
 def make_noise(x, kind, snr, rng):

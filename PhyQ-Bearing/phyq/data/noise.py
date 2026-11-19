@@ -20,6 +20,15 @@ on a Gaussian floor. It is deliberately a DIFFERENT impulse model from the
 ``impulsive`` test noise (i.i.d. single-sample spikes, p = 0.01, fixed scale), so
 an E2 model is evaluated on an impulse model it never saw during training.
 
+``harmonic`` (v10.5, TEST only): periodic interference of a gear stage - a mesh tone at a random
+normalised frequency f_m in [0.02, 0.12] cycles/sample with harmonics 2 f_m and 3 f_m, each amplitude-
+modulated at a random shaft rate f_m / Z (Z = 18..40 teeth) -> sidebands at k f_m +- f_m/Z, random phases,
+plus a weak Gaussian floor (10 % of the power). Parameters are drawn per (window, channel).
+
+``recorded`` (v10.5, TEST only): real machine vibration recorded on another machine (by default the
+healthy experiments of the NREL wind-turbine gearbox, resampled to the target sampling rate; see
+``phyq/data/noise_bank.py``). Random crops of the standardised recording are used as noise.
+
 Evaluation noise is **deterministic**: generated on CPU from a generator seeded
 by ``(base_seed, snr, type, batch_id)``. With a fixed evaluation order and batch
 size, every model sees the identical noisy test set -> paired tests.
@@ -51,6 +60,44 @@ def _impact_bursts(shape, gen: Optional[torch.Generator], device, rate: float = 
     return floor + 8.0 * burst
 
 
+_RECORDED_BANK: Optional[torch.Tensor] = None
+
+
+def set_recorded_bank(bank) -> None:
+    """Register the 1-D noise recording used by kind='recorded' (None to clear)."""
+    global _RECORDED_BANK
+    _RECORDED_BANK = None if bank is None else torch.as_tensor(bank, dtype=torch.float32).flatten().contiguous()
+
+
+def _harmonic(shape, gen: Optional[torch.Generator], device) -> torch.Tensor:
+    B, C, L = shape
+    t = torch.arange(L, device=device, dtype=torch.float32).view(1, 1, L)
+    fm = 0.02 + 0.10 * torch.rand(B, C, 1, generator=gen, device=device)
+    z = torch.randint(18, 41, (B, C, 1), generator=gen, device=device).float()
+    fs = fm / z
+    n = torch.zeros(shape, device=device)
+    for k, a in ((1, 1.0), (2, 0.5), (3, 0.25)):
+        ph = 2 * torch.pi * torch.rand(B, C, 1, generator=gen, device=device)
+        ph_m = 2 * torch.pi * torch.rand(B, C, 1, generator=gen, device=device)
+        depth = 0.3 + 0.5 * torch.rand(B, C, 1, generator=gen, device=device)
+        n = n + a * (1 + depth * torch.cos(2 * torch.pi * fs * t + ph_m)) * torch.cos(2 * torch.pi * k * fm * t + ph)
+    n = n / n.pow(2).mean(-1, keepdim=True).clamp_min(1e-12).sqrt()
+    return 0.9487 * n + 0.3162 * torch.randn(shape, generator=gen, device=device)   # 90 % / 10 % power
+
+
+def _recorded(shape, gen: Optional[torch.Generator], device) -> torch.Tensor:
+    B, C, L = shape
+    if _RECORDED_BANK is None:
+        raise RuntimeError("noise type 'recorded' needs a noise recording: set eval.recorded_noise "
+                           "(see phyq/data/noise_bank.py)")
+    bank = _RECORDED_BANK
+    if bank.numel() < 2 * L:
+        raise RuntimeError(f"recorded noise bank too short ({bank.numel()} samples) for windows of {L}")
+    start = torch.randint(0, bank.numel() - L, (B * C,), generator=gen, device="cpu")
+    idx = start.view(-1, 1) + torch.arange(L).view(1, -1)
+    return bank[idx].view(B, C, L).to(device)
+
+
 def _unit_noise(shape, kind: str, gen: Optional[torch.Generator], device, impulse_p: float = 0.01) -> torch.Tensor:
     B, C, L = shape
     if kind == "white":
@@ -68,6 +115,11 @@ def _unit_noise(shape, kind: str, gen: Optional[torch.Generator], device, impuls
         n = floor + mask * imp
     elif kind == "impacts":
         n = _impact_bursts(shape, gen, device)
+    elif kind == "harmonic":
+        n = _harmonic(shape, gen, device)
+    elif kind == "recorded":
+        n = _recorded(shape, gen, device)
+        n = n - n.mean(-1, keepdim=True)
     else:
         raise ValueError(f"Unknown noise type '{kind}'")
     p = n.pow(2).mean(-1, keepdim=True).clamp_min(1e-12)   # unit power per (b, c)

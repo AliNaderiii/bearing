@@ -30,5 +30,7 @@ def compute_metrics(probs: np.ndarray, y: np.ndarray, n_classes: int) -> Dict:
         "nll": float(-np.log(probs[np.arange(len(y)), y] + eps).mean()),
         "ece": float(ece_score(probs, y) * 100),
         "n": int(len(y)),
+        # v10.5: share of windows whose output is non-finite (float32 overflow); argmax maps them to class 0
+        "nonfinite": float((~np.isfinite(probs).all(1)).mean() * 100) if len(y) else 0.0,
         "confusion": confusion_matrix(y, pred, labels=list(range(n_classes))).tolist(),
     }

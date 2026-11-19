@@ -293,6 +293,10 @@ def run_experiment(cfg: Dict, out_dir: str, seed: int, force: bool = False) -> O
 
     ecfg = cfg.get("eval", {})
     amp = bool(cfg["train"].get("amp", True)) and device.type == "cuda"
+    if "recorded" in (ecfg.get("noise_types") or []) and not cfg.get("_val_only", False):
+        from .data.noise import set_recorded_bank
+        from .data.noise_bank import build_bank
+        set_recorded_bank(build_bank(cfg, data.fs, logger))
     if cfg.get("_val_only", False):
         # architecture search: the test set is never touched
         vres = evaluate_grid(model, data.val, device, K, dict(ecfg, snrs=cfg.get("selection", {}).get("report_snrs",
