@@ -770,6 +770,43 @@ def _top10(prom):
     return float(np.sort(ch)[-max(1, len(ch) // 10):].mean()) if len(ch) else np.nan
 
 
+NULL_RATIOS = (0.83, 0.91, 1.13, 1.21, 1.29)  # off-frequency controls (not harmonics of the fault order)
+
+
+def _excess_prom(z, rep, cond, band=(15.0, 600.0), n_harm=3):
+    """Fault-line prominence of a representation minus the same metric at off-fault control frequencies.
+
+    Computed on the class-averaged power spectra (spec__<rep>__<cond>, shape (K, C, F)) so that spectral
+    shape and the max-over-channels selection, which inflate the raw prominence, cancel in the difference.
+    Returns (true_db, null_db, excess_db), each the top-10 % channel mean pooled over the fault classes."""
+    key = f"spec__{rep}__{cond}"
+    if key not in z or "fault_freq_per_class" not in z:
+        return np.nan, np.nan, np.nan
+    P = z[key].astype(np.float64)
+    ff = z["fault_freq_per_class"].astype(float)
+    fs, L = float(z["fs"]), int(z["L"])
+    f = np.arange(P.shape[-1]) * fs / L                   # bin spacing fs/L for every representation
+    df = f[1] - f[0]
+    inband = (f >= band[0]) & (f <= band[1])
+
+    def prom(ratio):
+        rows = []
+        for k, f0 in enumerate(ff):
+            if not np.isfinite(f0):
+                continue
+            harm = np.zeros_like(inband)
+            for h in range(1, n_harm + 1):
+                harm |= np.abs(f - h * f0 * ratio) <= 1.01 * df
+            harm &= inband
+            bg = inband & ~harm
+            rows.append(10 * np.log10(P[k][:, harm].mean(-1) / (np.median(P[k][:, bg], -1) + 1e-30) + 1e-30))
+        return _top10(np.array(rows)) if rows else np.nan
+
+    t = prom(1.0)
+    n = float(np.nanmean([prom(r) for r in NULL_RATIOS]))
+    return t, n, t - n
+
+
 def _pick_spectral_dataset(sets):
     dss = sorted({k[0] for k, z in sets.items() if any(f.startswith("prom__") for f in z)})
     return "cwru" if "cwru" in dss else (dss[0] if dss else None)
@@ -790,7 +827,7 @@ def fig10_interp_spectra(results, out, exp="interp"):
     names = [str(c) for c in zq["class_names"]]
 
     fig = plt.figure(figsize=(TEXTWIDTH, 5.0))
-    gs = fig.add_gridspec(2, 3, height_ratios=[1, 1.08], width_ratios=[1, 1, 1.15], hspace=0.62, wspace=0.62)
+    gs = fig.add_gridspec(2, 3, height_ratios=[1, 1.08], width_ratios=[1, 1, 1.15], hspace=0.62, wspace=0.95)
 
     # ---- (a, b) frequency responses of the 32 stem kernels
     def resp(z):
@@ -818,9 +855,9 @@ def fig10_interp_spectra(results, out, exp="interp"):
                        cmap="rocket", vmin=-24, vmax=0, interpolation="nearest")
         ax.set_xlabel("Frequency (kHz)")
         ax.set_ylabel("Kernel (sorted by peak)")
-        ax.set_title(ttl, fontsize=7.2, fontweight="normal")
+        ax.set_title(ttl, fontsize=7.2, fontweight="normal", pad=4)
         ax.grid(False)
-        panel_label(ax, lab)
+        panel_label(ax, lab, x=-0.42, y=1.04)
         if j == 1:
             cb = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.03)
             cb.set_label("dB re. kernel max", fontsize=6.5)
@@ -836,18 +873,19 @@ def fig10_interp_spectra(results, out, exp="interp"):
         if idx:
             s = S[idx].mean((0, 1))
             ax.plot(fi / 1e3, 10 * np.log10(s / s.max() + 1e-12), color=col, lw=0.8, label=lab)
-    for lab, col, y0 in (("a", "#D1495B", -52), ("b", "#EDA03B", -57)):
+    for lab, col, y0 in (("a", "#D1495B", -60), ("b", "#EDA03B", -65)):
         if lab in peaks:
             ax.plot(peaks[lab] / 1e3, np.full(len(peaks[lab]), y0), "|", color=col, ms=6, mew=0.8)
-    ax.text(0.99, 0.2, "kernel peaks: quadratic (upper ticks),\nlinear twin (lower ticks)", transform=ax.transAxes,
-            ha="right", fontsize=5.6, color="0.3")
-    ax.set_ylim(-60, 3)
+    ax.text(0.02, 0.17, "kernel peaks: quadratic (top),\nlinear twin (bottom)", transform=ax.transAxes,
+            ha="left", fontsize=5.2, color="0.3", bbox=dict(fc="white", ec="none", alpha=0.85, pad=0.5))
+    ax.set_ylim(-68, 3)
     ax.set_xlim(0, fs / 2e3)
     ax.set_xlabel("Frequency (kHz)")
     ax.set_ylabel("Input PSD (dB re. max)")
-    ax.set_title(f"{DS_LABEL.get(ds, ds)}, clean test windows", fontsize=7.2, fontweight="normal")
-    ax.legend(loc="upper right", handlelength=1.2)
-    panel_label(ax, "c")
+    ax.set_title(f"{DS_LABEL.get(ds, ds)}, clean test windows", fontsize=7.2, fontweight="normal", pad=4)
+    ax.legend(loc="upper right", handlelength=1.0, fontsize=5.6, frameon=True, facecolor="white", edgecolor="none",
+              framealpha=0.9, borderpad=0.2)
+    panel_label(ax, "c", x=-0.42, y=1.04)
 
     # ---- (d) class-averaged baseband spectra of single feature maps (outer race, clean)
     ax = fig.add_subplot(gs[1, 0:2])
@@ -855,7 +893,7 @@ def fig10_interp_spectra(results, out, exp="interp"):
     cls = [i for i, c in enumerate(names) if c.startswith("OR")] or fault[:1]
     fo = float(np.nanmean(ffc[cls]))
     curves = [("Raw input", zq, "input", "#5D6D7E"), ("Hilbert envelope of input", zq, "input_env", "#1B1B1B"),
-              ("Linear twin, best channel", T.get(v0), "stem_pre", "#EDA03B"),
+              ("Linear twin stem (pre-activation), best channel", T.get(v0), "stem_pre", "#EDA03B"),
               ("Quadratic product term, best channel", zq, "product", "#D1495B")]
     off = 0
     for lab, z, rep, col in curves:
@@ -882,18 +920,17 @@ def fig10_interp_spectra(results, out, exp="interp"):
     ax.set_xlabel("Frequency (Hz)")
     ax.set_ylabel("Power (dB re. median, offset)")
     rpm = float(zq["rpm"]) if "rpm" in zq else np.nan
-    ax.set_title(f"Outer race, {v0.replace('within_', '')} ({rpm:.0f} rpm): spectra of single feature maps, "
-                 f"no demodulation", fontsize=7.2, fontweight="normal", loc="left", pad=11)
+    ax.set_title(f"Outer race, {v0.replace('within_', '')} ({rpm:.0f} rpm): single feature maps, no envelope analysis", fontsize=7.2, fontweight="normal", loc="left", pad=11)
     ax.spines["left"].set_visible(False)
     ax.grid(False)
     panel_label(ax, "d", x=-0.005)
 
-    # ---- (e) prominence (top-10 % channels) pooled over fault classes, mean over loads
+    # ---- (e) excess prominence over off-frequency controls (class-mean spectra), mean over loads
     ax = fig.add_subplot(gs[1, 2])
-    items = [("Input", "raw signal", None, "input"), ("Input", "Hilbert envelope", None, "input_env"),
-             ("Linear", "pre-activation", "T", "stem_pre"), ("Linear", "post-activation", "T", "stem_post"),
-             ("Quadratic", "product term", "Q", "product"), ("Quadratic", "power term", "Q", "power"),
-             ("Quadratic", "output, pre-BN", "Q", "stem_pre"), ("Quadratic", "post-activation", "Q", "stem_post")]
+    items = [("Input", "input: raw", None, "input"), ("Input", "input: Hilbert envelope", None, "input_env"),
+             ("Linear", "twin: pre-activation", "T", "stem_pre"), ("Linear", "twin: post-activation", "T", "stem_post"),
+             ("Quadratic", "quad.: product term", "Q", "product"), ("Quadratic", "quad.: power term", "Q", "power"),
+             ("Quadratic", "quad.: output, pre-BN", "Q", "stem_pre"), ("Quadratic", "quad.: post-activation", "Q", "stem_post")]
     conds = [("clean", "Clean", "0.15"), ("white_0", "White 0 dB", "#56B4E9"), ("impulsive_-6", "Impulsive −6 dB", "#E69F00")]
     fam_col = {"Input": "#5D6D7E", "Linear": "#EDA03B", "Quadratic": "#D1495B"}
     y = np.arange(len(items))[::-1].astype(float)
@@ -901,7 +938,8 @@ def fig10_interp_spectra(results, out, exp="interp"):
     for ci, (cn, cl, cc) in enumerate(conds):
         for yi, (fam, nm, src, rep) in zip(y, items):
             D = T if src == "T" else Q
-            vals = [_top10(D[v][f"prom__{rep}__{cn}"]) for v in sorted(D) if f"prom__{rep}__{cn}" in D[v]]
+            vals = [_excess_prom(D[v], rep, cn)[2] for v in sorted(D)]
+            vals = [x for x in vals if np.isfinite(x)]
             if not vals:
                 continue
             yy = yi + (1 - ci) * h
@@ -911,14 +949,12 @@ def fig10_interp_spectra(results, out, exp="interp"):
     for t, it in zip(ax.get_yticklabels(), items):
         t.set_color(fam_col[it[0]])
     ax.axvline(0, color="0.3", lw=0.5)
-    ax.set_xlabel("Fault-line prominence (dB)")
+    ax.set_xlabel("Fault-line prominence above\noff-frequency control (dB)")
     ax.grid(axis="y", visible=False)
     ax.legend(handles=[Rectangle((0, 0), 1, 1, fc=cc, label=cl) for _, cl, cc in conds], loc="lower right",
               bbox_to_anchor=(1.02, 1.0), ncol=3, handlelength=0.8, columnspacing=0.6, handletextpad=0.3, fontsize=5.8)
     n_loads = len(variants)
-    ax.text(0.99, 0.01, f"bars: mean of {n_loads} load(s); dots: loads", transform=ax.transAxes, ha="right",
-            va="bottom", fontsize=5.6, color="0.35")
-    panel_label(ax, "e", x=-0.62)
+    panel_label(ax, "e", x=-0.80)
     sns.despine(fig)
     save(fig, out, "Figure_10_interp_spectra")
 
@@ -932,7 +968,7 @@ def fig11_interp_fusion(results, out, exp="interp", seed=0):
     from sklearn.metrics import silhouette_score
     dss = sorted({k[0] for k in sets}, key=lambda d: (d != "cwru", d))
     fig = plt.figure(figsize=(TEXTWIDTH, 5.3))
-    gs = fig.add_gridspec(2, 1, height_ratios=[1, 1.05], hspace=0.5)
+    gs = fig.add_gridspec(2, 1, height_ratios=[1, 1.05], hspace=0.85)
     top = gs[0].subgridspec(1, 2, width_ratios=[1.35, 1], wspace=0.28)
     bot = gs[1].subgridspec(1, 3, wspace=0.08)
     conds = ["clean", "white_0", "white_-6", "white_-10", "pink_-6", "impulsive_-6"]
