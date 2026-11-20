@@ -34,7 +34,10 @@ the recordings / bearings / experiments in train, validation and test and the wi
 | Units per partition | `scripts/units_table.py` | `results/_data_report` |
 | Simulation, prominence, H1-H3 | `scripts/sim_mechanism.py`, `scripts/sim_figures.py`, `scripts/sim_saturation.py` | `results/sim_mechanism` |
 | Detector laws (incl. Hilbert^2, TKEO, clipping) | `scripts/sim_detector_laws.py` | `results/sim_mechanism/detector_laws.json` |
-| Interpretability (filter responses, envelope spectra at BPFO/BPFI/BSF) | `scripts/interpret.py` | `results/interp` |
+| Ablation around the final model on CWRU (Table tab:ablation, Wilcoxon over 12 runs) | `scripts/review_report.py` (section `ablation`) | `results/review_cwru` -> `results/_paper_assets/review_report.json` |
+| CWRU cross-load matrix (Section sec:crossload; clean/impulsive accuracy, per pair and source load, Wilcoxon over 36 runs) | `scripts/review_report.py` (section `crossload`) | `results/cross_load_tuned` -> `results/_paper_assets/review_report.json` |
+| Inside the trained network (Section sec:interp; excess prominence, gate alpha, RMS through depth, non-finite windows) | `scripts/interpret.py` (probes), `scripts/review_report.py` (section `interp`) | `results/interp/_analysis/*.npz` -> `results/_paper_assets/review_report.json` |
+| Figures 10-11 (stem spectra, excess prominence vs off-frequency controls; gate, RMS, t-SNE with silhouette) | `scripts/pro_figures.py --only interp` | `results/interp/_analysis/*.npz` |
 
 An independent audit recomputed all 1082 stored runs from `test_probs.npz` and found 0 mismatches with
 `metrics.json`.
@@ -54,3 +57,13 @@ folds x two seeds on PU).
 - No test-time augmentation: `eval.tta_shifts = 0` everywhere. The phrase "Bayesian TTA" of the earlier
   draft does not describe any computation in this code and was removed.
 - No ensembling, no temperature scaling, no test-set model selection.
+
+## v10.9 additions
+| Number(s) in manuscript | Source | Script |
+|---|---|---|
+| Table A.5 (tab:std), mean ± s.d. over seeds | tables/summary.csv | `scripts/std_table.py` |
+| Table A.6 (tab:faulttypes), BPFO/BPFI/BSF prominence; text in sec:interp (7.1/9.2, 6.4/9.6, −2.1/2.5, 9.1/3.8, BSF 0.1 dB) | results/interp/_analysis/*.npz | `scripts/interp_fault_types.py --analysis results/interp/_analysis` |
+| Table A.7 (tab:uncert) and calibration paragraph (epistemic share ≤13 %, up to 37/45 %, PU 11–36 %, AUROC 0.82–0.99 / 0.48–0.76) | test_probs.npz of main_tuned + main_benchmark/pu (phyq_nomed, phyq_nomed_noquad, classbd, wdcnn) | `scripts/uncertainty_decomp.py --results results` |
+| PU non-monotonicity paragraph (fold 2: 11.7/27.0 % clean; Wilcoxon p=0.19 PhyQ, 0.008 WDCNN, 0.027 ClassBD; 6/10 higher) | results/main_benchmark/pu/fold*/<model>/seed*/metrics.json (white absolute −6 vs clean, 10 fold-seed pairs; WDCNN 15) | inline, see docs/V10_9_NOTES_FA.md |
+| Training bearings per fold (9–11 train / 3–5 test) | metrics.json → data.train_groups / test_groups | — |
+| Linear twin 0.79 M vs 1.40 M; wide twin 1.400 M at width_mult=1.65 | `tests/test_v10_9.py` | — |

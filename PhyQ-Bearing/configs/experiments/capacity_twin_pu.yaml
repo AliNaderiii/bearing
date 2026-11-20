@@ -1,0 +1,10 @@
+# v10.9 - capacity-matched linear twin, part 3: PU bearing-disjoint folds and art2real (same seeds and default
+# PU hyper-parameters as phyq_nomed / phyq_nomed_noquad in main_benchmark). 13 runs.
+name: main_benchmark
+runs:
+  - {dataset: pu, variants: [fold0, fold1, fold2, fold3, fold4], seeds: [0, 1]}
+  - {dataset: pu, variants: [art2real], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed_noquad_wide, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false, model.width_mult=1.65]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]
