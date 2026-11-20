@@ -1,0 +1,15 @@
+11:34:05 | INFO | [memory] cached signals 0.0 GB, RAM 7.7 GB -> load into RAM
+11:34:05 | INFO | [data] cwru | chronological | train/val/test = 1350/111/111 | C=1 | fs=12000.0
+11:34:05 | INFO | [run] cwru | within_2HP | phyq_paper | seed 1 | params 1,400,427 | device cuda
+11:34:07 | INFO |   [memory] ~13 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+11:34:13 | INFO |   ep   1 loss 2.2275 acc 20.6 val 14.53 (best 14.53@1)
+11:34:26 | INFO |   ep   5 loss 1.1163 acc 75.7 val 75.48 (best 75.48@5)
+11:34:43 | INFO |   ep  10 loss 0.6967 acc 85.0 val 68.52 (best 78.10@9)
+11:34:59 | INFO |   ep  15 loss 0.5908 acc 89.1 val 85.46 (best 85.46@15)
+11:35:16 | INFO |   ep  20 loss 0.5859 acc 88.0 val 91.55 (best 91.55@20)
+11:35:33 | INFO |   ep  25 loss 0.5409 acc 90.8 val 90.16 (best 92.70@22)
+11:35:50 | INFO |   ep  30 loss 0.4826 acc 92.3 val 90.75 (best 94.13@29)
+11:36:07 | INFO |   ep  35 loss 0.4734 acc 92.8 val 92.88 (best 94.13@29)
+11:36:20 | INFO |   early stop at epoch 39 (best 29)
+11:36:21 | INFO | [noise] recorded bank: nrel 10 x 'Healthy' recordings, channel 0, 600.0 s at 12000 Hz
+11:36:22 | INFO | [done] clean acc 100.00 F1 100.00 | best val 94.13@29 | 132s

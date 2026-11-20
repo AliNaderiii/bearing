@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\caption{Physical units per partition and test windows per class.}\label{tab:units}
+\centering\scriptsize
+\begin{tabular}{p{1.8cm}p{6.0cm}p{4.4cm}p{2.2cm}}
+\toprule
+Task & Training units & Test units & Test windows per class \\
+\midrule
+CWRU (each load) & 10 recordings (1 per class), drive end & same recordings, disjoint later segments & 12/11/11/11/11/11/11/11/11/11 \\
+IMS & 4 failing bearings; normal = early life of the same bearings & same 4 bearings, later time block & 2280/580/580/1160 \\
+SDUST & 10 recordings (1 per class) & same recordings, disjoint later segments & 768/592/592/592/592/592/592/592/592/592 \\
+NREL & D3, D4, D5, D7, D8, H1, H2, H3, H4, H5, H6, H8 & D10, D9, H10, H9 & 400/400 \\
+PU fold0 & K001, K002, K004, KA04, KA16, KA30, KI14, KI16, KI18 & K005, K006, KA15, KI04, KI17 & 640/320/640 \\
+PU fold1 & K001, K004, K005, K006, KA04, KA15, KA16, KI04, KI16, KI17, KI18 & K003, KA22, KI21 & 320/320/320 \\
+PU fold2 & K001, K003, K005, K006, KA15, KA16, KA22, KI04, KI17, KI18, KI21 & K002, KA30, KI14 & 320/320/320 \\
+PU fold3 & K002, K003, K005, K006, KA15, KA22, KA30, KI04, KI14, KI17, KI21 & K004, KA04, KI16 & 320/320/320 \\
+PU fold4 & K002, K003, K004, KA04, KA22, KA30, KI14, KI16, KI21 & K001, KA16, KI18 & 320/320/320 \\
+PU art2real & K002, K003, K004, KA01, KA05, KA06, KA07, KA09, KI01, KI05, KI07 & K001, KA04, KA15, KA16, KA22, KA30, KI04, KI14, KI16, KI18, KI21 & 320/1600/1600 \\
+\bottomrule
+\end{tabular}
+\end{table*}
