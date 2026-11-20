@@ -1,0 +1,166 @@
+{
+ "input": [
+  1,
+  2048
+ ],
+ "classes": 10,
+ "torch": "2.5.1+cu121",
+ "gpu": "NVIDIA GeForce GTX 1650",
+ "cpu_threads_all": 8,
+ "models": {
+  "phyq_nomed": {
+   "params": 1400427,
+   "macs": 343596054.0,
+   "module_macs": {
+    "stem": 1606656.0,
+    "branch_1": 97650688.0,
+    "branch_2": 47319040.0,
+    "branch_3": 22153216.0,
+    "fusion_conv": 2097152.0,
+    "deep_stage": 113775680.0,
+    "transformer": 33816576.0,
+    "aux_net": 9152.0,
+    "fusion_gate": 256.0,
+    "classifier": 1792.0
+   },
+   "gpu_bs1_ms": 8.626836666614205,
+   "gpu_bs1_ms_per_window": 8.626836666614205,
+   "gpu_bs1_peak_mem_mb": 15.2099609375,
+   "gpu_bs8_ms": 9.541493333381368,
+   "gpu_bs8_ms_per_window": 1.192686666672671,
+   "gpu_bs8_peak_mem_mb": 21.6396484375,
+   "gpu_bs64_ms": 42.47918000013063,
+   "gpu_bs64_ms_per_window": 0.6637371875020411,
+   "gpu_bs64_peak_mem_mb": 78.5693359375,
+   "cpu1t_bs1_ms": 12.587100000382634,
+   "cpu8t_bs1_ms": 13.721960000111721
+  },
+  "phyq_nomed_noquad": {
+   "params": 787691,
+   "macs": 155966486.0,
+   "module_macs": {
+    "stem": 623616.0,
+    "branch_1": 32638976.0,
+    "branch_2": 15861760.0,
+    "branch_3": 7473152.0,
+    "fusion_conv": 2097152.0,
+    "deep_stage": 38278208.0,
+    "transformer": 33816576.0,
+    "aux_net": 9152.0,
+    "fusion_gate": 256.0,
+    "classifier": 1792.0
+   },
+   "gpu_bs1_ms": 7.6999533334552925,
+   "gpu_bs1_ms_per_window": 7.6999533334552925,
+   "gpu_bs1_peak_mem_mb": 12.8701171875,
+   "gpu_bs8_ms": 9.101543333235895,
+   "gpu_bs8_ms_per_window": 1.137692916654487,
+   "gpu_bs8_peak_mem_mb": 19.2998046875,
+   "gpu_bs64_ms": 27.580550000129733,
+   "gpu_bs64_ms_per_window": 0.4309460937520271,
+   "gpu_bs64_peak_mem_mb": 76.2294921875,
+   "cpu1t_bs1_ms": 7.665939999424154,
+   "cpu8t_bs1_ms": 8.788149999600137
+  },
+  "classbd": {
+   "params": 4269275,
+   "macs": 18318568.0,
+   "module_macs": {
+    "time_filter": 12525568.0,
+    "freq_filter": 4194304.0,
+    "cnn": 1578496.0,
+    "head": 20200.0
+   },
+   "gpu_bs1_ms": 1.9214133334268504,
+   "gpu_bs1_ms_per_window": 1.9214133334268504,
+   "gpu_bs1_peak_mem_mb": 25.482421875,
+   "gpu_bs8_ms": 7.783350000196757,
+   "gpu_bs8_ms_per_window": 0.9729187500245946,
+   "gpu_bs8_peak_mem_mb": 27.55859375,
+   "gpu_bs64_ms": 24.607223333441652,
+   "gpu_bs64_ms_per_window": 0.3844878645850258,
+   "gpu_bs64_peak_mem_mb": 49.43359375,
+   "cpu1t_bs1_ms": 6.904699999722652,
+   "cpu8t_bs1_ms": 5.2504399995086715
+  },
+  "wdcnn": {
+   "params": 41470,
+   "macs": 734584.0,
+   "module_macs": {
+    "f": 726784.0,
+    "c": 7800.0
+   },
+   "gpu_bs1_ms": 0.9292566666166143,
+   "gpu_bs1_ms_per_window": 0.9292566666166143,
+   "gpu_bs1_peak_mem_mb": 9.30517578125,
+   "gpu_bs8_ms": 1.4576699999452103,
+   "gpu_bs8_ms_per_window": 0.1822087499931513,
+   "gpu_bs8_peak_mem_mb": 9.3642578125,
+   "gpu_bs64_ms": 0.8956099998613354,
+   "gpu_bs64_ms_per_window": 0.013993906247833365,
+   "gpu_bs64_peak_mem_mb": 10.7958984375,
+   "cpu1t_bs1_ms": 0.35608999969554134,
+   "cpu8t_bs1_ms": 1.3446299999486655
+  },
+  "qcnn": {
+   "params": 108270,
+   "macs": 2127224.0,
+   "module_macs": {
+    "f": 2119424.0,
+    "c": 7800.0
+   },
+   "gpu_bs1_ms": 1.4085533332642324,
+   "gpu_bs1_ms_per_window": 1.4085533332642324,
+   "gpu_bs1_peak_mem_mb": 9.5615234375,
+   "gpu_bs8_ms": 1.5336066666350234,
+   "gpu_bs8_ms_per_window": 0.19170083332937793,
+   "gpu_bs8_peak_mem_mb": 9.62060546875,
+   "gpu_bs64_ms": 1.5158800000790507,
+   "gpu_bs64_ms_per_window": 0.023685625001235167,
+   "gpu_bs64_peak_mem_mb": 11.30224609375,
+   "cpu1t_bs1_ms": 0.612869999895338,
+   "cpu8t_bs1_ms": 2.698190000228351
+  },
+  "drsn": {
+   "params": 67458,
+   "macs": 11172000.0,
+   "module_macs": {
+    "stem": 311296.0,
+    "body": 10851808.0,
+    "head": 8896.0
+   },
+   "gpu_bs1_ms": 3.8405800000570403,
+   "gpu_bs1_ms_per_window": 3.8405800000570403,
+   "gpu_bs1_peak_mem_mb": 9.60302734375,
+   "gpu_bs8_ms": 3.7498133334641652,
+   "gpu_bs8_ms_per_window": 0.46872666668302065,
+   "gpu_bs8_peak_mem_mb": 10.75439453125,
+   "gpu_bs64_ms": 3.8401333333846805,
+   "gpu_bs64_ms_per_window": 0.060002083334135634,
+   "gpu_bs64_peak_mem_mb": 24.96875,
+   "cpu1t_bs1_ms": 1.6310800005157944,
+   "cpu8t_bs1_ms": 3.9172599994344632
+  },
+  "cnn_transformer": {
+   "params": 170442,
+   "macs": 9061248.0,
+   "module_macs": {
+    "tok": 3751936.0,
+    "pos": 0.0,
+    "tf": 2162688.0,
+    "head": 896.0
+   },
+   "gpu_bs1_ms": 1.0809400000046785,
+   "gpu_bs1_ms_per_window": 1.0809400000046785,
+   "gpu_bs1_peak_mem_mb": 9.91845703125,
+   "gpu_bs8_ms": 1.0710533334834813,
+   "gpu_bs8_ms_per_window": 0.13388166668543516,
+   "gpu_bs8_peak_mem_mb": 10.84814453125,
+   "gpu_bs64_ms": 1.8096300002071075,
+   "gpu_bs64_ms_per_window": 0.028275468753236055,
+   "gpu_bs64_peak_mem_mb": 18.28564453125,
+   "cpu1t_bs1_ms": 0.8511600004567299,
+   "cpu8t_bs1_ms": 2.436149999994086
+  }
+ }
+}
