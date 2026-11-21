@@ -1,0 +1,16 @@
+22:44:01 | INFO | [cache] 200/680 recordings
+22:44:01 | INFO | [cache] 400/680 recordings
+22:44:01 | INFO | [cache] 600/680 recordings
+22:44:01 | INFO | [memory] cached signals 0.1 GB, RAM 7.7 GB -> load into RAM
+22:44:02 | INFO | [data] pu | group_kfold | train/val/test = 5280/420/420 | C=1 | fs=16000.0
+22:44:02 | INFO | [run] pu | sp_N15toN09_f2 | wdcnn | seed 0 | params 40,763 | device cuda
+22:44:03 | WARNING |   [memory] estimate 1.53 GB > budget 1.52 GB at the minimum micro-batch 16; continuing (the probe with this micro-batch succeeded)
+22:44:03 | INFO |   [memory] ~98 MB/sample (train), free 3.22/4.00 GB -> micro-batch 16 x accum 2 (effective batch 32)
+22:44:07 | INFO |   ep   1 loss 0.9369 acc 56.7 val 57.62 (best 57.62@1)
+22:44:17 | INFO |   ep   5 loss 0.4185 acc 88.3 val 86.35 (best 86.35@5)
+22:44:29 | INFO |   ep  10 loss 0.3420 acc 92.5 val 72.37 (best 90.48@8)
+22:44:41 | INFO |   ep  15 loss 0.3228 acc 93.1 val 89.69 (best 90.48@8)
+22:44:54 | INFO |   ep  20 loss 0.2916 acc 94.8 val 81.97 (best 96.64@16)
+22:45:06 | INFO |   ep  25 loss 0.2817 acc 95.2 val 88.70 (best 96.64@16)
+22:45:08 | INFO |   early stop at epoch 26 (best 16)
+22:45:09 | INFO | [done] clean acc 66.67 F1 54.95 | best val 96.64@16 | 64s
