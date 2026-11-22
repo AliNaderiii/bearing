@@ -39,3 +39,16 @@ def test_report_runs_and_writes_speedshift_table(tmp_path):
     tex = (out / 'tab_speedshift.tex').read_text()
     assert r'\label{tab:speedshift}' in tex
     assert 'ClassBD' in tex and '0 / 10' in tex
+
+
+def test_nrel_csv_header_and_staging_without_pandas_header(tmp_path):
+    """v10.10: NREL CSV headers are read with the csv module (pyarrow access-violation work-around)."""
+    import numpy as np
+    sys.path.insert(0, ROOT)
+    from phyq.data.datasets import nrel
+    p = tmp_path / 'H1.csv'
+    p.write_text('\ufefftime,AN3,AN4\n' + ''.join(f'{i},{i * 0.5},{-i}\n' for i in range(10)), encoding='utf-8')
+    assert nrel._csv_header(str(p)) == ['time', 'AN3', 'AN4']
+    out = nrel._stage_csv(str(p), str(tmp_path / 'stage'))
+    np.testing.assert_allclose(np.load(os.path.join(out, 'AN3.npy')), np.arange(10) * 0.5)
+    np.testing.assert_allclose(np.load(os.path.join(out, 'AN4.npy')), -np.arange(10))
