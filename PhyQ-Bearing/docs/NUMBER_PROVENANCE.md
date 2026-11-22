@@ -79,9 +79,13 @@ Results: branch `results-v10-9` (merged into main via PR), `results/main_tuned/*
 | Row "Linear twin, width-matched" in Table 7 (tab:main), tab:noisetypes, tab:relative, tab:std | metrics.json (task mean of seed means; tab:std: mean/s.d. over seeds) |
 | Width-matched twin 1.40 M params, 321.0 M MACs (CWRU) | metrics.json → profile (same profiler as tab:complexity) |
 | Ablation paragraph: SDUST +7.8/+12.0/+13.2 pts, recording-level Wilcoxon p<1e-27 (381 recordings) | SDUST test_probs.npz, section 3 of the report |
-| Pooled 31 paired runs: I-6 −10.7 (26 lower, p=1e-4); clean/white/pink −0.4…+1.7 (p>0.09); CWRU within ±1.3 (p≥0.3) | section 2 of the report |
+| Pooled 34 paired runs (incl. NREL): I-6 −10.8 (28 lower, p=3e-5); clean/white/pink −1.0…+1.9 (p>0.09); CWRU within ±1.3 (p≥0.3) | section 2 of the report |
+| NREL width-matched twin: 100.0 clean, 99.9 / 93.4 at −6 / −10 dB white, 95.5 pink, 62.0 impulsive (52.2/48.0/85.6 per seed) | results/main_tuned/nrel/expwise/phyq_nomed_noquad_wide |
 | Cross-load: wide 90.1 % (worst 74.8), +0.6 vs small twin (p=0.64); PhyQ − wide +2.3 (20/9, p=0.032); by source +3.1/+2.8/+4.6/−1.3; W-6 +1.6 (p=0.26); impulsive 31.0 % | cross-load section of the report; column "Lin. wide" of tab:crossload |
 | tab:speedshift and speed-shift paragraph (ClassBD 63.8→36.7, p=0.002; 8/10 single-class runs at 900 rpm; PhyQ −3.4, Lin +6.2, WDCNN +5.0, p≥0.38; white −6…−16 pts) | section 4 of the report |
 | Abstract/highlight/conclusion: "8–13 points" (SDUST, equal capacity), 92.4 vs 90.1 % (p=0.032) | as above |
 
-Not evaluated: width-matched twin on NREL (CUDA driver crash, exit 3221225477, on the GTX 1650) and in the PU speed shift.
+Not evaluated: width-matched twin in the PU speed shift.
+NREL note: the first NREL attempts of the width-matched twin ended with exit code 3221225477 (Windows access
+violation). `python -X faulthandler` located the crash in pandas/pyarrow while `nrel.py` read the CSV headers
+(not in CUDA); v10.10b reads the headers with the csv module, after which all three seeds ran normally on the GPU.
