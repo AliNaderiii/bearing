@@ -10,7 +10,8 @@ chronological   : every recording is cut in time: [train | gap | val | gap | tes
                   (CWRU / SDUST within-condition; one recording per class.)
 group           : recordings are assigned to partitions by physical unit (``group``)
                   from explicit lists (PU artificial->real, NREL experiment-wise).
-group_kfold     : stratified K-fold over physical units (PU bearing-wise folds).
+group_kfold     : stratified K-fold over physical units (PU bearing-wise folds); optional
+                  ``source``/``target`` conditions -> bearing-disjoint AND condition shift.
 cross_condition : train/val from source conditions (chronological), test on the
                   *test segment* of target conditions -> diagonal == within-condition.
 time_blocks     : run-to-failure (IMS): recordings sorted by ``time_order`` per
@@ -85,12 +86,20 @@ def group_explicit(recs: List[Recording], cache: SignalCache,
 
 
 def group_kfold(recs: List[Recording], cache: SignalCache, n_folds: int, fold: int, seed: int = 0,
-                val_from_train: bool = True) -> Dict[str, List[Segment]]:
+                val_from_train: bool = True, source: Optional[Sequence[str]] = None,
+                target: Optional[Sequence[str]] = None) -> Dict[str, List[Segment]]:
     """Stratified K-fold over physical units: each unit's recordings go to exactly one partition.
 
     Test = units of fold ``fold``. Validation = units of fold ``(fold+1) % K``; train = the rest.
     Units are shuffled per label with ``seed``.
+
+    Optional ``source``/``target`` condition lists give a bearing-disjoint *and* condition-shifted
+    split: train/val keep only recordings of the source conditions, test only those of the target
+    conditions (e.g. PU N15_M07_F10 -> N09_M07_F10, an unseen speed on unseen bearings). The fold
+    assignment of the units does not depend on the conditions, so the folds equal fold0-4.
     """
+    if (source is None) != (target is None):
+        raise ValueError("group_kfold: give both 'source' and 'target' or neither")
     rng = np.random.RandomState(seed)
     groups_by_label: Dict[int, List[str]] = {}
     for r in recs:
@@ -112,6 +121,8 @@ def group_kfold(recs: List[Recording], cache: SignalCache, n_folds: int, fold: i
             p = "val"
         else:
             p = "train"
+        if source is not None and r.condition not in (target if p == "test" else source):
+            continue
         out[p].append(Segment(i, 0, cache.length(r)))
     return out
 
@@ -195,7 +206,8 @@ def build_split(recs: List[Recording], cache: SignalCache, cfg: dict, window: in
     if kind == "group":
         return group_explicit(recs, cache, cfg["assignment"])
     if kind == "group_kfold":
-        return group_kfold(recs, cache, int(cfg["n_folds"]), int(cfg["fold"]), int(cfg.get("fold_seed", 0)))
+        return group_kfold(recs, cache, int(cfg["n_folds"]), int(cfg["fold"]), int(cfg.get("fold_seed", 0)),
+                           source=cfg.get("source"), target=cfg.get("target"))
     if kind == "cross_condition":
         return cross_condition(recs, cache, cfg["source"], cfg["target"], fr, gap)
     if kind == "time_blocks":

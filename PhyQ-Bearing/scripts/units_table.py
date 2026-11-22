@@ -46,7 +46,7 @@ def main():
         except (OSError, KeyError):
             pass
     lines = ["\\begin{table*}[t]", "\\caption{Physical units per partition and test windows per class.}\\label{tab:units}",
-             "\\centering\\scriptsize", "\\begin{tabular}{p{1.8cm}p{6.0cm}p{4.4cm}p{2.2cm}}", "\\toprule",
+             "\\centering\\scriptsize", "\\begin{tabular}{p{1.8cm}p{5.9cm}p{4.4cm}p{2.3cm}}", "\\toprule",
              "Task & Training units & Test units & Test windows per class \\\\", "\\midrule"]
     lines += [f"{a} & {b} & {c} & {d} \\\\" for a, b, c, d in rows]
     lines += ["\\bottomrule", "\\end{tabular}", "\\end{table*}"]

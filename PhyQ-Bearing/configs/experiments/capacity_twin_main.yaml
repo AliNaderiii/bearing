@@ -1,0 +1,12 @@
+# v10.9 - capacity-matched linear twin, part 2: the non-PU tasks of main_tuned (same seeds and evaluation as
+# phyq_nomed / phyq_nomed_noquad there). 21 runs; SDUST first because the SDUST gain is the one in question.
+name: main_tuned
+runs:
+  - {dataset: sdust, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: cwru, variants: [within_0HP, within_1HP, within_2HP, within_3HP], seeds: [0, 1, 2]}
+  - {dataset: ims, variants: [chrono], seeds: [0, 1, 2]}
+  - {dataset: nrel, variants: [expwise], seeds: [0, 1, 2]}
+models:
+  - {tag: phyq_nomed_noquad_wide, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false, model.width_mult=1.65]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, pink, impulsive]"]
