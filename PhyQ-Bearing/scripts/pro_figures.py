@@ -82,6 +82,7 @@ def setup_style():
 MODELS = [  # tag, label, colour, marker, linestyle
     ("phyq_nomed", "PhyQ-TransNet", "#D1495B", "o", "-"),
     ("phyq_nomed_noquad", "Linear twin", "#EDA03B", "s", (0, (4, 1.5))),
+    ("phyq_nomed_noquad_wide", "Linear twin, width-matched", "#8B4513", "d", (0, (5, 1.2, 1, 1.2))),  # v10.10f
     ("classbd", "ClassBD", "#00798C", "D", "-"),
     ("cnn_transformer", "CNN–Transformer", "#56B4E9", "^", "-"),
     ("drsn", "DRSN-CW", "#2E9E5B", "v", "-"),
@@ -91,6 +92,7 @@ MODELS = [  # tag, label, colour, marker, linestyle
     ("kurtogram_ses", "Fast Kurtogram + SES", "#1B1B1B", "*", (0, (3, 1, 1, 1))),
 ]
 LABEL = {m[0]: m[1] for m in MODELS}
+TWINS = ["phyq_nomed_noquad", "phyq_nomed_noquad_wide"]  # linear controls of the proposed model
 COLOR = {m[0]: m[2] for m in MODELS}
 MARK = {m[0]: m[3] for m in MODELS}
 LS = {m[0]: m[4] for m in MODELS}
@@ -424,8 +426,8 @@ def fig5_snr(df, out, mode="absolute"):
     handles = [Line2D([], [], color=COLOR[m], ls=LS[m], marker=MARK[m], lw=1.9 if m == PROPOSED else 1.0,
                       ms=4, label=LABEL[m]) for m, *_ in MODELS]
     handles.append(Rectangle((0, 0), 1, 1, fc="0.6", alpha=0.3, label="± s.d. over seeds"))
-    fig.legend(handles=handles, loc="lower center", ncol=5, bbox_to_anchor=(0.5, 1.0), columnspacing=1.2,
-               handlelength=2.2)
+    fig.legend(handles=handles, loc="lower center", ncol=4, bbox_to_anchor=(0.5, 1.0), columnspacing=1.2,
+               handlelength=2.6)
     sns.despine(fig)
     fig.tight_layout(h_pad=1.0, w_pad=0.8)
     save(fig, out, "Figure_5_snr_curves" if mode == "absolute" else "Figure_S1_snr_relative")
@@ -445,7 +447,7 @@ def fig6_heatmap(df, out, snr=-6):
             norm.append((v - CHANCE[g]) / (100 - CHANCE[g]))
             cols.append((g, short))
     raw, norm = np.array(raw).T, np.array(norm).T
-    fig, ax = plt.subplots(figsize=(TEXTWIDTH, 3.25))
+    fig, ax = plt.subplots(figsize=(TEXTWIDTH, 0.36 * len(models) + 0.0))
     cmap = sns.color_palette("rocket_r", as_cmap=True)
     sns.heatmap(norm, ax=ax, cmap=cmap, vmin=-0.05, vmax=1.0, cbar=True, linewidths=0.4, linecolor="white",
                 annot=np.where(np.isfinite(raw), np.round(raw, 1), np.nan), fmt=".1f",
@@ -470,8 +472,9 @@ def fig6_heatmap(df, out, snr=-6):
         ax.text(3 * k + 1.5, -0.35, g, ha="center", va="bottom", fontsize=7, fontweight="bold")
         if k:
             ax.axvline(3 * k, color="white", lw=2.5)
+    n_twins = sum(m in models for m in TWINS)
     ax.axhline(1, color="white", lw=2.0)
-    ax.axhline(2, color="white", lw=2.0)
+    ax.axhline(1 + n_twins, color="white", lw=2.0)
     ax.set_xlabel("W = white (Gaussian), P = pink, I = impulsive (Bernoulli–Gaussian); "
                   f"{snr} dB absolute SNR. Pink and impulsive noise never seen in training.", fontsize=6.3)
     ax.grid(False)
@@ -492,12 +495,15 @@ def _holm(ps):
 
 def fig7_forest(df, results, out):
     from scipy.stats import wilcoxon
-    baselines = ["classbd", "cnn_transformer", "drsn", "qcnn", "wdcnn", "stats_mlp", "kurtogram_ses"]
+    baselines = TWINS + ["classbd", "cnn_transformer", "drsn", "qcnn", "wdcnn", "stats_mlp", "kurtogram_ses"]
     panels = [("CWRU", "CWRU\nWilcoxon, 4 tasks × 3 seeds"), ("PU", "PU (bearing-disjoint)\nWilcoxon, 13 (task, seed) pairs"),
               ("SDUST", "SDUST\nwindow level, 95% CI"), ("IMS", "IMS\nwindow level, 95% CI")]
-    extra = ["phyq_nomed_noquad", "phyq_nomed_nostats", "phyq_transnet"]  # same Holm family as the text
+    extra = ["phyq_nomed_nostats", "phyq_transnet"]  # rest of the Holm family of the text (twins are rows)
+    # the width-matched twin (added in v10.10) is NOT part of the Holm family whose p_Holm values are quoted
+    # in the text; it is tested with the same paired Wilcoxon test, uncorrected (it is n.s. in every panel)
+    no_holm = {"phyq_nomed_noquad_wide"}
     snrs = [(-6, "o", "−6 dB"), (-10, "D", "−10 dB")]
-    fig, axes = plt.subplots(1, 4, figsize=(TEXTWIDTH, 2.9), sharey=True)
+    fig, axes = plt.subplots(1, 4, figsize=(TEXTWIDTH, 3.5), sharey=True)
     rng = np.random.default_rng(0)
     for ax, (g, title), letter in zip(axes, panels, "abcd"):
         for si, (snr, mk, lab) in enumerate(snrs):
@@ -527,10 +533,14 @@ def fig7_forest(df, results, out):
                         pr = piv[[PROPOSED, b]].dropna()
                         if len(pr) and np.any(pr[PROPOSED] != pr[b]):
                             pe.append(wilcoxon(pr[PROPOSED], pr[b]).pvalue)
-                adj = _holm([r["p"] if r else 1 for r in res] + pe)[:len(res)]
-                for r, a in zip(res, adj):
-                    if r:
-                        r["sig"] = a < 0.05
+                fam = [i for i, b in enumerate(baselines) if b not in no_holm]
+                adj = _holm([res[i]["p"] if res[i] else 1 for i in fam] + pe)[:len(fam)]
+                for i, a in zip(fam, adj):
+                    if res[i]:
+                        res[i]["sig"] = a < 0.05
+                for i, b in enumerate(baselines):
+                    if b in no_holm and res[i]:
+                        res[i]["sig"] = res[i]["p"] < 0.05
             else:
                 for r in res:
                     if r:
@@ -547,6 +557,7 @@ def fig7_forest(df, results, out):
                 ax.scatter([r["mean"]], [yy], marker=mk, s=20, color=col if r["sig"] else "white",
                            edgecolor=col if not r["sig"] else "k", lw=0.6 if r["sig"] else 1.0, zorder=4)
         ax.axvline(0, color="k", lw=0.7)
+        ax.axhline(len(baselines) - len(TWINS) - 0.5, color="0.35", lw=0.5, ls=(0, (2, 2)))
         ax.set_title(f"({letter})  " + title, fontsize=6.8, linespacing=1.3)
         ax.grid(axis="y", visible=False)
         lim = max(abs(np.array(ax.get_xlim()))) if ax.has_data() else 10

@@ -97,3 +97,14 @@ violation). `python -X faulthandler` located the crash in pandas/pyarrow while `
 | tab:nll (NLL clean / white -6 / pink -6, 5 models × 6 tasks); "13 of 18", PU clean 1.47 vs 1.33, NREL pink 0.39 vs 0.22 | `metrics.json` → `test.clean.nll`, `test.noise.<fam>.absolute.-6.nll` (main_tuned; PU from main_benchmark) | `scripts/nll_table.py` (`docs/tab_nll.tex`) |
 | IMS PhyQ clean 78.3 ± 3.3 → 0 dB 79.2 ± 1.1; per seed +0.5 / −2.2 / +4.3 | `main_tuned/ims/chrono/phyq_nomed/seed0-2` | `scripts/std_table.py` |
 | Width-matched twin cost: 1.40 M / 321.0 M MACs / 8.46 ms (CWRU), all tasks in `docs/tab_complexity.tex` | `metrics.json` → `profile` (params, macs, latency_ms_bs1; GTX 1650, bs 1), mean over runs | `scripts/paper_assets.py` (MODELS now includes `phyq_nomed_noquad_wide`) |
+
+## v10.10f (figures only, no new runs)
+
+- Figs. 5, 6, 7 and S1 regenerated with `scripts/pro_figures.py` (width-matched twin `phyq_nomed_noquad_wide` added to MODELS).
+  Without the twin, the script reproduces the previous PNGs pixel-identically from the results on main (6cf03ba).
+- Fig. 7: twins are plotted as the first two rows. The Holm family is unchanged (the 10 comparisons whose p_Holm values are quoted in the text).
+  The width-matched twin is tested with the same paired Wilcoxon test, uncorrected: n.s. in CWRU and PU at −6 and −10 dB.
+- IMS window-level 95% grouped-bootstrap CIs (PhyQ − twin, white noise, `_window_ci`):
+  - small twin: −6 dB [−3.56, −1.76], −10 dB [−4.85, −3.05];
+  - width-matched twin: −6 dB [−3.43, −0.72], −10 dB [−2.06, −0.04].
+- SDUST, PhyQ − width-matched twin: −6 dB [10.36, 13.63], −10 dB [11.71, 14.81]. Consistent with the recording-level values in the text.
