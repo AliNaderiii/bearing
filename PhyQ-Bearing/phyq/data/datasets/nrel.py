@@ -21,6 +21,27 @@ from ..recording import Recording
 FS = 40000.0
 
 
+def _csv_header(path: str) -> List[str]:
+    """v10.10: column names of a CSV via the csv module, not pandas. pandas >= 2.x with
+    future.infer_string / pandas 3 builds the column Index as a pyarrow string array; a broken or
+    mismatched pyarrow wheel then crashes the interpreter with an access violation on Windows
+    (exit code 3221225477, no Python traceback)."""
+    import csv
+    with open(path, newline="", encoding="utf-8-sig", errors="replace") as f:
+        return [c.strip() for c in next(csv.reader(f), [])]
+
+
+def _no_arrow_strings():
+    """Context that disables pyarrow-backed string inference in pandas where the option exists."""
+    import contextlib
+    import pandas as pd
+    try:
+        pd.get_option("future.infer_string")
+        return pd.option_context("future.infer_string", False)
+    except Exception:
+        return contextlib.nullcontext()
+
+
 def _stage_csv(path: str, staging: str) -> str:
     """Read a (possibly multi-GB) CSV ONCE, in chunks, and store each *_AN<n> column as .npy in the
     project cache. The original CSV is opened read-only and never modified."""
@@ -31,11 +52,12 @@ def _stage_csv(path: str, staging: str) -> str:
     if os.path.exists(os.path.join(out, "_done")):
         return out
     os.makedirs(out, exist_ok=True)
-    cols = [c for c in pd.read_csv(path, nrows=0).columns if re.search(r"AN\d+$", str(c))]
+    cols = [c for c in _csv_header(path) if re.search(r"AN\d+$", str(c))]
     parts: Dict[str, list] = {c: [] for c in cols}
-    for chunk in pd.read_csv(path, usecols=cols, chunksize=500_000):
-        for c in cols:
-            parts[c].append(chunk[c].to_numpy(dtype=np.float32))
+    with _no_arrow_strings():
+        for chunk in pd.read_csv(path, usecols=cols, chunksize=500_000, engine="c"):
+            for c in cols:
+                parts[c].append(chunk[c].to_numpy(dtype=np.float32))
     for c in cols:
         np.save(os.path.join(out, f"{c}.npy"), np.concatenate(parts[c]))
         parts[c] = None
@@ -73,7 +95,7 @@ def build(cfg: dict) -> List[Recording]:
     found: Dict[str, tuple] = {}
     for p in sorted(glob.glob(os.path.join(root, "**", "*.csv"), recursive=True)):
         try:
-            cols = list(pd.read_csv(p, nrows=0).columns)
+            cols = _csv_header(p)
         except Exception:
             continue
         exps = sorted({c.split("_AN")[0] for c in cols if "_AN" in c})
