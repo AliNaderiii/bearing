@@ -1,0 +1,11 @@
+16:45:26 | INFO | [cache] 200/381 recordings
+16:45:31 | INFO | [memory] cached signals 8.9 GB, RAM 7.7 GB -> memory-map from disk
+16:45:34 | INFO | [data] sdust | chronological | train/val/test = 24384/6096/6096 | C=6 | fs=25600.0
+16:45:34 | INFO | [run] sdust | chrono | phyq_paper | seed 0 | params 1,407,129 | device cuda
+16:45:37 | INFO |   [memory] ~16 MB/sample (train), free 3.22/4.00 GB -> micro-batch 64 x accum 1 (effective batch 64)
+16:47:47 | INFO |   ep   1 loss 1.4785 acc 51.8 val 63.45 (best 63.45@1)
+16:57:59 | INFO |   ep   5 loss 0.5662 acc 88.8 val 80.98 (best 80.98@5)
+17:06:53 | INFO |   ep  10 loss 0.5618 acc 89.2 val 53.67 (best 89.18@7)
+17:15:34 | INFO |   ep  15 loss 0.5163 acc 90.9 val 53.09 (best 89.18@7)
+17:19:00 | INFO |   early stop at epoch 17 (best 7)
+17:25:49 | INFO | [done] clean acc 99.21 F1 99.19 | best val 89.18@7 | 2002s
