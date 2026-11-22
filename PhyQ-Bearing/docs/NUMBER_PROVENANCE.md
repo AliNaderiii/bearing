@@ -89,3 +89,11 @@ Not evaluated: width-matched twin in the PU speed shift.
 NREL note: the first NREL attempts of the width-matched twin ended with exit code 3221225477 (Windows access
 violation). `python -X faulthandler` located the crash in pandas/pyarrow while `nrel.py` read the CSV headers
 (not in CUDA); v10.10b reads the headers with the csv module, after which all three seeds ran normally on the GPU.
+
+## v10.10d (text/tables only, no new runs)
+
+| Number in the paper | Source | Script |
+|---|---|---|
+| tab:nll (NLL clean / white -6 / pink -6, 5 models × 6 tasks); "13 of 18", PU clean 1.47 vs 1.33, NREL pink 0.39 vs 0.22 | `metrics.json` → `test.clean.nll`, `test.noise.<fam>.absolute.-6.nll` (main_tuned; PU from main_benchmark) | `scripts/nll_table.py` (`docs/tab_nll.tex`) |
+| IMS PhyQ clean 78.3 ± 3.3 → 0 dB 79.2 ± 1.1; per seed +0.5 / −2.2 / +4.3 | `main_tuned/ims/chrono/phyq_nomed/seed0-2` | `scripts/std_table.py` |
+| Width-matched twin cost: 1.40 M / 321.0 M MACs / 8.46 ms (CWRU), all tasks in `docs/tab_complexity.tex` | `metrics.json` → `profile` (params, macs, latency_ms_bs1; GTX 1650, bs 1), mean over runs | `scripts/paper_assets.py` (MODELS now includes `phyq_nomed_noquad_wide`) |

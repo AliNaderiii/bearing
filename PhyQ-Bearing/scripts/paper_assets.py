@@ -31,6 +31,7 @@ from phyq.analysis.tables import collect
 MODELS = [  # (result tag, label in the paper) -- order of the rows
     ("phyq_nomed", "PhyQ-TransNet"),
     ("phyq_nomed_noquad", "Linear twin"),
+    ("phyq_nomed_noquad_wide", "Linear twin, width-matched"),  # v10.10d: capacity-matched control
     ("cnn_transformer", "CNN--Transformer"),
     ("drsn", "DRSN-CW"),
     ("qcnn", "QCNN"),
