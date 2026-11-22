@@ -1,0 +1,19 @@
+# v10.9 - CAPACITY-MATCHED LINEAR TWIN (re-review, advisor comment 4/7). The linear twin phyq_nomed_noquad has
+# 0.79 M parameters vs 1.40 M for phyq_nomed, so the gains attributed to the quadratic layers (cross-load,
+# SDUST) are confounded with capacity. phyq_nomed_noquad_wide widens every backbone convolution by
+# model.width_mult=1.65 (stem 52, branches 104, deep stage 212 channels + 1x1 projection to 128) -> 1.400 M
+# parameters (CWRU) / 1.407 M (SDUST), i.e. equal to phyq_nomed, and ~296 vs ~318 M MACs (thop).
+# Same tuned hyper-parameters as phyq_nomed / phyq_nomed_noquad (lr 2e-3, 80 epochs), same seeds.
+# Part 1 (this file, results/cross_load_tuned/...): 12 cross-load pairs x 3 seeds = 36 runs  (~1-1.5 h, GTX 1650)
+# Part 2: capacity_twin_main.yaml (CWRU within, IMS, NREL, SDUST)            = 21 runs
+# Part 3: capacity_twin_pu.yaml   (PU 5 folds x 2 seeds + art2real x 3)       = 13 runs
+name: cross_load_tuned
+runs:
+  - dataset: cwru
+    variants: [cross_0to1, cross_0to2, cross_0to3, cross_1to0, cross_1to2, cross_1to3,
+               cross_2to0, cross_2to1, cross_2to3, cross_3to0, cross_3to1, cross_3to2]
+    seeds: [0, 1, 2]
+models:
+  - {tag: phyq_nomed_noquad_wide, config: phyq_paper, overrides: [train.lr=0.002, train.epochs=80, model.prefilter.enabled=false, model.quad=false, model.width_mult=1.65]}
+seeds: [0, 1, 2]
+overrides: ["eval.noise_types=[white, impulsive]", "eval.snr_modes=[absolute]", "eval.snrs=[-10, -6, 0]"]

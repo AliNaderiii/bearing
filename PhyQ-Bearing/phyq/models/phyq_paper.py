@@ -258,14 +258,25 @@ class PhyQTransNet(nn.Module):
             self.register_buffer("prefilter_fitted", torch.zeros((), dtype=torch.bool))
 
         # ---- A. CNN backbone (original)
-        self.stem = nn.Sequential(_conv(quad, in_ch, 32, 15, 2, 7, clip), nn.BatchNorm1d(32), _act(act, 32),
+        # v10.9: ``width_mult`` widens every convolutional layer of the backbone (stem 32, branches 64,
+        # deep stage 128 channels, rounded to multiples of 4) without touching the Transformer, the
+        # statistical stream or the classifier; a 1x1 projection back to 128 channels is inserted only
+        # when the deep stage is not 128 wide. width_mult=1 (default) is the original model, bit for bit.
+        # Used for the capacity-matched linear twin (model.quad=false, ~1.4 M parameters).
+        wm = float(cfg.get("width_mult", 1.0))
+        if wm <= 0:
+            raise ValueError("width_mult must be > 0")
+        c1, c2, c3 = (max(4, int(round(c * wm / 4)) * 4) for c in (32, 64, 128))
+        self.width_mult = wm
+        self.stem = nn.Sequential(_conv(quad, in_ch, c1, 15, 2, 7, clip), nn.BatchNorm1d(c1), _act(act, c1),
                                   nn.MaxPool1d(2))
-        self.branch_1 = nn.Sequential(_conv(quad, 32, 64, 31, 1, 15, clip), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
-        self.branch_2 = nn.Sequential(_conv(quad, 32, 64, 15, 1, 7, clip), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
-        self.branch_3 = nn.Sequential(_conv(quad, 32, 64, 7, 1, 3, clip), nn.BatchNorm1d(64), _act(act, 64), nn.MaxPool1d(2))
-        self.fusion_conv = nn.Conv1d(64, 128, 1)
-        self.deep_stage = nn.Sequential(QResBlock_Pro(128, quad, att, shrink, act, clip_deep), nn.MaxPool1d(2),
-                                        QResBlock_Pro(128, quad, att, shrink, act, clip_deep))
+        self.branch_1 = nn.Sequential(_conv(quad, c1, c2, 31, 1, 15, clip), nn.BatchNorm1d(c2), _act(act, c2), nn.MaxPool1d(2))
+        self.branch_2 = nn.Sequential(_conv(quad, c1, c2, 15, 1, 7, clip), nn.BatchNorm1d(c2), _act(act, c2), nn.MaxPool1d(2))
+        self.branch_3 = nn.Sequential(_conv(quad, c1, c2, 7, 1, 3, clip), nn.BatchNorm1d(c2), _act(act, c2), nn.MaxPool1d(2))
+        self.fusion_conv = nn.Conv1d(c2, c3, 1)
+        self.deep_stage = nn.Sequential(QResBlock_Pro(c3, quad, att, shrink, act, clip_deep), nn.MaxPool1d(2),
+                                        QResBlock_Pro(c3, quad, att, shrink, act, clip_deep))
+        self.width_proj = nn.Conv1d(c3, 128, 1) if c3 != 128 else nn.Identity()
 
         # ---- B. Transformer (original: learned positional embedding, 2 layers, 4 heads, FF 512, dropout 0.2)
         if self.use_tf:
@@ -360,7 +371,7 @@ class PhyQTransNet(nn.Module):
                 xs = ((xf - med) / (1.4826 * mad + 1e-5)).to(x.dtype)
         h = self.stem(xs)
         fused = (self.branch_1(h) + self.branch_2(h) + self.branch_3(h)) / 3.0
-        cnn_out = self.deep_stage(self.fusion_conv(fused))
+        cnn_out = self.width_proj(self.deep_stage(self.fusion_conv(fused)))
         if self.use_tf:
             t = cnn_out.permute(0, 2, 1)
             t = t + self.pos_embedding[:, :t.size(1), :].to(t.dtype)

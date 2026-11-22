@@ -1,0 +1,26 @@
+% generated from the cross_load_tuned runs (v10.10: column Lin. wide = phyq_nomed_noquad_wide added) (clean test accuracy of the target load; mean of 3 seeds)
+\begin{table}[t]
+\caption{CWRU cross-load transfer: clean test accuracy (\%, mean of three seeds) on the target load of models trained and validated on the source load only. Hyper-parameters as in the within-load experiments. Lin.\ wide: width-matched linear twin (1.40~M parameters, as PhyQ-TransNet). Bold: best per row.}\label{tab:crossload}
+\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Source $\rightarrow$ target & PhyQ & Lin. & Lin.\ wide & ClassBD & WDCNN & DRSN \\
+\midrule
+0\,HP $\rightarrow$ 1\,HP & 92.8 & 93.7 & 94.3 & 62.5 & 94.9 & \textbf{97.0} \\
+0\,HP $\rightarrow$ 2\,HP & 91.9 & 94.0 & 93.1 & 59.5 & 94.0 & \textbf{99.7} \\
+0\,HP $\rightarrow$ 3\,HP & 87.7 & 88.3 & 88.9 & 65.5 & 88.9 & \textbf{89.8} \\
+1\,HP $\rightarrow$ 0\,HP & \textbf{98.2} & 97.6 & 97.0 & 65.5 & 92.8 & 97.9 \\
+1\,HP $\rightarrow$ 2\,HP & \textbf{100.0} & 96.4 & \textbf{100.0} & 67.0 & \textbf{100.0} & 98.5 \\
+1\,HP $\rightarrow$ 3\,HP & \textbf{97.9} & 89.8 & 89.8 & 75.1 & 88.9 & 92.2 \\
+2\,HP $\rightarrow$ 0\,HP & 92.8 & 85.9 & 90.4 & 54.1 & 92.2 & \textbf{93.4} \\
+2\,HP $\rightarrow$ 1\,HP & 95.2 & 90.1 & 90.1 & 59.5 & \textbf{97.6} & 97.3 \\
+2\,HP $\rightarrow$ 3\,HP & \textbf{96.7} & 96.1 & 95.8 & 55.6 & 94.9 & \textbf{96.7} \\
+3\,HP $\rightarrow$ 0\,HP & 82.0 & 75.1 & 74.8 & 63.4 & 79.3 & \textbf{82.6} \\
+3\,HP $\rightarrow$ 1\,HP & \textbf{85.9} & 80.5 & 80.8 & 65.8 & 79.9 & \textbf{85.9} \\
+3\,HP $\rightarrow$ 2\,HP & 87.4 & 86.5 & 85.9 & 68.2 & 85.3 & \textbf{90.4} \\
+\midrule
+Mean & 92.4 & 89.5 & 90.1 & 63.4 & 90.7 & 93.4 \\
+Worst pair & 82.0 & 75.1 & 74.8 & 54.1 & 79.3 & 82.6 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,21 @@
+# v10.9 - PU BEARING-DISJOINT SPEED SHIFT (re-review, advisor comment 7: the cc_X2Y protocols use seen bearings).
+# Train/val on N15_M07_F10 (1500 rpm), test on N09_M07_F10 (900 rpm) of bearings never seen in training
+# (folds fold0-4, same unit-to-fold assignment). sp_N15toN15_f* = in-condition control with identical training
+# data. Speed-shift loss = acc(sp_N15toN15_fk) - acc(sp_N15toN09_fk), paired per fold and seed.
+# 10 variants x 2 seeds x 5 models = 100 runs (PU, 8192-sample windows; ~8-10 h on a GTX 1650).
+# v10.10: the reported results (tab_speedshift) cover the first 4 models (80 runs); the capacity-matched twin
+# (last entry, 20 runs) was not run for the paper.
+name: pu_speed_shift
+runs:
+  - dataset: pu
+    variants: [sp_N15toN09_f0, sp_N15toN15_f0, sp_N15toN09_f1, sp_N15toN15_f1, sp_N15toN09_f2, sp_N15toN15_f2,
+               sp_N15toN09_f3, sp_N15toN15_f3, sp_N15toN09_f4, sp_N15toN15_f4]
+    seeds: [0, 1]
+models:
+  - {tag: phyq_nomed, config: phyq_paper, overrides: [model.prefilter.enabled=false]}
+  - {tag: phyq_nomed_noquad, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false]}
+  - {tag: classbd, config: classbd, overrides: [model.physics_loss=false]}
+  - {tag: wdcnn, config: wdcnn}
+  - {tag: phyq_nomed_noquad_wide, config: phyq_paper, overrides: [model.prefilter.enabled=false, model.quad=false, model.width_mult=1.65]}
+seeds: [0, 1]
+overrides: ["eval.noise_types=[white, impulsive]", "eval.snr_modes=[absolute]", "eval.snrs=[-10, -6, 0]"]
