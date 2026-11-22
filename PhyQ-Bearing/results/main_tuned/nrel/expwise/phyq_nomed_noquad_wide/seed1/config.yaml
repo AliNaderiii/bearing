@@ -139,4 +139,3 @@ model:
 _variant: expwise
 _model_tag: phyq_nomed_noquad_wide
 _val_only: false
-cuda_safe: 2
